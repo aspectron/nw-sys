@@ -107,7 +107,7 @@ extern "C" {
     /// # Synopsis
     /// Get the current window
     /// ```
-    /// let win = Nw::get_window_ns()::get();
+    /// let win = nw::Window()::get();
     /// // Listen to the minimize event
     /// win.on('minimize', function() {
     ///   console.log('Window is minimized');
@@ -131,13 +131,6 @@ extern "C" {
     #[wasm_bindgen(js_namespace=nw, js_name = Window)]
     #[derive(Debug, Clone)]
     pub type NWWindow;
-
-    /// Window 
-    ///
-    /// [NWJS documentation](https://docs.nwjs.io/en/latest/References/Window/)
-    //#[wasm_bindgen()]
-    //#[derive(Debug, Clone)]
-    //pub static WINDOW:JsValue;
 
     #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = get)]
     #[doc = "Get active window."]
@@ -164,15 +157,6 @@ extern "C" {
     #[doc = "[NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)"]
     #[doc = ""]
     pub fn open_with_options(url:&str, option:&WindowOptions);
-
-    /*
-    #[wasm_bindgen(js_namespace=["nw"], js_name = Window)]
-    #[doc = "Getter for the `Nw` field of this object."]
-    #[doc = ""]
-    #[doc = "[NWJS Documentation](https://docs.nwjs.io/en/latest/)"]
-    #[doc = ""]
-    pub fn get_window_ns_impl() -> Window;
-    */
 
     
 }
@@ -235,12 +219,3 @@ pub struct Window{
 
 }
 
-
-
-/*
-impl Nw {
-    //pub fn get_window_ns()->Window{
-    //    get_window_ns_impl()
-    //}
-}
-*/
