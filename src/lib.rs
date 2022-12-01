@@ -1,4 +1,6 @@
 
+pub mod error;
+pub mod result;
 pub mod nw;
 pub mod app;
 pub mod clipboard;

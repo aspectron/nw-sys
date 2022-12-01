@@ -1,10 +1,12 @@
 use wasm_bindgen::prelude::*;
 use js_sys::{Function, Object};
-use wasm_bindgen::JsCast;
+//use wasm_bindgen::JsCast;
+use workflow_log::log_trace;
 
 #[wasm_bindgen]
 extern "C" {
 
+    /*
     #[wasm_bindgen (extends = :: js_sys :: Object, js_name=Object)]
     pub type Global;
 
@@ -19,24 +21,29 @@ extern "C" {
 
     #[wasm_bindgen(getter, catch, static_method_of = Global, js_class = global, js_name = global)]
     fn get_global() -> Result<Object, JsValue>;
+    */
+    
 
-
-    # [wasm_bindgen (extends = Object , js_name = nw , typescript_type = "nw")]
+    #[wasm_bindgen (extends = Object)]
     #[derive(Debug, Clone)]
-    #[doc = "The `nw` namespace."]
-    #[doc = ""]
-    #[doc = "[NWJS documentation](https://docs.nwjs.io/en/latest/)"]
-    #[doc = ""]
+    /// The `nw` namespace.
+    ///
+    /// [NWJS documentation](https://docs.nwjs.io/en/latest/)
+    ///
     pub type NwObject;
 
-    #[wasm_bindgen(structural, catch, getter, method, js_class = nw, js_name = nw)]
+    
+    /*
+    #[wasm_bindgen(structural, catch, getter, method, js_class = nw1, js_name = nw1)]
     #[doc = "Getter for the `Nw` field of this object."]
     #[doc = ""]
     #[doc = "[NWJS Documentation](https://docs.nwjs.io/en/latest/)"]
     #[doc = ""]
     pub fn get_nw(this:&Global) -> Result<NwObject, JsValue>;
+    */
+    
 }
-
+/*
 fn get_global_object() -> Object {
     // The order is important: in Firefox Extension Content Scripts `globalThis`
     // is a Sandbox (not Window), so `globalThis` must be checked after `window`.
@@ -73,6 +80,8 @@ fn get_global_object() -> Object {
         None => JsValue::undefined().unchecked_into(),
     }
 }
+*/
+
 
 /// Getter for the `Nw` object
 ///
@@ -81,7 +90,29 @@ fn get_global_object() -> Object {
 /// [NWJS Documentation]: https://docs.nwjs.io/en/latest/
 pub fn try_nw() -> Result<NwObject, JsValue> {
 
-    get_global_object().dyn_into::<Global>().unwrap().get_nw()
+    //return Err(JsValue::undefined());
+    
+    let nw_opt = Function::new_no_args("return this.nw")
+        .call0(&JsValue::undefined());
+
+    match nw_opt{
+        Ok(value)=>{
+            if value.is_undefined(){
+                log_trace!("nw not found");
+                Err(value)
+            }else{
+                //log_trace!("nw_opt: {:?}", value);
+                let nw_ns:NwObject = value.clone().into();
+                Ok(nw_ns)
+            }
+        }
+        Err(err)=>{
+            log_trace!("nw not found, error: {:?}", err);
+            Err(err)
+        }
+    }
+    
+    //get_global_object().dyn_into::<Global>().unwrap().get_nw()
 }
 
 //#[allow(non_snake_case)]
