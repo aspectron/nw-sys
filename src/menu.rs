@@ -1,13 +1,73 @@
 use wasm_bindgen::prelude::*;
+use js_sys::Object;
+use crate::menu_item::MenuItem;
+use crate::options::OptionsExt;
 
 
 #[wasm_bindgen]
 extern "C" {
 
     // Menu
-    // Menu
     // Synopsis
-    // new Menu([option])
+    // nw::Menu::new()
+
+    #[wasm_bindgen(js_namespace=nw, js_name = Menu)]
+    #[derive(Debug, Clone)]
+    pub type Menu;
+
+    #[wasm_bindgen(constructor, js_namespace=["nw"])]
+    /// Create Menu
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Menu/)
+    ///
+    pub fn new() -> Menu;
+
+    #[wasm_bindgen(constructor, js_namespace=["nw"])]
+    /// Create Menu
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Menu/)
+    ///
+    pub fn new_with_options(options:&Options) -> Menu;
+
+    #[wasm_bindgen(method)]
+    /// Append item to the tail of the menu.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Menu/#menuappenditem)
+    ///
+    pub fn append(this:&Menu, item:&MenuItem);
+
+    #[wasm_bindgen(method, js_name=createMacBuiltin)]
+    /// Creates the builtin menus (App, Edit and Window) within the menubar on Mac.
+    /// The items can be manipulated with the items property.
+    /// The argument appname is used for the title of App menu.
+    /// You can still use builtin menus with other menu items.
+    /// i.e. append or insert items to the menu is still valid.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Menu/#menucreatemacbuiltinappname-options-mac)
+    ///
+    pub fn create_mac_builtin(this:&Menu, app_name:&str);
+
+    #[wasm_bindgen(method, js_name=createMacBuiltin)]
+    /// Creates the builtin menus (App, Edit and Window) within the menubar on Mac.
+    /// The items can be manipulated with the items property.
+    /// The argument appname is used for the title of App menu.
+    /// You can still use builtin menus with other menu items.
+    /// i.e. append or insert items to the menu is still valid.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Menu/#menucreatemacbuiltinappname-options-mac)
+    ///
+    pub fn create_mac_builtin_with_options(this:&Menu, app_name:&str, options:&MacOptions);
+
+
+    #[wasm_bindgen(method, getter, js_name = items)]
+    /// Get an array that contains all items of a menu.
+    /// Each item is an instance of MenuItem.
+    /// See MenuItem for detailed information.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Menu/#menuitems)
+    pub fn items(this:&Menu)->Vec<MenuItem>;
+    
+
     // menu.items
     // menu.append(item)
     // menu.insert(item, i)
@@ -111,4 +171,43 @@ extern "C" {
     
     // See also Customize Menubar for detailed usage.
 
+    #[wasm_bindgen(extends = Object)]
+    #[derive(Debug, Clone, PartialEq, Eq)]
+    pub type Options;
+
+    #[wasm_bindgen(extends = Object)]
+    #[derive(Debug, Clone, PartialEq, Eq)]
+    pub type MacOptions;
+    
+
 }
+
+impl OptionsExt for Options{}
+impl OptionsExt for MacOptions{}
+
+impl MacOptions{
+    pub fn hide_edit(self, hide:bool)->Self{
+        self.set("hideEdit", JsValue::from(hide))
+    }
+    pub fn hide_window(self, hide:bool)->Self{
+        self.set("hideWindow", JsValue::from(hide))
+    }
+}
+
+pub enum Type {
+    Menubar
+}
+
+impl From<Type> for Options{
+    fn from(t: Type) -> Self {
+        let options = Self::new();
+        let options = match t{
+            Type::Menubar=>{
+                options.set("type", JsValue::from("menubar"))
+            }
+        };
+
+        options
+    }
+}
+

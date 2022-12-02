@@ -1,32 +1,15 @@
 use wasm_bindgen::prelude::*;
 use js_sys::{Object, Function};
-//use crate::nw::Nw;
-
+use crate::options::OptionsExt;
+use crate::menu::Menu;
 
 #[wasm_bindgen]
 extern "C" {
 
-    // Window
-    // Window
-    // Synopsis
-    // Window.get([window_object])
-    // Window.getAll(callback)
-    // Window.open(url, [options], [callback])
+    
     // win.window
-    // win.x
-    // win.y
-    // win.width
-    // win.height
-    // win.title
     // win.menu
-    // win.isAlwaysOnTop
-    // win.isFullscreen
-    // win.isTransparent
-    // win.isKioskMode
-    // win.zoomLevel
     // win.cookies.*
-    // win.moveTo(x, y)
-    // win.moveBy(x, y)
     // win.resizeTo(width, height)
     // win.setInnerWidth(width)
     // win.setInnerHeight(height)
@@ -130,121 +113,140 @@ extern "C" {
     /// ```
     #[wasm_bindgen(js_namespace=nw, js_name = Window)]
     #[derive(Debug, Clone)]
-    pub type NWWindow;
+    pub type Window;
 
     #[wasm_bindgen(method, getter, js_name = x)]
     /// Get left offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
     ///
-    pub fn x(this:&NWWindow)->u32;
+    pub fn x(this:&Window)->u32;
 
     #[wasm_bindgen(method, setter, js_name = x)]
     /// Set left offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
     ///
-    pub fn set_x(this:&NWWindow, x:u32);
+    pub fn set_x(this:&Window, x:u32);
 
     #[wasm_bindgen(method, getter, js_name = y)]
     /// Get top offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
     ///
-    pub fn y(this:&NWWindow)->u32;
+    pub fn y(this:&Window)->u32;
 
     #[wasm_bindgen(method, setter, js_name = y)]
     /// Set top offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
     ///
-    pub fn set_y(this:&NWWindow, y:u32);
+    pub fn set_y(this:&Window, y:u32);
 
     #[wasm_bindgen(method, getter, js_name = width)]
     /// Get window’s size, including the window’s frame.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwidth)
     ///
-    pub fn width(this:&NWWindow)->u32;
+    pub fn width(this:&Window)->u32;
 
     #[wasm_bindgen(method, setter, js_name = width)]
     /// Set window’s size, including the window’s frame.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwidth)
     ///
-    pub fn set_width(this:&NWWindow, width:u32);
+    pub fn set_width(this:&Window, width:u32);
 
     #[wasm_bindgen(method, getter, js_name = height)]
     /// Get window’s size, including the window’s frame.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winheight)
     ///
-    pub fn height(this:&NWWindow)->u32;
+    pub fn height(this:&Window)->u32;
 
     #[wasm_bindgen(method, setter, js_name = height)]
     /// Set window’s size, including the window’s frame.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winheight)
     ///
-    pub fn set_height(this:&NWWindow, height:u32);
+    pub fn set_height(this:&Window, height:u32);
 
     #[wasm_bindgen(method, getter, js_name = title)]
     /// Get window’s title.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintitle)
     ///
-    pub fn title(this:&NWWindow)->String;
+    pub fn title(this:&Window)->String;
 
     #[wasm_bindgen(method, setter, js_name = title)]
     /// Set window’s title.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintitle)
     ///
-    pub fn set_title(this:&NWWindow, title:&str);
+    pub fn set_title(this:&Window, title:&str);
 
-    //TODO: Menu
+    #[wasm_bindgen(method, getter, js_name = menu)]
+    /// Get window’s menubar.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    ///
+    pub fn menu(this:&Window)->Menu;
+
+    #[wasm_bindgen(method, setter, js_name = menu)]
+    /// Set window’s menubar.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    ///
+    pub fn set_menu(this:&Window, menu:&Menu);
+
+    #[wasm_bindgen(method, setter, js_name = menu)]
+    /// Set window’s menubar = null.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    ///
+    pub fn remove_menu_impl(this:&Window, menu:JsValue);
 
     #[wasm_bindgen(method, getter, js_name = isAlwaysOnTop)]
     /// Get whether the window is always on top of other windows.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisalwaysontop)
     ///
-    pub fn is_always_on_top(this:&NWWindow)->bool;
+    pub fn is_always_on_top(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = isFullscreen)]
     /// Get whether we’re in fullscreen mode.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisfullscreen)
     ///
-    pub fn is_fullscreen(this:&NWWindow)->bool;
+    pub fn is_fullscreen(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = isTransparent)]
     /// Get whether transparency is turned on
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winistransparent)
     ///
-    pub fn is_transparent(this:&NWWindow)->bool;
+    pub fn is_transparent(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = isKioskMode)]
     /// Get whether we’re in kiosk mode.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winiskioskmode)
     ///
-    pub fn is_kiosk_mode(this:&NWWindow)->bool;
+    pub fn is_kiosk_mode(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = zoomLevel)]
     /// Get the page zoom. 0 for normal size; positive value for zooming in; negative value for zooming out.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winzoomlevel)
     ///
-    pub fn zoom_level(this:&NWWindow)->i16;
+    pub fn zoom_level(this:&Window)->i16;
 
     #[wasm_bindgen(method, setter, js_name = zoomLevel)]
     /// Set the page zoom. 0 for normal size; positive value for zooming in; negative value for zooming out.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winzoomlevel)
     ///
-    pub fn set_zoom_level(this:&NWWindow, zoom:i16);
+    pub fn set_zoom_level(this:&Window, zoom:i16);
 
     //TODO: Cookies
 
@@ -253,23 +255,21 @@ extern "C" {
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmovetox-y)
     ///
-    pub fn move_to(this:&NWWindow, x:u32, y:u32);
+    pub fn move_to(this:&Window, x:u32, y:u32);
 
     #[wasm_bindgen(method, js_name = moveBy)]
     /// Moves a window a specified number of pixels relative to its current coordinates.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmovebyx-y)
     ///
-    pub fn move_by(this:&NWWindow, x:u32, y:u32);
-
-
+    pub fn move_by(this:&Window, x:u32, y:u32);
 
     #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = get)]
     /// Get current window.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetwindow_object)
     ///
-    pub fn get() -> NWWindow;
+    pub fn get() -> Window;
 
     #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = open)]
     /// Open new window
@@ -297,29 +297,19 @@ extern "C" {
 }
 
 
-impl Options{
-    /// "Construct a new `Options`.
+impl Window{
+    /// Set window’s menubar = null.
     ///
-    pub fn new() -> Self {
-        #[allow(unused_mut)]
-        let mut ret: Self = ::wasm_bindgen::JsCast::unchecked_into(Object::new());
-        ret
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    ///
+    pub fn remove_menu(&self){
+        self.remove_menu_impl(JsValue::null());
     }
+}
 
+impl OptionsExt for Options{}
 
-    pub fn set(self, key:&str, value:JsValue) -> Self {
-        let r = ::js_sys::Reflect::set(
-            self.as_ref(),
-            &JsValue::from(key),
-            &value,
-        );
-        debug_assert!(
-            r.is_ok(),
-            "setting properties should never fail on our dictionary objects"
-        );
-        let _ = r;
-        self
-    }
+impl Options{
 
     /// the initial top of the window.
     ///
@@ -366,9 +356,5 @@ impl std::fmt::Display for Options{
         write!(f, "{:?}", self)?;
         Ok(())
     }
-}
-
-pub struct Window{
-
 }
 

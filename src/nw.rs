@@ -117,8 +117,17 @@ pub fn try_nw() -> Result<NwObject, JsValue> {
 
 //#[allow(non_snake_case)]
 pub mod nw{
+    pub use crate::nw::try_nw;
     pub use crate::window::Window;
     pub mod window{
         pub use crate::window::*;
+    }
+    pub use crate::menu::Menu;
+    pub mod menu{
+        pub use crate::menu::*;
+    }
+    pub use crate::menu_item::MenuItem;
+    pub mod menu_item{
+        pub use crate::menu_item::*;
     }
 }
