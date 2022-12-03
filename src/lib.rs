@@ -13,4 +13,5 @@ pub mod shortcut;
 pub mod tray;
 pub mod window;
 pub mod prelude;
+pub mod utils;
 

@@ -115,33 +115,40 @@ extern "C" {
     #[derive(Debug, Clone)]
     pub type Window;
 
+    #[wasm_bindgen(method, getter, js_name = window)]
+    /// Get the corresponding DOM window object of the native window.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwindow)
+    ///
+    pub fn window(this:&Window)->web_sys::Window;
+
     #[wasm_bindgen(method, getter, js_name = x)]
     /// Get left offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
     ///
-    pub fn x(this:&Window)->u32;
+    pub fn x(this:&Window)->i32;
 
     #[wasm_bindgen(method, setter, js_name = x)]
     /// Set left offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
     ///
-    pub fn set_x(this:&Window, x:u32);
+    pub fn set_x(this:&Window, x:i32);
 
     #[wasm_bindgen(method, getter, js_name = y)]
     /// Get top offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
     ///
-    pub fn y(this:&Window)->u32;
+    pub fn y(this:&Window)->i32;
 
     #[wasm_bindgen(method, setter, js_name = y)]
     /// Set top offset from window frame to screen.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
     ///
-    pub fn set_y(this:&Window, y:u32);
+    pub fn set_y(this:&Window, y:i32);
 
     #[wasm_bindgen(method, getter, js_name = width)]
     /// Get window’s size, including the window’s frame.
@@ -347,6 +354,38 @@ impl Options{
     pub fn top(self, top: u32) ->Self {
         self.set("y", JsValue::from(top))
     }
+
+
+    /// whether to open a new window in a separate render process.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    pub fn new_instance(self, value: bool) ->Self {
+        self.set("new_instance", JsValue::from(value))
+    }
+
+    /// If true, the Node context and DOM context are merged in the new window’s process.
+    /// Use only when new_instance is true.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    pub fn mixed_context(self, value: bool) ->Self {
+        self.set("mixed_context", JsValue::from(value))
+    }
+
+    /// the script to be injected before any DOM is constructed and any script is run. 
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    pub fn inject_js_start(self, js: &str) ->Self {
+        self.set("inject_js_start", JsValue::from(js))
+    }
+
+    /// the script to be injected after the document object is loaded, before onload event is fired.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    pub fn inject_js_end(self, js: &str) ->Self {
+        self.set("inject_js_end", JsValue::from(js))
+    }
+
+    
 
 }
 

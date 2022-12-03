@@ -212,6 +212,14 @@ extern "C" {
 impl OptionsExt for Options{}
 
 impl Options{
+
+    /// Type of MenuItem
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    pub fn set_type(self, t:Type)->Self{
+        self.set("type", t.into())
+    }
+
     /// Label for normal item or checkbox
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
@@ -279,22 +287,32 @@ impl Options{
 
 pub enum Type {
     Separator,
-    Normal(Options),
-    Checkbox(Options)
+    Normal,
+    Checkbox
 }
 
 impl From<Type> for Options{
     fn from(t: Type) -> Self {
         match t{
-            Type::Separator=>{
-                Self::new().set("type", JsValue::from("separator"))
-            }
-            Type::Normal(options)=>{
-                options.set("type", JsValue::from("normal"))
-            }
-            Type::Checkbox(options)=>{
-                options.set("type", JsValue::from("checkbox"))
-            }
+            Type::Separator=>Options::new().set_type(Type::Separator),
+            Type::Normal=>Options::new().set_type(Type::Normal),
+            Type::Checkbox=>Options::new().set_type(Type::Checkbox),
         }
+    }
+} 
+
+impl ToString for Type{
+    fn to_string(&self) -> String {
+        match self{
+            Type::Separator=>"Separator",
+            Type::Normal=>"Normal",
+            Type::Checkbox=>"Checkbox"
+        }.to_string()
+    }
+}
+
+impl From<Type> for JsValue{
+    fn from(t: Type) -> Self {
+       JsValue::from(t.to_string().to_lowercase())
     }
 }
