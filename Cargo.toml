@@ -1,10 +1,10 @@
 [package]
-name = "nwjs-sys"
+name = "nw-sys"
 version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/aspectron/cargo-emanate"
-keywords = ["cargo", "subcommand", "installation", "package","nwjs"]
+keywords = ["cargo", "subcommand", "installation", "package", "nwjs"]
 categories = ["command-line-utilities", "development-tools::cargo-plugins", "development-tools::build-utils"]
 exclude = ["/.*", "/test"]
 description = """
