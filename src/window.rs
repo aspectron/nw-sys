@@ -318,8 +318,11 @@ impl OptionsExt for Options{}
 
 impl Options{
 
-    /// the initial top of the window.
-    ///
+    /// the id used to identify the window.
+    /// This will be used to remember the size and position of the window
+    /// and restore that geometry when a window with the same id is later opened.
+    /// [See also the Chrome App documentation](https://developer.chrome.com/docs/extensions/reference/app_window/#property-CreateWindowOptions-id)
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn id(self, id: &str) ->Self {
         self.set("id", JsValue::from(id))
     }
@@ -327,30 +330,35 @@ impl Options{
     /// The default title of window created by NW.js, .
     /// it's very useful if you want to show your own title when the app is starting
     ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn title(self, title: &str) -> Self {
         self.set("title", JsValue::from(title))
     }
 
     /// the initial inner width of the window.
     ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn width(self, width: u32) ->Self {
         self.set("width", JsValue::from(width))
     }
 
     /// the initial inner height of the window.
     ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn height(self, height: u32) -> Self {
         self.set("height", JsValue::from(height))
     }
 
     /// the initial left of the window.
     ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn left(self, left: u32) ->Self {
         self.set("x", JsValue::from(left))
     }
 
     /// the initial top of the window.
     ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn top(self, top: u32) ->Self {
         self.set("y", JsValue::from(top))
     }
