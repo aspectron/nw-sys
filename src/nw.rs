@@ -115,9 +115,14 @@ pub fn try_nw() -> Result<NwObject, JsValue> {
     //get_global_object().dyn_into::<Global>().unwrap().get_nw()
 }
 
+pub fn is_nw()->bool{
+    try_nw().is_ok()
+}
+
 //#[allow(non_snake_case)]
 pub mod nw{
     pub use crate::nw::try_nw;
+    pub use crate::nw::is_nw;
     pub use crate::window::Window;
     pub mod window{
         pub use crate::window::*;
