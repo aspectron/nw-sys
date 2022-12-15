@@ -24,5 +24,6 @@ features = [
     'console',
     'Document',
     'Window',
-    'HtmlElement'
+    'HtmlElement',
+    'HtmlIFrameElement'
 ]
