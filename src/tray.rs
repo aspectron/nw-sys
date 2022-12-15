@@ -6,18 +6,18 @@ use crate::menu::Menu;
 
 #[wasm_bindgen]
 extern "C" {
-    // Tray
-    // Synopsis
-    // new Tray(option)
-    // tray.title
-    // tray.tooltip
-    // tray.icon
-    // tray.alticon (Mac)
-    // tray.iconsAreTemplates (Mac)
-    // tray.menu
-    // tray.remove();
-    // Event: click
-    // Tray is an abstraction of different controls on different platforms, usually it’s a small icon shown on the OS’s notification area. On Mac OS X it’s called Status Item, on GTK it’s Status Icon, and on Windows it’s System Tray Icon.
+    /// # Tray
+    /// Synopsis
+    /// new Tray(option)
+    /// tray.title
+    /// tray.tooltip
+    /// tray.icon
+    /// tray.alticon (Mac)
+    /// tray.iconsAreTemplates (Mac)
+    /// tray.menu
+    /// tray.remove();
+    /// Event: click
+    /// Tray is an abstraction of different controls on different platforms, usually it’s a small icon shown on the OS’s notification area. On Mac OS X it’s called Status Item, on GTK it’s Status Icon, and on Windows it’s System Tray Icon.
 
     #[wasm_bindgen(js_namespace=nw, js_name = Tray)]
     #[derive(Debug, Clone)]
@@ -128,7 +128,8 @@ extern "C" {
     pub fn menu(this:&Tray)->Option<Menu>;
 
     #[wasm_bindgen(method, setter, js_name = menu)]
-    /// Give it a menu
+    /// Set the menu of the tray, menu will be showed when you click on the tray icon.
+    /// 
     /// let menu = nw::Menu::new();
     /// menu.append(&nw::MenuItem::new(&nw::menu_item::Options::new().label("Menu 1")));
     /// tray.set_menu(&menu);
@@ -138,7 +139,8 @@ extern "C" {
     
     #[wasm_bindgen(method)]
     /// Remove the tray
-    /// tray.remove();
+    /// 
+    ///
     /// tray = null;<---- TODO
     /// 
     /// Once removed, you will not be able to show it again and you should set 

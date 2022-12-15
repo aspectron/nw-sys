@@ -9,7 +9,6 @@ extern "C" {
     #[wasm_bindgen(extends = Object)]
     pub type App;
 
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = argv)]
     /// Get the filtered command line arguments when starting the app.
     /// In NW.js, some command line arguments are used by NW.js,
     /// which should not be interested of your app. App.argv will filter out 
@@ -17,17 +16,17 @@ extern "C" {
     /// from App.filteredArgv and the full arguments from App.fullArgv.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = argv)]
     pub fn argv_impl() -> Array;
 
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = fullArgv)]
     /// Get all the command line arguments when starting the app.
     /// The return values contains the arguments used by NW.js,
     /// such as --nwapp, --remote-debugging-port etc.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = fullArgv)]
     pub fn full_argv_impl() -> Array;
 
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = filteredArgv)]
     /// Get a list of patterns of filtered command line arguments used by App.argv.
     /// By default, following patterns are used to filter the arguments:
     /// [
@@ -44,6 +43,7 @@ extern "C" {
     /// 
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = filteredArgv)]
     pub fn filtered_argv_impl() -> Array;
 
     
@@ -231,16 +231,44 @@ impl App{
         Ok(list)
     }
 
+    /// Get the filtered command line arguments when starting the app.
+    /// In NW.js, some command line arguments are used by NW.js,
+    /// which should not be interested of your app. App.argv will filter out 
+    /// those arguments and return the ones left. You can get filtered patterns 
+    /// from App.filteredArgv and the full arguments from App.fullArgv.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
     pub fn argv()->Result<Vec<String>>{
         let list = Self::build_argv_str(App::argv_impl())?;
         Ok(list)
     }
 
+    /// Get all the command line arguments when starting the app.
+    /// The return values contains the arguments used by NW.js,
+    /// such as --nwapp, --remote-debugging-port etc.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
     pub fn full_argv()->Result<Vec<String>>{
         let list = Self::build_argv_str(App::full_argv_impl())?;
         Ok(list)
     }
 
+    /// Get a list of patterns of filtered command line arguments used by App.argv.
+    /// By default, following patterns are used to filter the arguments:
+    /// [
+    /// 
+    /// /^--url=/,
+    /// 
+    /// /^--remote-debugging-port=/,
+    /// 
+    /// /^--renderer-cmd-prefix=/,
+    /// 
+    /// /^--nwapp=/
+    /// 
+    /// ]
+    /// 
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
     pub fn filtered_argv()->Result<Vec<RegExp>>{
         let list = Self::build_argv_filters(App::filtered_argv_impl())?;
         Ok(list)

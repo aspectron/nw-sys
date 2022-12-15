@@ -88,28 +88,42 @@ extern "C" {
 
 
     /// # Synopsis
-    /// Get the current window
+    /// 
     /// ```
+    /// use workflow_wasm::listener::Listener;
+    /// 
+    /// // Get the current window
     /// let win = nw::Window()::get();
     /// // Listen to the minimize event
-    /// win.on('minimize', function() {
-    ///   console.log('Window is minimized');
+    /// win.on("minimize", |_| {
+    ///   log_info!("Window is minimized");
     /// });
     ///
     /// // Minimize the window
     /// win.minimize();
     ///
     /// // Unlisten the minimize event
-    /// win.removeAllListeners('minimize');
+    /// win.remove_all_listeners("minimize");
     ///
     /// // Create a new window and get it
-    /// nw::Window::open('https://github.com', {}, function(new_win) {
+    /// let options = nw::window::Options::new()
+    ///     .title("Test window");
+    /// 
+    /// let listener = Listener::new(|new_win| {
     ///   // And listen to new window's focus event
-    ///   new_win.on('focus', function() {
-    ///     console.log('New window is focused');
+    ///   new_win.on("focus", function() {
+    ///     log_info!("New window is focused");
     ///   });
-    ///
     /// });
+    /// 
+    /// nw::Window::open_with_options_and_callback(
+    ///     "https://github.com",
+    ///     &options,
+    ///     listener.into_js()
+    /// );
+    /// 
+    /// //save this listener somewhere otherwise it will leak memory 
+    /// listener.forget();
     /// ```
     #[wasm_bindgen(js_namespace=nw, js_name = Window)]
     #[derive(Debug, Clone)]
