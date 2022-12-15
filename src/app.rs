@@ -1,25 +1,52 @@
 use wasm_bindgen::prelude::*;
+use js_sys::{Object, Array, RegExp};
+use crate::result::Result;
 
 
 #[wasm_bindgen]
 extern "C" {
 
+    #[wasm_bindgen(extends = Object)]
+    pub type App;
 
-    // App.argv
-    // Get the filtered command line arguments when starting the app. In NW.js, some command line arguments are used by NW.js, which should not be interested of your app. App.argv will filter out those arguments and return the ones left. You can get filtered patterns from App.filteredArgv and the full arguments from App.fullArgv.
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = argv)]
+    /// Get the filtered command line arguments when starting the app.
+    /// In NW.js, some command line arguments are used by NW.js,
+    /// which should not be interested of your app. App.argv will filter out 
+    /// those arguments and return the ones left. You can get filtered patterns 
+    /// from App.filteredArgv and the full arguments from App.fullArgv.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
+    pub fn argv_impl() -> Array;
 
-    // App.fullArgv
-    // Get all the command line arguments when starting the app. The return values contains the arguments used by NW.js, such as --nwapp, --remote-debugging-port etc.
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = fullArgv)]
+    /// Get all the command line arguments when starting the app.
+    /// The return values contains the arguments used by NW.js,
+    /// such as --nwapp, --remote-debugging-port etc.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
+    pub fn full_argv_impl() -> Array;
 
-    // App.filteredArgv
-    // Get a list of patterns of filtered command line arguments used by App.argv. By default, following patterns are used to filter the arguments:
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = filteredArgv)]
+    /// Get a list of patterns of filtered command line arguments used by App.argv.
+    /// By default, following patterns are used to filter the arguments:
+    /// [
+    /// 
+    /// /^--url=/,
+    /// 
+    /// /^--remote-debugging-port=/,
+    /// 
+    /// /^--renderer-cmd-prefix=/,
+    /// 
+    /// /^--nwapp=/
+    /// 
+    /// ]
+    /// 
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
+    pub fn filtered_argv_impl() -> Array;
 
-    // [
-    // /^--url=/,
-    // /^--remote-debugging-port=/,
-    // /^--renderer-cmd-prefix=/,
-    // /^--nwapp=/
-    // ]
+    
     // App.startPath
     // Get the directory where the application starts. The application will change the current directory to where the package files reside after start.
 
@@ -166,3 +193,58 @@ extern "C" {
     // This is a Mac specific feature. This event is sent when the user clicks the dock icon for an already running application.
 
 }
+
+
+impl App{
+    fn build_argv_str(argv:Array)->Result<Vec<String>>{
+        let mut list = Vec::new();
+        for index in 0..argv.length(){
+            match argv.get(index).as_string(){
+                Some(v)=>{
+                    list.push(v);
+                }
+                None=>{}
+            }
+            
+        }
+
+        Ok(list)
+    }
+
+    fn build_argv_filters(argv:Array)->Result<Vec<RegExp>>{
+        let mut list = Vec::new();
+        for index in 0..argv.length(){
+            let a = argv.get(index);
+            let v = RegExp::from(a);
+            list.push(v);
+            /*
+            match argv.get(index).as_string(){
+                Some(v)=>{
+                    list.push(v);
+                }
+                None=>{}
+            }
+            */
+            
+        }
+
+        Ok(list)
+    }
+
+    pub fn argv()->Result<Vec<String>>{
+        let list = Self::build_argv_str(App::argv_impl())?;
+        Ok(list)
+    }
+
+    pub fn full_argv()->Result<Vec<String>>{
+        let list = Self::build_argv_str(App::full_argv_impl())?;
+        Ok(list)
+    }
+
+    pub fn filtered_argv()->Result<Vec<RegExp>>{
+        let list = Self::build_argv_filters(App::filtered_argv_impl())?;
+        Ok(list)
+    }
+
+}
+

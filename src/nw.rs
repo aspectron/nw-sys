@@ -121,6 +121,10 @@ pub fn is_nw()->bool{
 
 //#[allow(non_snake_case)]
 pub mod nw{
+    pub use crate::app::App;
+    pub mod app{
+        pub use crate::app::*;
+    }
     pub use crate::nw::try_nw;
     pub use crate::nw::is_nw;
     pub use crate::window::Window;
