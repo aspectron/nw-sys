@@ -946,7 +946,11 @@ impl std::fmt::Display for Options{
     }
 }
 
-impl OptionsExt for CaptureConfig{}
+impl OptionsExt for CaptureConfig{
+    fn initialize(self)->Self{
+        self.datatype("datauri")
+    }
+}
 
 impl CaptureConfig{
     /// The image format used to generate the image.

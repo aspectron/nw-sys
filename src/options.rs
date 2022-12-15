@@ -9,7 +9,14 @@ pub trait OptionsExt {
     {
         #[allow(unused_mut)]
         let mut ret: Self = ::wasm_bindgen::JsCast::unchecked_into(Object::new());
+        ret = ret.initialize();
         ret
+    }
+
+    fn initialize(self)->Self
+    where Self:wasm_bindgen::JsCast
+    {
+        self
     }
 
     fn set(self, key:&str, value:JsValue) -> Self

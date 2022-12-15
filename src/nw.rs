@@ -144,4 +144,5 @@ pub mod nw{
     pub mod tray{
         pub use crate::tray::*;
     }
+    pub use crate::shell::Shell;
 }
