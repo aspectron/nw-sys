@@ -16,7 +16,7 @@ You can use [`cargo-nw`](https://crates.io/crates/cargo-nw) utility to build ins
 ### Status
 
 * `app` - partial
-* `window` - partial
+* `window` - partial (Pending: win.cookies)
 * `menu` - full
 * `nw` - full
 * `shell` - full

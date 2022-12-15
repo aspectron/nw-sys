@@ -6,9 +6,7 @@ use crate::menu::Menu;
 
 #[wasm_bindgen]
 extern "C" {
-
-
-    // win.cookies.*
+    // TODO: win.cookies.*
 
     /// # Synopsis
     /// 
@@ -713,6 +711,13 @@ extern "C" {
     ///
     pub fn get() -> Window;
 
+    #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = getAll)]
+    /// Get all windows with a callback function whose parameter is an array of nw::Window object.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetallcallback)
+    ///
+    pub fn get_all(callback:&Function);
+
     #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = open)]
     /// Open new window
     ///
@@ -934,11 +939,268 @@ impl Options{
 
 }
 
-
 impl std::fmt::Display for Options{
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self)?;
         Ok(())
     }
 }
+
+impl OptionsExt for CaptureConfig{}
+
+impl CaptureConfig{
+    /// The image format used to generate the image.
+    /// It supports two formats: "png" and "jpeg".
+    /// 
+    /// If ignored, it’s "jpeg" by default.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    pub fn format(self, format: &str) ->Self {
+        self.set("format", JsValue::from(format))
+    }
+
+    /// It supports three types: "raw", "buffer" and "datauri".
+    /// 
+    /// If ignored, it’s "datauri" by default.
+    /// 
+    /// The `raw` only contains the Base64 encoded image.
+    /// But `datauri` contains the mime type headers as well,
+    /// and it can be directly assigned to src of Image to load the image.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    /// 
+    pub fn datatype(self, datatype: &str) ->Self {
+        self.set("datatype", JsValue::from(datatype))
+    }
+}
+
+
+impl std::fmt::Display for CaptureConfig{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)?;
+        Ok(())
+    }
+}
+
+impl OptionsExt for ScreenshotConfig{}
+
+impl ScreenshotConfig{
+    /// Capture the whole page beyond the visible area.
+    /// Currently the height of captured image is capped at 16384 pixels by Chromium.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// 
+    pub fn fullsize(self, fullsize: bool) ->Self {
+        self.set("fullsize", JsValue::from(fullsize))
+    }
+
+    /// The image format used to generate the image.
+    /// 
+    /// It supports two formats: "png" and "jpeg".
+    /// 
+    /// "png" is the default.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// 
+    pub fn format(self, format: &str) ->Self {
+        self.set("format", JsValue::from(format))
+    }
+
+    /// Compression quality from range [0..100] (jpeg only).
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// 
+    pub fn quality(self, quality: u8) ->Self {
+        self.set("quality", JsValue::from(quality))
+    }
+
+    /// Capture the screenshot of a given region only.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// 
+    pub fn clip(self, x:i32, y:i32, width:u32, height:u32, scale:u32) ->Self {
+        let clip_region = Object::new();
+        let items = vec![
+            ("x", JsValue::from(x)),
+            ("y", JsValue::from(y)),
+            ("width", JsValue::from(width)),
+            ("height", JsValue::from(height)),
+            ("scale", JsValue::from(scale))
+        ];
+    
+        for (key, value) in items{
+            let _ = js_sys::Reflect::set(
+                &clip_region,
+                &JsValue::from(key),
+                &value,
+            );
+        }
+    
+        self.set("clip", JsValue::from(clip_region))
+    }
+}
+
+impl std::fmt::Display for ScreenshotConfig{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)?;
+        Ok(())
+    }
+}
+
+pub enum PrintMargin{
+    Default,
+    NoMargins,
+    Minimum,
+
+    ///Custom margin: left, top, right, bottom
+    Custom(Option<u16>, Option<u16>, Option<u16>, Option<u16>)
+}
+
+impl OptionsExt for PrintOptions{}
+
+impl PrintOptions{
+    /// Whether to print without the need for user’s interaction; optional,
+    /// true by default
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn autoprint(self, autoprint: bool) ->Self {
+        self.set("autoprint", JsValue::from(autoprint))
+    }
+
+    /// Hide the flashing print preview dialog; optional, false by default
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn silent(self, silent: bool) ->Self {
+        self.set("silent", JsValue::from(silent))
+    }
+
+    /// The device name of the printer returned by `nw::Window::get_printers();`
+    /// 
+    /// No need to set this when printing to PDF
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn printer(self, printer: &str) ->Self {
+        self.set("printer", JsValue::from(printer))
+    }
+
+    /// The path of the output PDF when printing to PDF
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn pdf_path(self, pdf_path: &str) ->Self {
+        self.set("pdf_path", JsValue::from(pdf_path))
+    }
+
+    /// Whether to enable header and footer
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn header_footer_enabled(self, header_footer_enabled: bool) ->Self {
+        self.set("headerFooterEnabled", JsValue::from(header_footer_enabled))
+    }
+
+    /// Whether to use landscape or portrait
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn landscape(self, landscape: bool) ->Self {
+        self.set("landscape", JsValue::from(landscape))
+    }
+
+    /// The paper size spec
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn media_size(self, media_size: Object) ->Self {
+        self.set("mediaSize", JsValue::from(media_size))
+    }
+
+    /// Whether to print CSS backgrounds
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn should_print_backgrounds(self, should_print_backgrounds: bool) ->Self {
+        self.set("shouldPrintBackgrounds", JsValue::from(should_print_backgrounds))
+    }
+
+    /// MarginsType
+    /// 
+    /// see margins_custom.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn margin(mut self, margin: PrintMargin) ->Self {
+        let margin_type = match margin{
+            PrintMargin::Default=>0,
+            PrintMargin::NoMargins=>1,
+            PrintMargin::Minimum=>2,
+            PrintMargin::Custom(l, t, r, b)=>{
+                let margins_custom = Object::new();
+                let items = vec![
+                    ("marginLeft", l),
+                    ("marginTop", t),
+                    ("marginRight", r),
+                    ("marginBottom", b),
+                ];
+            
+                for (key, value) in items{
+                    let v = value.unwrap_or(0);
+                    let _ = js_sys::Reflect::set(
+                        &margins_custom,
+                        &JsValue::from(key),
+                        &JsValue::from(v),
+                    );
+                }
+                
+                self = self.set("marginsCustom", JsValue::from(margins_custom));
+
+                3
+            }
+        };
+        self.set("marginsType", JsValue::from(margin_type))
+    }
+
+    /// The number of copies to print.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn copies(self, copies: u8) ->Self {
+        self.set("copies", JsValue::from(copies))
+    }
+
+    /// The scale factor; 100 is the default.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn scale_factor(self, scale_factor: u8) ->Self {
+        self.set("scaleFactor", JsValue::from(scale_factor))
+    }
+
+    /// String to replace the URL in the header.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn header_string(self, header_string: &str) ->Self {
+        self.set("headerString", JsValue::from(header_string))
+    }
+
+    /// String to replace the URL in the footer.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// 
+    pub fn footer_string(self, footer_string: &str) ->Self {
+        self.set("footerString", JsValue::from(footer_string))
+    }
+}
+
+impl std::fmt::Display for PrintOptions{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)?;
+        Ok(())
+    }
+}
+
 
