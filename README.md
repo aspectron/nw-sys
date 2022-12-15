@@ -1,4 +1,4 @@
-# nwjs-sys
+# `nw-sys`
 
 Rust bindings for NWJS API using `wasm_bindgen`
 
