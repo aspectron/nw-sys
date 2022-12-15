@@ -135,4 +135,9 @@ pub mod nw{
     pub mod menu_item{
         pub use crate::menu_item::*;
     }
+
+    pub use crate::tray::Tray;
+    pub mod tray{
+        pub use crate::tray::*;
+    }
 }

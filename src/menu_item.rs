@@ -8,7 +8,7 @@ use crate::menu::Menu;
 extern "C" {
     // MenuItem
     // Synopsis
-    // nw::MenuItem::new(options)
+    // nw::MenuItem::new(&nw::menu_item::Options::new().label("Menu 1"))
     #[wasm_bindgen(js_namespace=nw, js_name = MenuItem)]
     #[derive(Debug, Clone)]
     pub type MenuItem;
