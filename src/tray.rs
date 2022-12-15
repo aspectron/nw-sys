@@ -6,28 +6,38 @@ use crate::menu::Menu;
 
 #[wasm_bindgen]
 extern "C" {
-    /// # Tray
-    /// Synopsis
-    /// new Tray(option)
-    /// tray.title
-    /// tray.tooltip
-    /// tray.icon
-    /// tray.alticon (Mac)
-    /// tray.iconsAreTemplates (Mac)
-    /// tray.menu
+    ///
+    /// # Synopsis
+    /// ```
+    /// let tray = nw::Tray::new(&nw::tray::Option::new().title("My App"))
+    /// tray.title;
+    /// tray.tooltip;
+    /// tray.icon;
+    /// tray.alticon;// (Mac)
+    /// tray.icons_are_templates;// (Mac)
+    /// tray.menu;
     /// tray.remove();
-    /// Event: click
-    /// Tray is an abstraction of different controls on different platforms, usually it’s a small icon shown on the OS’s notification area. On Mac OS X it’s called Status Item, on GTK it’s Status Icon, and on Windows it’s System Tray Icon.
-
+    /// ```
+    /// //Event: click
+    /// 
+    /// Tray is an abstraction of different controls on different platforms,
+    /// usually it’s a small icon shown on the OS’s notification area.
+    /// On Mac OS X it’s called Status Item, on GTK it’s Status Icon,
+    /// and on Windows it’s System Tray Icon.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Tray/#tray)
+    ///
     #[wasm_bindgen(js_namespace=nw, js_name = Tray)]
     #[derive(Debug, Clone)]
     pub type Tray;
 
-    /// Synopsis
-    /// Create a tray icon
-    /// let tray = nw::Tray::nw(&nw::tray::Options::new().title("Tray").icon("img/icon.png"));
-    /// 
     #[wasm_bindgen(constructor, js_namespace=["nw"])]
+    /// # Synopsis
+    /// ```
+    /// //Create a tray icon
+    /// let tray = nw::Tray::new(&nw::tray::Options::new().title("Tray").icon("img/icon.png"));
+    /// ```
+    ///
     /// Create a new Tray, option is an contains initial settings for the Tray.
     /// Every field has its own property in the Tray,
     /// see documentation of each property for details.
