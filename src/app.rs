@@ -1,6 +1,7 @@
 use wasm_bindgen::prelude::*;
-use js_sys::{Object, Array, RegExp};
+use js_sys::{Object, Array, RegExp, Function};
 use crate::result::Result;
+use crate::shortcut::Shortcut;
 
 
 #[wasm_bindgen]
@@ -46,151 +47,198 @@ extern "C" {
     #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = filteredArgv)]
     pub fn filtered_argv_impl() -> Array;
 
-    
-    // App.startPath
-    // Get the directory where the application starts. The application will change the current directory to where the package files reside after start.
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = startPath)]
+    /// Get the directory where the application starts.
+    /// The application will change the current directory to where 
+    /// the package files reside after start.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appstartpath)
+    ///
+    pub fn start_path() -> String;
 
-    // App.dataPath
-    // Get the application’s data path in user’s directory.
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = dataPath)]
+    /// Get the application’s data path in user’s directory.
+    /// 
+    /// Windows: %LOCALAPPDATA%/<name>
+    /// Linux: ~/.config/<name>
+    /// OS X: ~/Library/Application Support/<name>/Default
+    /// <name> is the name field in the package.json manifest.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appdatapath)
+    ///
+    pub fn data_path() -> String;
 
-    // Windows: %LOCALAPPDATA%/<name>
-    // Linux: ~/.config/<name>
-    // OS X: ~/Library/Application Support/<name>/Default (was ~/Library/Application Support/<name> in v0.12.3 and below)
-    // <name> is the name field in the package.json manifest.
 
-    // App.manifest
-    // Get the JSON object of the manifest file.
+    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = manifest)]
+    /// Get the JSON object of the manifest file.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appmanifest)
+    ///
+    pub fn manifest() -> Object;
 
-    // App.clearCache()
-    // Clear the HTTP cache in memory and the one on disk. This method call is synchronized.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = clearCache)]
+    /// Clear the HTTP cache in memory and the one on disk.
+    /// This method call is synchronized.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appclearcache)
+    ///
+    pub fn clear_cache();
 
-    // App.clearAppCache(manifest_url)
-    // Mark the Application cache group specified by manifest_url obsolete. This method call is synchronized.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = clearAppCache)]
+    /// Mark the Application cache group specified by `manifest_url` obsolete.
+    /// This method call is synchronized.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appclearappcachemanifest_url)
+    ///
+    pub fn clear_app_cache(manifest_url:&str);
 
-    // App.closeAllWindows()
-    // Send the close event to all windows of current app, if no window is blocking the close event, then the app will quit after all windows have done shutdown. Use this method to quit an app will give windows a chance to save data.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = closeAllWindows)]
+    /// Send the close event to all windows of current app,
+    /// if no window is blocking the close event, then the app will quit after
+    /// all windows have done shutdown. Use this method to quit an app 
+    /// will give windows a chance to save data.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcloseallwindows)
+    ///
+    pub fn close_all_windows();
 
-    // App.crashBrowser()
-    // App.crashRenderer()
-    // These 2 functions crashes the browser process and the renderer process respectively, to test the Crash dump feature.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = crashBrowser)]
+    /// Crashes the browser process to test 
+    /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcrashbrowser)
+    ///
+    pub fn crash_browser();
 
-    // App.enableComponent(component, callback)
-    // Experimental
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = crashRenderer)]
+    /// Crashes the renderer process to test 
+    /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcrashrenderer)
+    ///
+    pub fn crash_renderer();
 
-    // This API is experimental and subject to change.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = enableComponent)]
+    /// Experimental
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appenablecomponentcomponent-callback)
+    ///
+    pub fn enable_component(component:&str, callback:&Function);
 
-    // component {String} ID of component; currently only WIDEVINE is supported.
-    // callback function(version) callback after the component is enabled; version string parameter is the version of the enabled component. ‘0.0.0.0’ means it’s not installed. Use App.updateComponent() to install it.
-    // App.getProxyForURL(url)
-    // url {String} the URL to query for proxy
-    // Query the proxy to be used for loading url in DOM. The return value is in the same format used in PAC (e.g. “DIRECT”, “PROXY localhost:8080”).
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = getProxyForURL)]
+    /// Query the proxy to be used for loading `url` in DOM.
+    /// The return value is in the same format used in 
+    /// PAC (e.g. "DIRECT", "PROXY localhost:8080").
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appgetproxyforurlurl)
+    ///
+    pub fn get_proxy_for_url(url:&str)->String;
 
-    // App.setProxyConfig(config, pac_url)
-    // config {String} Proxy rules
-    // pac_url {String} PAC url
-    // Set the proxy config which the web engine will be used to request network resources or PAC url to detect proxy automatically.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = setProxyConfig)]
+    /// Set the proxy config which the web engine will be used to request 
+    /// network resources or PAC url to detect proxy automatically.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appsetproxyconfigconfig-pac_url)
+    ///
+    pub fn set_proxy_config(config:&str, pac_url:&str);
 
-    // Rule (copied from net/proxy/proxy_config.h)
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = quit)]
+    /// Quit current app. 
+    /// This method will not send `close` event to windows and app will 
+    /// just quit quietly.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appquit)
+    ///
+    pub fn quit();
 
-    //     // Parses the rules from a string, indicating which proxies to use.
-    //     //
-    //     //   proxy-uri = [<proxy-scheme>"://"]<proxy-host>[":"<proxy-port>]
-    //     //
-    //     //   proxy-uri-list = <proxy-uri>[","<proxy-uri-list>]
-    //     //
-    //     //   url-scheme = "http" | "https" | "ftp" | "socks"
-    //     //
-    //     //   scheme-proxies = [<url-scheme>"="]<proxy-uri-list>
-    //     //
-    //     //   proxy-rules = scheme-proxies[";"<scheme-proxies>]
-    //     //
-    //     // Thus, the proxy-rules string should be a semicolon-separated list of
-    //     // ordered proxies that apply to a particular URL scheme. Unless specified,
-    //     // the proxy scheme for proxy-uris is assumed to be http.
-    //     //
-    //     // Some special cases:
-    //     //  * If the scheme is omitted from the first proxy list, that list applies
-    //     //    to all URL schemes and subsequent lists are ignored.
-    //     //  * If a scheme is omitted from any proxy list after a list where a scheme
-    //     //    has been provided, the list without a scheme is ignored.
-    //     //  * If the url-scheme is set to 'socks', that sets a fallback list that
-    //     //    to all otherwise unspecified url-schemes, however the default proxy-
-    //     //    scheme for proxy urls in the 'socks' list is understood to be
-    //     //    socks4:// if unspecified.
-    //     //
-    //     // For example:
-    //     //   "http=foopy:80;ftp=foopy2"  -- use HTTP proxy "foopy:80" for http://
-    //     //                                  URLs, and HTTP proxy "foopy2:80" for
-    //     //                                  ftp:// URLs.
-    //     //   "foopy:80"                  -- use HTTP proxy "foopy:80" for all URLs.
-    //     //   "foopy:80,bar,direct://"    -- use HTTP proxy "foopy:80" for all URLs,
-    //     //                                  failing over to "bar" if "foopy:80" is
-    //     //                                  unavailable, and after that using no
-    //     //                                  proxy.
-    //     //   "socks4://foopy"            -- use SOCKS v4 proxy "foopy:1080" for all
-    //     //                                  URLs.
-    //     //   "http=foop,socks5://bar.com -- use HTTP proxy "foopy" for http URLs,
-    //     //                                  and fail over to the SOCKS5 proxy
-    //     //                                  "bar.com" if "foop" is unavailable.
-    //     //   "http=foopy,direct://       -- use HTTP proxy "foopy" for http URLs,
-    //     //                                  and use no proxy if "foopy" is
-    //     //                                  unavailable.
-    //     //   "http=foopy;socks=foopy2   --  use HTTP proxy "foopy" for http URLs,
-    //     //                                  and use socks4://foopy2 for all other
-    //     //                                  URLs.
-    // App.quit()
-    // Quit current app. This method will not send close event to windows and app will just quit quietly.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = setCrashDumpDir)]
+    /// Deprecated: Set the directory where the minidump 
+    /// file will be saved on crash. For more information, 
+    /// see [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/).
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appsetcrashdumpdirdir)
+    ///
+    pub fn set_crash_dump_dir(dir:&str);
 
-    // App.setCrashDumpDir(dir)
-    // Deprecated
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = addOriginAccessWhitelistEntry)]
+    /// Add an entry to the whitelist used for controlling cross-origin access.
+    /// Suppose you want to allow HTTP redirecting from github.com to 
+    /// the page of your app, use something like this:
+    ///
+    /// ```
+    /// nw::App::add_origin_access_whitelist_entry(
+    ///     "http://github.com/", "chrome-extension", "domain.com",
+    ///     true
+    /// );
+    /// ```
+    /// Use `nw::App::remove_origin_access_whitelist_entry()` with exactly the 
+    /// same arguments to do the contrary.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appaddoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
+    ///
+    pub fn add_origin_access_whitelist_entry(
+        ///The source origin. e.g. http://github.com/
+        source_origin: &str,
+        ///The destination protocol where the `source_origin` can access to. e.g. `app`
+        destination_protocol: &str,
+        ///The destination host where the `source_origin` can access to. e.g. `myapp`
+        destination_host: &str,
+        ///If set to true, the `source_origin` is allowed to access subdomains of destinations.
+        allow_destination_subdomains: bool
+    );
 
-    // This API was deprecated since 0.11.0.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = removeOriginAccessWhitelistEntry)]
+    /// Remove an entry from the whitelist used for controlling cross-origin access.
+    /// See `add_origin_access_whitelist_entry` above.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appremoveoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
+    ///
+    pub fn remove_origin_access_whitelist_entry(
+        ///The source origin. e.g. http://github.com/
+        source_origin: &str,
+        ///The destination protocol where the `source_origin` can access to. e.g. `app`
+        destination_protocol: &str,
+        ///The destination host where the `source_origin` can access to. e.g. `myapp`
+        destination_host: &str,
+        ///If set to true, the `source_origin` is allowed to access subdomains of destinations.
+        allow_destination_subdomains: bool
+    );
 
-    // dir {String} path to generate the crash dump
-    // Set the directory where the minidump file will be saved on crash. For more information, see Crash dump.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = registerGlobalHotKey)]
+    /// Register a global keyboard shortcut (also known as system-wide hot key)
+    /// to the system.
+    /// 
+    /// See `Shortcut` for more information.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appregisterglobalhotkeyshortcut)
+    ///
+    pub fn register_global_hot_key(shortcut:&Shortcut);
 
-    // App.addOriginAccessWhitelistEntry(sourceOrigin, destinationProtocol, destinationHost, allowDestinationSubdomains)
-    // sourceOrigin {String} The source origin. e.g. http://github.com/
-    // destinationProtocol {String} The destination protocol where the sourceOrigin can access to. e.g. app
-    // destinationHost {String} The destination host where the sourceOrigin can access to. e.g. myapp
-    // allowDestinationSubdomains {Boolean} If set to true, the sourceOrigin is allowed to access subdomains of destinations.
-    // Add an entry to the whitelist used for controlling cross-origin access. Suppose you want to allow HTTP redirecting from github.com to the page of your app, use something like this:
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = unregisterGlobalHotKey)]
+    /// Unregisters a global keyboard shortcut.
+    /// 
+    /// See `Shortcut` for more information.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appunregisterglobalhotkeyshortcut)
+    ///
+    pub fn unregister_global_hot_key(shortcut:&Shortcut);
 
-    // App.addOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);
-    // Use App.removeOriginAccessWhitelistEntry with exactly the same arguments to do the contrary.
 
-    // App.removeOriginAccessWhitelistEntry(sourceOrigin, destinationProtocol, destinationHost, allowDestinationSubdomains)
-    // sourceOrigin {String} The source origin. e.g. http://github.com/
-    // destinationProtocol {String} The destination protocol where the sourceOrigin can access to. e.g. app
-    // destinationHost {String} The destination host where the sourceOrigin can access to. e.g. myapp
-    // allowDestinationSubdomains {Boolean} If set to true, the sourceOrigin is allowed to access subdomains of destinations.
-    // Remove an entry from the whitelist used for controlling cross-origin access. See addOriginAccessWhitelistEntry above.
+    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = updateComponent)]
+    /// Experimental
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appupdatecomponentcomponent-callback)
+    ///
+    pub fn update_component(component:&str, callback:&Function);
 
-    // App.registerGlobalHotKey(shortcut)
-    // shortcut {Shortcut} the Shortcut object to register.
-    // Register a global keyboard shortcut (also known as system-wide hot key) to the system.
-
-    // See Shortcut for more information.
-
-    // App.unregisterGlobalHotKey(shortcut)
-    // shortcut {Shortcut} the Shortcut object to unregister.
-    // Unregisters a global keyboard shortcut.
-
-    // See Shortcut for more information.
-
-    // App.updateComponent(component, callback)
-    // Experimental
-
-    // This API is experimental and subject to change.
-
-    // component {String} ID of component; currently only WIDEVINE is supported.
-    // callback function(success) callback after the component is updated; success is a boolean parameter for the update result.
-    // Event: open(args)
-    // args {String} the full command line of the program.
+    // Event: open(args:String)
+    // args: the full command line of the program.
     // Emitted when users opened a file with your app.
 
     // Event: reopen
-    // This is a Mac specific feature. This event is sent when the user clicks the dock icon for an already running application.
+    // This is a Mac specific feature. 
+    // This event is sent when the user clicks the dock icon for an 
+    // already running application.
 
 }
 

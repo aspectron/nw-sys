@@ -145,4 +145,9 @@ pub mod nw{
         pub use crate::tray::*;
     }
     pub use crate::shell::Shell;
+    pub use crate::shortcut::Shortcut;
+    pub mod shortcut{
+        pub use crate::shortcut::*;
+    }
+
 }
