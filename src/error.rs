@@ -7,8 +7,10 @@ use thiserror::Error;
 pub enum Error {
     #[error("Error: {0}")]
     String(String),
+
     #[error("Error: {0}")]
     JsValue(String),
+
     #[error("Poison Error: {0}")]
     PoisonError(String)
 }

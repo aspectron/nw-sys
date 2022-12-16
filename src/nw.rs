@@ -160,4 +160,9 @@ pub mod nw{
         pub use crate::clipboard::*;
     }
 
+    pub use crate::screen::Screen;
+    pub mod screen{
+        pub use crate::screen::*;
+    }
+
 }

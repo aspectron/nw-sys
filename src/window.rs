@@ -10,7 +10,7 @@ extern "C" {
 
     /// # Synopsis
     /// 
-    /// ```
+    /// ```rust
     /// use workflow_wasm::listener::Listener;
     /// 
     /// // Get the current window
@@ -43,8 +43,8 @@ extern "C" {
     ///     listener.into_js()
     /// );
     /// 
-    /// //save this listener somewhere otherwise it will leak memory 
-    /// listener.forget();
+    /// //save this `listener` somewhere
+    /// 
     /// ```
     #[wasm_bindgen(js_namespace=nw, js_name = Window)]
     #[derive(Debug, Clone)]

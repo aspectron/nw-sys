@@ -1,14 +1,31 @@
 use wasm_bindgen::prelude::*;
+use js_sys::{Array, Function};
+use workflow_log::log_info;
+//use crate::options::OptionsExt;
+use crate::result::Result;
+use workflow_wasm::utils;
 
 
 #[wasm_bindgen]
 extern "C" {
-    // Screen
-    // Screen
-    // Synopsis
-    // Screen.Init()
-    // Screen.screens
-    // Screen.chooseDesktopMedia (sources, callback)
+
+    #[wasm_bindgen(js_namespace=nw, js_name = Screen)]
+    #[derive(Debug, Clone)]
+    pub type Screen;
+    
+    #[wasm_bindgen(static_method_of=Screen, js_namespace=["nw"], js_name = Init)]
+    /// Init the Screen singleton object, you only need to call this once
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screeninit)
+    ///
+    pub fn init();
+
+    #[wasm_bindgen(getter, static_method_of=Screen, js_namespace=["nw"], js_name = screens)]
+    fn screens_impl()->Array;
+
+    #[wasm_bindgen(static_method_of=Screen, js_namespace=["nw"], js_name = chooseDesktopMedia)]
+    fn choose_desktop_media_impl(sources:Array, callback:&Function);
+
     // Event: displayBoundsChanged(screen)
     // Event: displayAdded (screen)
     // Event: displayRemoved (screen)
@@ -207,4 +224,134 @@ extern "C" {
     // thumbnail {String} is the base64 encoded png of the thumbnail
     // Emit when the thumbnail of a source changed.
 
+}
+
+pub enum Sources{
+    Screen,
+    Window,
+    ScreenAndWindow
+}
+static mut INIT:bool = false;
+
+impl Screen{
+
+    pub fn is_initialized()->bool{
+        unsafe{INIT}
+    }
+
+    pub fn init_once(){
+        if !Self::is_initialized() {
+            unsafe{INIT = true};
+            Self::init();
+        }
+    }
+
+    /// Get the array of screen (number of screen connected to the computer)
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenscreens)
+    ///
+    pub fn screens()->Result<Vec<ScreenInfo>>{
+        let mut result:Vec<ScreenInfo> = Vec::new();
+        let array = Self::screens_impl();
+        for index in 0..array.length(){
+            let screen = array.get(index);
+            //log_info!("screen: {:#?}", screen);
+            result.push(screen.try_into()?);
+        }
+        Ok(result)
+    }
+
+    /// Get the array of screen (number of screen connected to the computer)
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenchoosedesktopmedia-sources-callback)
+    ///
+    pub fn choose_desktop_media(sources:Sources, callback:&Function)->Result<()>{
+
+        let array = Array::new();
+        match sources {
+            Sources::Screen=>{
+                array.push(&JsValue::from("screen"));
+            }
+            Sources::Window=>{
+                array.push(&JsValue::from("window"));
+            }
+            Sources::ScreenAndWindow=>{
+                array.push(&JsValue::from("screen"));
+                array.push(&JsValue::from("window"));
+            }
+        };
+
+        Self::choose_desktop_media_impl(array, callback);
+        Ok(())
+    }
+}
+
+#[derive(Debug)]
+pub struct Bounds{
+    pub x: u64,
+    pub y: u64,
+    pub width: u64,
+    pub height: u64,
+}
+
+#[derive(Debug)]
+pub struct WorkArea{
+    pub x: u64,
+    pub y: u64,
+    pub width: u64,
+    pub height: u64,
+}
+
+#[derive(Debug)]
+pub struct ScreenInfo{
+    pub id:u64,
+    pub scale_factor:f64,
+    pub is_built_in: bool,
+    pub rotation: u64,
+    pub touch_support: u64,
+    pub bounds: Bounds,
+    pub work_area: WorkArea
+}
+
+fn read_box(jsv: &JsValue, prop:&str)->Result<(u64, u64, u64, u64)>{
+    let jsv = utils::try_get_js_value(jsv, prop)?;
+    let x = utils::try_get_u64_from_prop(&jsv, "x")?;
+    let y = utils::try_get_u64_from_prop(&jsv, "y")?;
+    let width = utils::try_get_u64_from_prop(&jsv, "width")?;
+    let height = utils::try_get_u64_from_prop(&jsv, "height")?;
+
+    Ok((x, y, width, height))
+}
+
+impl TryFrom<JsValue> for ScreenInfo{
+    type Error = crate::error::Error;
+    fn try_from(jsv: JsValue) -> std::result::Result<Self, Self::Error> {
+
+        let id = utils::try_get_u64_from_prop(&jsv, "id")?;
+        let scale_factor = utils::try_get_f64_from_prop(&jsv, "scaleFactor")?;
+        let is_built_in = utils::try_get_bool_from_prop(&jsv, "isBuiltIn")?;
+        let rotation = utils::try_get_u64_from_prop(&jsv, "rotation")?;
+        let touch_support = utils::try_get_u64_from_prop(&jsv, "touchSupport")?;
+
+        let (x, y, width, height) = read_box(&jsv, "bounds")?;
+        let bounds = Bounds{
+            x, y, width, height
+        };
+
+        let (x, y, width, height) = read_box(&jsv, "work_area")?;
+        let work_area = WorkArea{
+            x, y, width, height
+        };
+
+        let info = Self {
+            id,
+            scale_factor,
+            is_built_in,
+            rotation,
+            touch_support,
+            bounds,
+            work_area
+        };
+        Ok(info)
+    }
 }
