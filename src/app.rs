@@ -174,16 +174,18 @@ extern "C" {
     /// Use `nw::App::remove_origin_access_whitelist_entry()` with exactly the 
     /// same arguments to do the contrary.
     /// 
+    /// - `source_origin`: The source origin. e.g. http://github.com/
+    /// - `destination_protocol`: The destination protocol where the `source_origin` can access to. e.g. `app`
+    /// - `destination_host`: The destination host where the `source_origin` can access to. e.g. `myapp`
+    /// - `allow_destination_subdomains`: If set to true, the `source_origin` is allowed to access subdomains of destinations.
+    /// 
+    /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appaddoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
     ///
     pub fn add_origin_access_whitelist_entry(
-        ///The source origin. e.g. http://github.com/
         source_origin: &str,
-        ///The destination protocol where the `source_origin` can access to. e.g. `app`
         destination_protocol: &str,
-        ///The destination host where the `source_origin` can access to. e.g. `myapp`
         destination_host: &str,
-        ///If set to true, the `source_origin` is allowed to access subdomains of destinations.
         allow_destination_subdomains: bool
     );
 
@@ -191,16 +193,18 @@ extern "C" {
     /// Remove an entry from the whitelist used for controlling cross-origin access.
     /// See `add_origin_access_whitelist_entry` above.
     /// 
+    /// 
+    /// - `source_origin`: The source origin. e.g. http://github.com/
+    /// - `destination_protocol`: The destination protocol where the `source_origin` can access to. e.g. `app`
+    /// - `destination_host`: The destination host where the `source_origin` can access to. e.g. `myapp`
+    /// - `allow_destination_subdomains`: If set to true, the `source_origin` is allowed to access subdomains of destinations.
+    /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appremoveoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
     ///
     pub fn remove_origin_access_whitelist_entry(
-        ///The source origin. e.g. http://github.com/
         source_origin: &str,
-        ///The destination protocol where the `source_origin` can access to. e.g. `app`
         destination_protocol: &str,
-        ///The destination host where the `source_origin` can access to. e.g. `myapp`
         destination_host: &str,
-        ///If set to true, the `source_origin` is allowed to access subdomains of destinations.
         allow_destination_subdomains: bool
     );
 

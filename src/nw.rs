@@ -121,20 +121,25 @@ pub fn is_nw()->bool{
 
 //#[allow(non_snake_case)]
 pub mod nw{
+    pub use crate::nw::try_nw;
+    pub use crate::nw::is_nw;
+    pub use crate::shell::Shell;
+
     pub use crate::app::App;
     pub mod app{
         pub use crate::app::*;
     }
-    pub use crate::nw::try_nw;
-    pub use crate::nw::is_nw;
+
     pub use crate::window::Window;
     pub mod window{
         pub use crate::window::*;
     }
+
     pub use crate::menu::Menu;
     pub mod menu{
         pub use crate::menu::*;
     }
+
     pub use crate::menu_item::MenuItem;
     pub mod menu_item{
         pub use crate::menu_item::*;
@@ -144,10 +149,15 @@ pub mod nw{
     pub mod tray{
         pub use crate::tray::*;
     }
-    pub use crate::shell::Shell;
+
     pub use crate::shortcut::Shortcut;
     pub mod shortcut{
         pub use crate::shortcut::*;
+    }
+
+    pub use crate::clipboard::Clipboard;
+    pub mod clipboard{
+        pub use crate::clipboard::*;
     }
 
 }
