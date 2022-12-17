@@ -160,7 +160,11 @@ pub mod nw{
         pub use crate::clipboard::*;
     }
 
-    pub use crate::screen::Screen;
+    #[allow(non_snake_case)]
+    pub mod Screen{
+        pub use crate::screen::Screen::*;
+        pub use crate::screen::DesktopCaptureMonitor;
+    }
     pub mod screen{
         pub use crate::screen::*;
     }
