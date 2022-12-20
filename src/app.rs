@@ -7,28 +7,30 @@ use crate::shortcut::Shortcut;
 #[wasm_bindgen]
 extern "C" {
 
-    #[wasm_bindgen(extends = Object)]
-    pub type App;
 
-    /// Get the filtered command line arguments when starting the app.
+    #[wasm_bindgen(js_namespace=nw, js_name = App)]
+    type NwApp;
+
+    /// (Internal) Get the filtered command line arguments when starting the app.
     /// In NW.js, some command line arguments are used by NW.js,
     /// which should not be interested of your app. App.argv will filter out 
     /// those arguments and return the ones left. You can get filtered patterns 
     /// from App.filteredArgv and the full arguments from App.fullArgv.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = argv)]
+    /// 
+    #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = argv)]
     pub fn argv_impl() -> Array;
 
-    /// Get all the command line arguments when starting the app.
+    /// (Internal) Get all the command line arguments when starting the app.
     /// The return values contains the arguments used by NW.js,
     /// such as --nwapp, --remote-debugging-port etc.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = fullArgv)]
+    #[wasm_bindgen(getter, static_method_of=NwApp,  js_namespace=nw, js_class=App, js_name = fullArgv)]
     pub fn full_argv_impl() -> Array;
 
-    /// Get a list of patterns of filtered command line arguments used by App.argv.
+    /// (Internal) Get a list of patterns of filtered command line arguments used by App.argv.
     /// By default, following patterns are used to filter the arguments:
     /// [
     /// 
@@ -44,39 +46,20 @@ extern "C" {
     /// 
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = filteredArgv)]
+    #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = filteredArgv)]
     pub fn filtered_argv_impl() -> Array;
 
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = startPath)]
-    /// Get the directory where the application starts.
-    /// The application will change the current directory to where 
-    /// the package files reside after start.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appstartpath)
-    ///
-    pub fn start_path() -> String;
+    #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = startPath)]
+    fn start_path() -> String;
 
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = dataPath)]
-    /// Get the application’s data path in user’s directory.
-    /// 
-    /// Windows: %LOCALAPPDATA%/<name>
-    /// Linux: ~/.config/<name>
-    /// OS X: ~/Library/Application Support/<name>/Default
-    /// <name> is the name field in the package.json manifest.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appdatapath)
-    ///
-    pub fn data_path() -> String;
+    #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = dataPath)]
+    fn data_path() -> String;
 
 
-    #[wasm_bindgen(getter, static_method_of=App, js_namespace=nw,  js_class=App,  js_name = manifest)]
-    /// Get the JSON object of the manifest file.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appmanifest)
-    ///
-    pub fn manifest() -> Object;
+    #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = manifest)]
+    fn manifest() -> Object;
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = clearCache)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = clearCache)]
     /// Clear the HTTP cache in memory and the one on disk.
     /// This method call is synchronized.
     /// 
@@ -84,7 +67,7 @@ extern "C" {
     ///
     pub fn clear_cache();
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = clearAppCache)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = clearAppCache)]
     /// Mark the Application cache group specified by `manifest_url` obsolete.
     /// This method call is synchronized.
     /// 
@@ -92,7 +75,7 @@ extern "C" {
     ///
     pub fn clear_app_cache(manifest_url:&str);
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = closeAllWindows)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = closeAllWindows)]
     /// Send the close event to all windows of current app,
     /// if no window is blocking the close event, then the app will quit after
     /// all windows have done shutdown. Use this method to quit an app 
@@ -102,7 +85,7 @@ extern "C" {
     ///
     pub fn close_all_windows();
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = crashBrowser)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = crashBrowser)]
     /// Crashes the browser process to test 
     /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
     /// 
@@ -110,7 +93,7 @@ extern "C" {
     ///
     pub fn crash_browser();
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = crashRenderer)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = crashRenderer)]
     /// Crashes the renderer process to test 
     /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
     /// 
@@ -118,23 +101,23 @@ extern "C" {
     ///
     pub fn crash_renderer();
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = enableComponent)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = enableComponent)]
     /// Experimental
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appenablecomponentcomponent-callback)
     ///
     pub fn enable_component(component:&str, callback:&Function);
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = getProxyForURL)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = getProxyForURL)]
     /// Query the proxy to be used for loading `url` in DOM.
     /// The return value is in the same format used in 
     /// PAC (e.g. "DIRECT", "PROXY localhost:8080").
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appgetproxyforurlurl)
     ///
-    pub fn get_proxy_for_url(url:&str)->String;
+    fn get_proxy_for_url(url:&str)->String;
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = setProxyConfig)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = setProxyConfig)]
     /// Set the proxy config which the web engine will be used to request 
     /// network resources or PAC url to detect proxy automatically.
     /// 
@@ -142,7 +125,7 @@ extern "C" {
     ///
     pub fn set_proxy_config(config:&str, pac_url:&str);
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = quit)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = quit)]
     /// Quit current app. 
     /// This method will not send `close` event to windows and app will 
     /// just quit quietly.
@@ -151,7 +134,7 @@ extern "C" {
     ///
     pub fn quit();
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = setCrashDumpDir)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = setCrashDumpDir)]
     /// Deprecated: Set the directory where the minidump 
     /// file will be saved on crash. For more information, 
     /// see [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/).
@@ -160,7 +143,7 @@ extern "C" {
     ///
     pub fn set_crash_dump_dir(dir:&str);
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = addOriginAccessWhitelistEntry)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = addOriginAccessWhitelistEntry)]
     /// Add an entry to the whitelist used for controlling cross-origin access.
     /// Suppose you want to allow HTTP redirecting from github.com to 
     /// the page of your app, use something like this:
@@ -189,7 +172,7 @@ extern "C" {
         allow_destination_subdomains: bool
     );
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = removeOriginAccessWhitelistEntry)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = removeOriginAccessWhitelistEntry)]
     /// Remove an entry from the whitelist used for controlling cross-origin access.
     /// See `add_origin_access_whitelist_entry` above.
     /// 
@@ -208,7 +191,7 @@ extern "C" {
         allow_destination_subdomains: bool
     );
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = registerGlobalHotKey)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = registerGlobalHotKey)]
     /// Register a global keyboard shortcut (also known as system-wide hot key)
     /// to the system.
     /// 
@@ -218,7 +201,7 @@ extern "C" {
     ///
     pub fn register_global_hot_key(shortcut:&Shortcut);
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = unregisterGlobalHotKey)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = unregisterGlobalHotKey)]
     /// Unregisters a global keyboard shortcut.
     /// 
     /// See `Shortcut` for more information.
@@ -228,7 +211,7 @@ extern "C" {
     pub fn unregister_global_hot_key(shortcut:&Shortcut);
 
 
-    #[wasm_bindgen(static_method_of=App, js_namespace=nw,  js_name = updateComponent)]
+    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = updateComponent)]
     /// Experimental
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appupdatecomponentcomponent-callback)
@@ -246,85 +229,113 @@ extern "C" {
 
 }
 
-
-impl App{
-    fn build_argv_str(argv:Array)->Result<Vec<String>>{
-        let mut list = Vec::new();
-        for index in 0..argv.length(){
-            match argv.get(index).as_string(){
-                Some(v)=>{
-                    list.push(v);
-                }
-                None=>{}
+fn build_argv_str(argv:Array)->Result<Vec<String>>{
+    let mut list = Vec::new();
+    for index in 0..argv.length(){
+        match argv.get(index).as_string(){
+            Some(v)=>{
+                list.push(v);
             }
-            
+            None=>{}
         }
-
-        Ok(list)
+        
     }
 
-    fn build_argv_filters(argv:Array)->Result<Vec<RegExp>>{
-        let mut list = Vec::new();
-        for index in 0..argv.length(){
-            let a = argv.get(index);
-            let v = RegExp::from(a);
-            list.push(v);
-            /*
-            match argv.get(index).as_string(){
-                Some(v)=>{
-                    list.push(v);
-                }
-                None=>{}
-            }
-            */
-            
-        }
-
-        Ok(list)
-    }
-
-    /// Get the filtered command line arguments when starting the app.
-    /// In NW.js, some command line arguments are used by NW.js,
-    /// which should not be interested of your app. App.argv will filter out 
-    /// those arguments and return the ones left. You can get filtered patterns 
-    /// from App.filteredArgv and the full arguments from App.fullArgv.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
-    pub fn argv()->Result<Vec<String>>{
-        let list = Self::build_argv_str(App::argv_impl())?;
-        Ok(list)
-    }
-
-    /// Get all the command line arguments when starting the app.
-    /// The return values contains the arguments used by NW.js,
-    /// such as --nwapp, --remote-debugging-port etc.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
-    pub fn full_argv()->Result<Vec<String>>{
-        let list = Self::build_argv_str(App::full_argv_impl())?;
-        Ok(list)
-    }
-
-    /// Get a list of patterns of filtered command line arguments used by App.argv.
-    /// By default, following patterns are used to filter the arguments:
-    /// [
-    /// 
-    /// /^--url=/,
-    /// 
-    /// /^--remote-debugging-port=/,
-    /// 
-    /// /^--renderer-cmd-prefix=/,
-    /// 
-    /// /^--nwapp=/
-    /// 
-    /// ]
-    /// 
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
-    pub fn filtered_argv()->Result<Vec<RegExp>>{
-        let list = Self::build_argv_filters(App::filtered_argv_impl())?;
-        Ok(list)
-    }
-
+    Ok(list)
 }
 
+fn build_argv_filters(argv:Array)->Result<Vec<RegExp>>{
+    let mut list = Vec::new();
+    for index in 0..argv.length(){
+        let a = argv.get(index);
+        let v = RegExp::from(a);
+        list.push(v);
+        /*
+        match argv.get(index).as_string(){
+            Some(v)=>{
+                list.push(v);
+            }
+            None=>{}
+        }
+        */
+        
+    }
+
+    Ok(list)
+}
+
+/// Get the filtered command line arguments when starting the app.
+/// In NW.js, some command line arguments are used by NW.js,
+/// which should not be interested of your app. App.argv will filter out 
+/// those arguments and return the ones left. You can get filtered patterns 
+/// from App.filteredArgv and the full arguments from App.fullArgv.
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
+pub fn argv()->Result<Vec<String>>{
+    let list = build_argv_str(NwApp::argv_impl())?;
+    Ok(list)
+}
+
+/// Get all the command line arguments when starting the app.
+/// The return values contains the arguments used by NW.js,
+/// such as --nwapp, --remote-debugging-port etc.
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
+pub fn full_argv()->Result<Vec<String>>{
+    let list = build_argv_str(NwApp::full_argv_impl())?;
+    Ok(list)
+}
+
+/// Get a list of patterns of filtered command line arguments used by App.argv.
+/// By default, following patterns are used to filter the arguments:
+/// [
+/// 
+/// /^--url=/,
+/// 
+/// /^--remote-debugging-port=/,
+/// 
+/// /^--renderer-cmd-prefix=/,
+/// 
+/// /^--nwapp=/
+/// 
+/// ]
+/// 
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
+pub fn filtered_argv()->Result<Vec<RegExp>>{
+    let list = build_argv_filters(NwApp::filtered_argv_impl())?;
+    Ok(list)
+}
+
+
+/// Get the directory where the application starts.
+/// The application will change the current directory to where 
+/// the package files reside after start.
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appstartpath)
+///
+/// 
+pub fn start_path()->String{
+    NwApp::start_path()
+}
+
+/// Get the application’s data path in user’s directory.
+/// 
+/// Windows: %LOCALAPPDATA%/<name>
+/// Linux: ~/.config/<name>
+/// OS X: ~/Library/Application Support/<name>/Default
+/// <name> is the name field in the package.json manifest.
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appdatapath)
+///
+pub fn data_path() -> String{
+    NwApp::data_path()
+}
+
+/// Get the JSON object of the manifest file.
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appmanifest)
+///
+pub fn manifest() -> Object{
+    NwApp::manifest()
+}

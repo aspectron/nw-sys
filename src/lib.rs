@@ -29,16 +29,38 @@
 pub mod error;
 pub mod result;
 pub mod options;
-pub mod nw;
+
+mod nw;
+pub use nw::try_nw;
+pub use nw::is_nw;
+
 pub mod app;
+//pub use app::App;
+
 pub mod clipboard;
+pub use clipboard::Clipboard;
+
 pub mod menu;
+pub use menu::Menu;
+
 pub mod menu_item;
+pub use menu_item::MenuItem;
+
 pub mod screen;
+pub use screen::Screen;
+
 pub mod shell;
+pub use shell::Shell;
+
 pub mod shortcut;
+pub use shortcut::Shortcut;
+
 pub mod tray;
+pub use tray::Tray;
+
 pub mod window;
+pub use window::Window;
+
 pub mod prelude;
 pub mod utils;
 
