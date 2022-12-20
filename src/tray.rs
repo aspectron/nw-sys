@@ -10,12 +10,12 @@ extern "C" {
     /// # Synopsis
     /// ```
     /// let tray = nw::Tray::new(&nw::tray::Option::new().title("My App"))
-    /// tray.title;
-    /// tray.tooltip;
-    /// tray.icon;
-    /// tray.alticon;// (Mac)
-    /// tray.icons_are_templates;// (Mac)
-    /// tray.menu;
+    /// tray.title();
+    /// tray.tooltip();
+    /// tray.icon();
+    /// tray.alticon();// (Mac)
+    /// tray.icons_are_templates();// (Mac)
+    /// tray.menu();
     /// tray.remove();
     /// ```
     /// //Event: click

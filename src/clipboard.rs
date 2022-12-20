@@ -1,6 +1,5 @@
 use wasm_bindgen::prelude::*;
 use js_sys::{Object, Array};
-//use workflow_log::log_info;
 use crate::options::OptionsExt;
 use crate::result::Result;
 
@@ -12,24 +11,28 @@ extern "C" {
     /// # Synopsis
     /// ```
     /// // get the system clipboard
-    /// let clipboard = nw::Clipboard::get();
+    /// let clipboard = nw::clipboard::get();
+    /// 
+    /// //read available types of data in clipboard currently
+    /// let types = clip.get_available_types();
+    /// log_info!("clipboard data types: {:?}", types);
+    /// 
+    /// // write text data to clipboard
+    /// clip.set("Hello");
+    /// 
+    /// // read text data from clipboard
+    /// let text = clip.get();
+    /// 
     /// ```
     #[wasm_bindgen(js_namespace=nw, js_name = Clipboard)]
     #[derive(Debug, Clone)]
     pub type Clipboard;
     
-    #[wasm_bindgen(static_method_of=Clipboard, js_namespace=["nw"], js_name = get)]
-    /// Returns the `Clipboard` object
-    /// 
-    /// **Note:**
-    /// The Selection Clipboard in X11 is not supported.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipboardget)
-    ///
-    pub fn get()->Clipboard;
+    #[wasm_bindgen(js_namespace=["nw", "Clipboard"], js_name = get)]
+    fn get_impl()->Clipboard;
 
     #[wasm_bindgen(method, js_name = set)]
-    /// Write data of type to the clipboard.
+    /// Write `data` of type string to the clipboard.
     /// This method will clear the clipboard and replace with the given data.
     /// Hence another call to this method will overwrite with the new one.
     /// To write multiple types of data to clipboard simultaneously,
@@ -39,10 +42,10 @@ extern "C" {
     ///  
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     ///
-    pub fn write(this:&Clipboard, data:&str);
+    pub fn set(this:&Clipboard, data:&str);
 
     #[wasm_bindgen(method, js_name = set)]
-    /// Write data of type to the clipboard.
+    /// Write `data` of `type` to the clipboard.
     /// This method will clear the clipboard and replace with the given data.
     /// Hence another call to this method will overwrite with the new one.
     /// To write multiple types of data to clipboard simultaneously,
@@ -53,10 +56,10 @@ extern "C" {
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     ///
-    pub fn write_with_data_type(this:&Clipboard, data:&str, data_type:&str);
+    pub fn set_with_data_type(this:&Clipboard, data:&str, data_type:&str);
 
     #[wasm_bindgen(method, js_name = set)]
-    /// Write data of type to the clipboard.
+    /// Write `data` of `type` to the clipboard.
     /// This method will clear the clipboard and replace with the given data.
     /// Hence another call to this method will overwrite with the new one.
     /// To write multiple types of data to clipboard simultaneously,
@@ -68,55 +71,55 @@ extern "C" {
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     ///
-    pub fn write_with_data_type_and_raw(this:&Clipboard, data:&str, data_type:&str, raw:bool);
+    pub fn set_with_data_type_and_raw(this:&Clipboard, data:&str, data_type:&str, raw:bool);
 
     #[wasm_bindgen(method, js_name = set)]
     /// Write data of type to the clipboard.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
     ///
-    pub fn write_data(this:&Clipboard, data:DataWrite);
+    pub fn set_data(this:&Clipboard, data:DataWrite);
 
     #[wasm_bindgen(method, js_name = set)]
     /// Write data of type to the clipboard.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
     ///
-    fn write_data_array_impl(this:&Clipboard, data:Array);
+    fn set_data_array_impl(this:&Clipboard, data:Array);
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
     ///
-    pub fn read(this:&Clipboard)->String;
+    pub fn get(this:&Clipboard)->String;
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data of type
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
     ///
-    pub fn read_with_data_type(this:&Clipboard, data_type:&str)->String;
+    pub fn get_with_data_type(this:&Clipboard, data_type:&str)->String;
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data of type and as raw
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
     ///
-    pub fn read_with_data_type_and_raw(this:&Clipboard, data_type:&str, raw:bool)->String;
+    pub fn get_with_data_type_and_raw(this:&Clipboard, data_type:&str, raw:bool)->String;
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddata)
     ///
-    pub fn read_data(this:&Clipboard, data:DataRead)->String;
+    pub fn get_data(this:&Clipboard, data:DataRead)->String;
 
     #[wasm_bindgen(method, js_name = get)]
-    fn read_data_array_impl(this:&Clipboard, data:Array)->Array;
+    fn get_data_array_impl(this:&Clipboard, data:Array)->Array;
 
     #[wasm_bindgen(method, js_name = readAvailableTypes)]
-    fn read_available_types_impl(this:&Clipboard)->Array;
+    fn get_available_types_impl(this:&Clipboard)->Array;
 
     #[wasm_bindgen(method)]
     /// Clear the clipboard.
@@ -127,10 +130,23 @@ extern "C" {
 
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
+    /// A object containing 
+    /// [`data`](Self#method.data),
+    /// [`type`](Self#method.data_type) and 
+    /// [`raw`](Self#method.raw) to be written to clipboard
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
+    /// 
     pub type DataWrite;
 
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
+    /// A object containing
+    /// [`type`](Self#method.data_type) and 
+    /// [`raw`](Self#method.raw) for reading from clipboard
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddata)
+    /// 
     pub type DataRead;
 }
 
@@ -205,25 +221,40 @@ impl From<(String, Option<bool>)> for DataRead{
     }
 }
 
+/// Returns the `Clipboard` object
+/// 
+/// **Note:**
+/// The Selection Clipboard in X11 is not supported.
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipboardget)
+///
+pub fn get()->Clipboard{
+    Clipboard::get_impl()
+}
+
 impl Clipboard{
-    pub fn write_data_array(&self, list:Vec<DataWrite>){
+    /// Write data of type to the clipboard.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
+    ///
+    pub fn set_data_array(&self, list:Vec<DataWrite>){
         let data_array = Array::new();
         for d in list{
             data_array.push(&JsValue::from(d));
         }
-        self.write_data_array_impl(data_array);
+        self.set_data_array_impl(data_array);
     }
 
     /// Get the data
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddatalist)
     ///
-    pub fn read_data_array(&self, list:Vec<DataRead>)->Result<Vec<Option<String>>>{
+    pub fn get_data_array(&self, list:Vec<DataRead>)->Result<Vec<Option<String>>>{
         let data_array = Array::new();
         for d in list{
             data_array.push(&JsValue::from(d));
         }
-        let array = self.read_data_array_impl(data_array);
+        let array = self.get_data_array_impl(data_array);
         let mut result = Vec::new();
         for index in 0..array.length(){
             let data = array.get(index);
@@ -247,8 +278,8 @@ impl Clipboard{
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipreadavailabletypes)
     ///
-    pub fn read_available_types(&self)->Vec<String>{
-        let array = self.read_available_types_impl();
+    pub fn get_available_types(&self)->Vec<String>{
+        let array = self.get_available_types_impl();
         let mut result = Vec::new();
         for index in 0..array.length(){
             if let Some(v) = array.get(index).as_string(){

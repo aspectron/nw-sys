@@ -6,9 +6,13 @@ use crate::menu::Menu;
 
 #[wasm_bindgen]
 extern "C" {
-    // MenuItem
-    // Synopsis
-    // nw::MenuItem::new(&nw::menu_item::Options::new().label("Menu 1"))
+    /// MenuItem
+    /// # Synopsis
+    /// ```rust
+    /// let item1 = nw::MenuItem::new(&nw::menu_item::Options::new().label("Menu 1"));
+    /// 
+    /// ```
+
     #[wasm_bindgen(js_namespace=nw, js_name = MenuItem)]
     #[derive(Debug, Clone)]
     pub type MenuItem;
@@ -215,6 +219,8 @@ impl Options{
 
     /// Type of MenuItem
     /// 
+    /// Three types are accepted: normal, checkbox, separator
+    /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn set_type(self, t:Type)->Self{
         self.set("type", t.into())
@@ -285,6 +291,12 @@ impl Options{
     
 }
 
+/// Type of menu item
+/// 
+/// Three types are accepted: Normal, Checkbox, Separator
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+/// 
 pub enum Type {
     Separator,
     Normal,

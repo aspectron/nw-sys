@@ -14,7 +14,7 @@ extern "C" {
     /// use workflow_wasm::listener::Listener;
     /// 
     /// // Get the current window
-    /// let win = nw::Window()::get();
+    /// let win = nw::Window::get();
     /// // Listen to the minimize event
     /// win.on("minimize", |_| {
     ///   log_info!("Window is minimized");
@@ -32,9 +32,10 @@ extern "C" {
     /// 
     /// let listener = Listener::new(|new_win| {
     ///   // And listen to new window's focus event
-    ///   new_win.on("focus", function() {
+    ///   let focus_listener = Listener::new(||{
     ///     log_info!("New window is focused");
     ///   });
+    ///   new_win.on("focus", focus_listener.into_js());
     /// });
     /// 
     /// nw::Window::open_with_options_and_callback(
@@ -704,21 +705,26 @@ extern "C" {
     ///
     pub fn on(this:&Window, event_name:&str, callback:&Function);
 
-    #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = get)]
+}
+
+#[wasm_bindgen]
+extern "C" {
+
+    #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = get)]
     /// Get current window.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetwindow_object)
     ///
     pub fn get() -> Window;
 
-    #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = getAll)]
+    #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = getAll)]
     /// Get all windows with a callback function whose parameter is an array of nw::Window object.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetallcallback)
     ///
     pub fn get_all(callback:&Function);
 
-    #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = open)]
+    #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = open)]
     /// Open new window
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
@@ -729,39 +735,49 @@ extern "C" {
     #[derive(Debug, Clone, PartialEq, Eq)]
     pub type Options;
 
-    #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = open)]
+    #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = open)]
     /// Open window with options
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn open_with_options(url:&str, option:&Options);
 
-    #[wasm_bindgen(static_method_of=Window, js_namespace=["nw"], js_name = open)]
+    #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = open)]
     /// Open window with options and callback.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn open_with_options_and_callback(url:&str, option:&Options, callback:&Function);
 
 
+    /// Window Print options
+    ///
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
     pub type PrintOptions;
 
+    /// Window Capture Config
+    ///
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
     pub type CaptureConfig;
 
+    /// Screenshot Config
+    ///
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
     pub type ScreenshotConfig;
     
 }
 
+/// Window position
+/// 
 pub enum WindowPosition{
     Null,
     Center,
     Mouse
 }
 
+/// NW Binary data
+/// 
 pub enum NWBinary{
     Path(String),
     ArrayBuffer(ArrayBuffer),
@@ -1051,6 +1067,7 @@ impl std::fmt::Display for ScreenshotConfig{
     }
 }
 
+/// Window print margin
 pub enum PrintMargin{
     Default,
     NoMargins,

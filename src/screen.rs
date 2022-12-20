@@ -40,8 +40,7 @@ extern "C" {
     /// 
     pub fn on(event_name:&str, callback:&Function);
 
-    
-    /// nw::Screen::DesktopCaptureMonitor
+
 
     #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = DesktopCaptureMonitor)]
     #[derive(Debug, Clone)]
@@ -54,7 +53,7 @@ extern "C" {
     /// 
     /// Example:
     /// ```rust
-    /// nw::Screen::DesktopCaptureMonitor::start(true, true);
+    /// nw::screen::DesktopCaptureMonitor::start(true, true);
     /// ```
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstartshould_include_screens-should_include_windows)
@@ -108,67 +107,67 @@ extern "C" {
 
 }
 
-pub enum Sources{
+static mut INIT:bool = false;
+
+/// Return true is screen is initialized
+pub fn is_initialized()->bool{
+    unsafe{INIT}
+}
+
+/// Call the screen::init() if screen is not initialized yet
+pub fn init_once(){
+    if !is_initialized() {
+        unsafe{INIT = true};
+        init();
+    }
+}
+
+///Media source type
+pub enum MediaSources{
     Screen,
     Window,
     ScreenAndWindow
 }
 
-#[allow(non_snake_case)]
-pub mod Screen{
-    static mut INIT:bool = false;
-    pub use super::*;
+/// Get the array of screen (number of screen connected to the computer)
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenchoosedesktopmedia-sources-callback)
+///
+pub fn choose_desktop_media(sources:MediaSources, callback:&Function)->Result<()>{
 
-    pub fn is_initialized()->bool{
-        unsafe{INIT}
-    }
-
-    pub fn init_once(){
-        if !is_initialized() {
-            unsafe{INIT = true};
-            super::init();
+    let array = Array::new();
+    match sources {
+        MediaSources::Screen=>{
+            array.push(&JsValue::from("screen"));
         }
-    }
-
-    /// Get the array of screen (number of screen connected to the computer)
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenscreens)
-    ///
-    pub fn screens()->Result<Vec<super::ScreenInfo>>{
-        let mut result:Vec<ScreenInfo> = Vec::new();
-        let array = ScreenLocal::screens_impl();
-        for index in 0..array.length(){
-            let screen = array.get(index);
-            //log_info!("screen: {:#?}", screen);
-            result.push(screen.try_into()?);
+        MediaSources::Window=>{
+            array.push(&JsValue::from("window"));
         }
-        Ok(result)
-    }
+        MediaSources::ScreenAndWindow=>{
+            array.push(&JsValue::from("screen"));
+            array.push(&JsValue::from("window"));
+        }
+    };
 
-    /// Get the array of screen (number of screen connected to the computer)
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenchoosedesktopmedia-sources-callback)
-    ///
-    pub fn choose_desktop_media(sources:Sources, callback:&Function)->Result<()>{
-
-        let array = Array::new();
-        match sources {
-            Sources::Screen=>{
-                array.push(&JsValue::from("screen"));
-            }
-            Sources::Window=>{
-                array.push(&JsValue::from("window"));
-            }
-            Sources::ScreenAndWindow=>{
-                array.push(&JsValue::from("screen"));
-                array.push(&JsValue::from("window"));
-            }
-        };
-
-        choose_desktop_media_impl(array, callback);
-        Ok(())
-    }
+    choose_desktop_media_impl(array, callback);
+    Ok(())
 }
+
+/// Get the array of screen (number of screen connected to the computer)
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenscreens)
+///
+pub fn screens()->Result<Vec<ScreenInfo>>{
+    let mut result:Vec<ScreenInfo> = Vec::new();
+    let array = ScreenLocal::screens_impl();
+    for index in 0..array.length(){
+        let screen = array.get(index);
+        //log_info!("screen: {:#?}", screen);
+        result.push(screen.try_into()?);
+    }
+    Ok(result)
+}
+
 
 #[derive(Debug)]
 pub struct Bounds{
@@ -186,6 +185,7 @@ pub struct WorkArea{
     pub height: u64,
 }
 
+/// Screen Info
 #[derive(Debug)]
 pub struct ScreenInfo{
     pub id:u64,

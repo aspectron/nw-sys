@@ -42,67 +42,6 @@ extern "C" {
     ///
     pub fn new(options:&Options) -> Shortcut;
     
-    
-    // // If register |shortcut| successfully and user struck "Ctrl+Shift+A", |shortcut|
-    // // will get an "active" event.
-    
-    // // You can also add listener to shortcut's active and failed event.
-    // shortcut.on('active', function() {
-    //   console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-    // });
-    
-    // shortcut.on('failed', function(msg) {
-    //   console.log(msg);
-    // });
-    
-    // // Unregister the global desktop shortcut.
-    // nw.App.unregisterGlobalHotKey(shortcut);
-    // new Shortcut(option)
-    // option {Object}
-    // key {String} key combinations of the shortcut, such as "ctrl+shift+a". See shortcut.key property for details.
-    // active {Function} Optional a callback when the hotkey is triggered. See shortcut.active property for details.
-    // failed {Function} Optional a callback when failed to register the hotkey. See shortcut.failed property for details.
-    // Create new Shortcut, option is an object contains initial settings for the Shortcut.
-    
-    // shortcut.key
-    // Get the key of a Shortcut. It is a string to specify the shortcut key, like "Ctrl+Alt+A". The key is consisted of zero or more modifiers and a key on your keyboard. Only one key code is supported. Key code is case insensitive.
-    
-    // List of supported modifiers:
-    
-    // Ctrl
-    // Alt
-    // Shift
-    // Command: Command modifier maps to Apple key (⌘) on Mac, and maps to the Windows key on Windows and Linux.
-    // List of supported keys:
-    
-    // Alphabet: A-Z
-    // Digits: 0-9
-    // Function Keys: F1-F24
-    // Comma
-    // Period
-    // Tab
-    // Home / End / PageUp / PageDown / Insert / Delete
-    // Up / Down / Left / Right
-    // MediaNextTrack / MediaPlayPause / MediaPrevTrack / MediaStop
-    // Comma or ,
-    // Period or .
-    // Tab or \t
-    // Backquote or `
-    // Enter or \n
-    // Minus or -
-    // Equal or =
-    // Backslash or \
-    // Semicolon or ;
-    // Quote or '
-    // BracketLeft or [
-    // BracketRight or ]
-    // Escape
-    // DOM Level 3 W3C KeyboardEvent Code Values
-    // Single Key without Modifiers
-    
-    // The API App.registerGlobalHotKey() can support applications intercepting a single key (like { key: "A"}). But users will not be able to use “A” normally any more until the app unregisters it. However, the API doesn’t limit this usage, and it would be useful if the applications wants to listen Media Keys.
-    // Only use zero modifier when you are knowing what your are doing.
-    
     // shortcut.active
     // Get or set the active callback of a Shortcut. It will be called when user presses the shortcut.
     
