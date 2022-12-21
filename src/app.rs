@@ -15,7 +15,7 @@ extern "C" {
     /// In NW.js, some command line arguments are used by NW.js,
     /// which should not be interested of your app. App.argv will filter out 
     /// those arguments and return the ones left. You can get filtered patterns 
-    /// from App.filteredArgv and the full arguments from App.fullArgv.
+    /// from [app::filtered_argv](self::filtered_argv) and the full arguments from [app::full_argv](self::full_argv).
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
     /// 
@@ -154,7 +154,7 @@ extern "C" {
     ///     true
     /// );
     /// ```
-    /// Use `nw_sys::app::remove_origin_access_whitelist_entry()` with exactly the 
+    /// Use [nw_sys::app::remove_origin_access_whitelist_entry()](self::remove_origin_access_whitelist_entry) with exactly the 
     /// same arguments to do the contrary.
     /// 
     /// - `source_origin`: The source origin. e.g. http://github.com/
@@ -174,7 +174,7 @@ extern "C" {
 
     #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = removeOriginAccessWhitelistEntry)]
     /// Remove an entry from the whitelist used for controlling cross-origin access.
-    /// See `add_origin_access_whitelist_entry` above.
+    /// See [nw_sys::app::add_origin_access_whitelist_entry()](self::add_origin_access_whitelist_entry).
     /// 
     /// 
     /// - `source_origin`: The source origin. e.g. http://github.com/
@@ -195,7 +195,7 @@ extern "C" {
     /// Register a global keyboard shortcut (also known as system-wide hot key)
     /// to the system.
     /// 
-    /// See `Shortcut` for more information.
+    /// See [Shortcut](crate::shortcut) for more information.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appregisterglobalhotkeyshortcut)
     ///
@@ -204,7 +204,7 @@ extern "C" {
     #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = unregisterGlobalHotKey)]
     /// Unregisters a global keyboard shortcut.
     /// 
-    /// See `Shortcut` for more information.
+    /// See [Shortcut](crate::shortcut) for more information.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appunregisterglobalhotkeyshortcut)
     ///
@@ -267,9 +267,11 @@ fn build_argv_filters(argv:Array)->Result<Vec<RegExp>>{
 /// In NW.js, some command line arguments are used by NW.js,
 /// which should not be interested of your app. App.argv will filter out 
 /// those arguments and return the ones left. You can get filtered patterns 
-/// from App.filteredArgv and the full arguments from App.fullArgv.
+/// from [app::filtered_argv](self::filtered_argv) and the 
+/// full arguments from [app::full_argv](self::full_argv).
 /// 
 /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
+///
 pub fn argv()->Result<Vec<String>>{
     let list = build_argv_str(NwApp::argv_impl())?;
     Ok(list)
@@ -285,19 +287,16 @@ pub fn full_argv()->Result<Vec<String>>{
     Ok(list)
 }
 
-/// Get a list of patterns of filtered command line arguments used by App.argv.
+/// Get a list of patterns of filtered command line arguments used by [app::argv()](self::argv).
 /// By default, following patterns are used to filter the arguments:
+/// ```
 /// [
-/// 
-/// /^--url=/,
-/// 
-/// /^--remote-debugging-port=/,
-/// 
-/// /^--renderer-cmd-prefix=/,
-/// 
-/// /^--nwapp=/
-/// 
+///     /^--url=/,
+///     /^--remote-debugging-port=/,
+///     /^--renderer-cmd-prefix=/,
+///     /^--nwapp=/
 /// ]
+/// ```
 /// 
 /// 
 /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
@@ -320,10 +319,10 @@ pub fn start_path()->String{
 
 /// Get the application’s data path in user’s directory.
 /// 
-/// Windows: %LOCALAPPDATA%/<name>
-/// Linux: ~/.config/<name>
-/// OS X: ~/Library/Application Support/<name>/Default
-/// <name> is the name field in the package.json manifest.
+/// - Windows: `%LOCALAPPDATA%/<name>`
+/// - Linux: `~/.config/<name>`
+/// - OS X: `~/Library/Application Support/<name>/Default`
+/// - `<name>` is the name field in the `package.json` manifest.
 /// 
 /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appdatapath)
 ///
