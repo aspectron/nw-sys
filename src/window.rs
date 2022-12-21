@@ -5,10 +5,12 @@
 //!
 //! // Get the current window
 //! let win = nw_sys::window::get();
+//! 
 //! // Listen to the minimize event
 //! let minimize_callback = Callback::<dyn FnMut()>::with_closure(|| {
 //!     log_info!("Window is minimized");
 //! });
+//! 
 //! win.on("minimize", minimize_callback.into_js());
 //!
 //! // Minimize the window
@@ -37,6 +39,8 @@
 //!
 //! // save these `open_callback`, `focus_callabck` 
 //! // and `minimize_callback` somewhere
+//! app.push_callback(open_callback);
+//! app.push_callback(minimize_callback);
 //! 
 //! ```
 
@@ -736,6 +740,9 @@ extern "C" {
     ///
     pub fn open(url:&str);
 
+    /// Window open options
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
     pub type Options;
@@ -913,6 +920,168 @@ impl Options{
     pub fn height(self, height: u32) -> Self {
         self.set("height", JsValue::from(height))
     }
+
+    /// path to window’s icon.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#icon)
+    pub fn icon(self, icon: &String) -> Self {
+        self.set("icon", JsValue::from(icon))
+    }
+
+    /// Move window to specified position.
+    /// Currently only center is supported on all platforms,
+    /// which will put window in the middle of the screen.
+    /// 
+    /// There are three valid positions: null or center or mouse
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetpositionposition)
+    ///
+    pub fn position(self, position:WindowPosition) -> Self{
+
+        let position = match position{
+            WindowPosition::Null => JsValue::null(),
+            WindowPosition::Center => JsValue::from("center"),
+            WindowPosition::Mouse => JsValue::from("mouse")
+        };
+
+        self.set("position", position)
+    }
+
+    /// minimum inner width of window
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#min_width)
+    pub fn min_width(self, min_width: u32) ->Self {
+        self.set("min_width", JsValue::from(min_width))
+    }
+
+    /// minimum inner height of window
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#min_height)
+    pub fn min_height(self, min_height: u32) ->Self {
+        self.set("min_height", JsValue::from(min_height))
+    }
+
+    /// maximum inner width of window
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#max_width)
+    pub fn max_width(self, max_width: u32) ->Self {
+        self.set("max_width", JsValue::from(max_width))
+    }
+
+    /// maximum inner height of window
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#max_height)
+    pub fn max_height(self, max_height: u32) ->Self {
+        self.set("max_height", JsValue::from(max_height))
+    }
+
+    /// (Linux) show as desktop background window under X11 environment
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#as_desktop-linux)
+    pub fn as_desktop(self, as_desktop: bool) ->Self {
+        self.set("as_desktop", JsValue::from(as_desktop))
+    }
+
+    /// whether window is resizable
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#resizable)
+    pub fn resizable(self, resizable: bool) ->Self {
+        self.set("resizable", JsValue::from(resizable))
+    }
+
+    /// whether the window should always stay on top of other windows.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#always_on_top)
+    pub fn always_on_top(self, always_on_top: bool) ->Self {
+        self.set("always_on_top", JsValue::from(always_on_top))
+    }
+
+    /// whether the window should be visible on all workspaces 
+    /// simultaneously (on platforms that support multiple workspaces, 
+    /// currently Mac OS X and Linux).
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#visible_on_all_workspaces-mac-linux)
+    pub fn visible_on_all_workspaces(self, visible_on_all_workspaces: bool) ->Self {
+        self.set("visible_on_all_workspaces", JsValue::from(visible_on_all_workspaces))
+    }
+
+    /// whether window is fullscreen
+    /// 
+    /// Beware, if frame is also set to false in fullscreen it will prevent 
+    /// the mouse from being captured on the very edges of the screen.
+    /// You should avoid activate it if fullscreen is also set to true.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#fullscreen)
+    pub fn fullscreen(self, fullscreen: bool) ->Self {
+        self.set("fullscreen", JsValue::from(fullscreen))
+    }
+
+    /// whether the window is shown in taskbar or dock. The default is `true`.
+    ///
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#show_in_taskbar)
+    pub fn show_in_taskbar(self, show_in_taskbar: bool) ->Self {
+        self.set("show_in_taskbar", JsValue::from(show_in_taskbar))
+    }
+
+    /// specify it to `false` to make the window frameless
+    ///
+    /// Beware, if frame is set to false in fullscreen it will prevent the
+    /// mouse from being captured on the very edges of the screen.
+    /// You should avoid activating it if fullscreen is also set to true.
+    /// 
+    /// Frameless apps do not have a title bar for the user to click and 
+    /// drag the window. You can use CSS to designate DOM elements as 
+    /// draggable regions.
+    /// 
+    /// ```css
+    /// .drag-enable {
+    ///   -webkit-app-region: drag;
+    /// }
+    /// .drag-disable {
+    ///   -webkit-app-region: no-drag;
+    /// }
+    /// ```
+
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#frame)
+    pub fn frame(self, frame: bool) ->Self {
+        self.set("frame", JsValue::from(frame))
+    }
+
+    /// specify it to `false` if you want your app to be hidden on startup
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#show)
+    pub fn show(self, show: bool) ->Self {
+        self.set("show", JsValue::from(show))
+    }
+
+    /// whether to use `Kiosk` mode. In `Kiosk` mode, the app will be fullscreen 
+    /// and try to prevent users from leaving the app, so you should 
+    /// remember to provide a way in app to leave Kiosk mode.
+    /// This mode is mainly used for presentation on public displays
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#kiosk)
+    pub fn kiosk(self, kiosk: bool) ->Self {
+        self.set("kiosk", JsValue::from(kiosk))
+    }
+
+    /// whether to turn on transparent window mode.
+    /// The default is `false`.
+    /// Control the transparency with rgba background value in CSS.
+    /// Use command line option `--disable-transparency` to disable this 
+    /// feature completely.
+    ///
+    /// There is experimental support for "click-through" on the 
+    /// transparent region: add `--disable-gpu` option to the command line.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#transparent)
+    pub fn transparent(self, transparent: bool) ->Self {
+        self.set("transparent", JsValue::from(transparent))
+    }
+
+
+
+
 
     /// the initial left of the window.
     ///
