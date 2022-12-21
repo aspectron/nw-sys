@@ -13,7 +13,6 @@ extern "C" {
     #[derive(Debug, Clone)]
     type ScreenLocal;
     
-    
     #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = Init)]
     /// Init the Screen singleton object, you only need to call this once
     /// 
@@ -39,70 +38,86 @@ extern "C" {
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-displayboundschangedscreen)
     /// 
     pub fn on(event_name:&str, callback:&Function);
+}
+
+pub mod desktop_capture_monitor{
+    use wasm_bindgen::prelude::*;
+    use js_sys::Function;
+
+    #[wasm_bindgen]
+    extern "C" {
+
+        #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = DesktopCaptureMonitor)]
+        #[derive(Debug, Clone)]
+        type DCM;
+        
+        #[wasm_bindgen(js_namespace=["nw", "Screen", "DesktopCaptureMonitor"], js_name = start)]
+        /// The DesktopCaptureMonitor will start monitoring the system 
+        /// and trigger the the events. The screen may flicker 
+        /// if while DesktopCaptureMonitor is running.
+        /// 
+        /// Example:
+        /// ```rust
+        /// nw::screen::desktop_capture_monitor::start(true, true);
+        /// ```
+        /// 
+        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstartshould_include_screens-should_include_windows)
+        ///
+        pub fn start(should_include_screens:bool, should_include_windows:bool);
+
+        #[wasm_bindgen(getter, static_method_of=DCM, js_namespace=["nw", "Screen"], js_class=DesktopCaptureMonitor, js_name = started)]
+        /// Return Boolean of whether the DesktopCaptureMonitor is started.
+        /// 
+        /// 
+        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
+        ///
+        pub fn started()->bool;
+
+        #[wasm_bindgen(js_namespace=["nw", "Screen", "DesktopCaptureMonitor"], js_name = stop)]
+        /// The `DesktopCaptureMonitor` will stop monitoring the system.
+        /// `DesktopCaptureMonitor` should be stopped after a stream is selected.
+        /// 
+        /// 
+        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstop)
+        ///
+        pub fn stop();
+
+        #[wasm_bindgen(js_namespace=["nw", "Screen", "DesktopCaptureMonitor"], js_name = registerStream)]
+        /// Register and return a valid stream id which will be used into 
+        /// chromeMediaSourceId in get_user_media constraints.
+        /// 
+        /// See Synopsis for the usage.
+        /// 
+        /// 
+        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorregisterstreamid)
+        ///
+        pub fn register_stream(id:&str)->String;
 
 
+        #[wasm_bindgen(js_namespace=["nw", "Screen", "DesktopCaptureMonitor"], js_name = on)]
+        /// Add event listener
+        /// 
+        /// ### Events:
+        /// - added (id, name, order, type, primary)
+        /// - removed (order)
+        /// - orderchanged (id, new_order, old_order)
+        /// - namechanged (id, name)
+        /// - thumbnailchanged (id, thumbnail)
+        /// 
+        /// 
+        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-added-id-name-order-type-primary)
+        ///
+        pub fn on(event_name:&str, callback:&Function);
+    }
 
-    #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = DesktopCaptureMonitor)]
-    #[derive(Debug, Clone)]
-    pub type DesktopCaptureMonitor;
-    
-    #[wasm_bindgen(static_method_of=DesktopCaptureMonitor, js_namespace=["nw", "Screen"], js_name = start)]
-    /// The DesktopCaptureMonitor will start monitoring the system 
-    /// and trigger the the events. The screen may flicker 
-    /// if while DesktopCaptureMonitor is running.
-    /// 
-    /// Example:
-    /// ```rust
-    /// nw::screen::DesktopCaptureMonitor::start(true, true);
-    /// ```
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstartshould_include_screens-should_include_windows)
-    ///
-    pub fn start(should_include_screens:bool, should_include_windows:bool);
-
-    #[wasm_bindgen(getter, static_method_of=DesktopCaptureMonitor, js_namespace=["nw", "Screen"], js_name = started)]
     /// Return Boolean of whether the DesktopCaptureMonitor is started.
     /// 
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
     ///
-    pub fn started()->bool;
-
-    #[wasm_bindgen(static_method_of=DesktopCaptureMonitor, js_namespace=["nw", "Screen"], js_name = stop)]
-    /// The `DesktopCaptureMonitor` will stop monitoring the system.
-    /// `DesktopCaptureMonitor` should be stopped after a stream is selected.
-    /// 
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstop)
-    ///
-    pub fn stop();
-
-    #[wasm_bindgen(static_method_of=DesktopCaptureMonitor, js_namespace=["nw", "Screen"], js_name = registerStream)]
-    /// Register and return a valid stream id which will be used into 
-    /// chromeMediaSourceId in get_user_media constraints.
-    /// 
-    /// See Synopsis for the usage.
-    /// 
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorregisterstreamid)
-    ///
-    pub fn register_stream(id:&str)->String;
-
-
-    #[wasm_bindgen(static_method_of=DesktopCaptureMonitor, js_namespace=["nw", "Screen"], js_name = on)]
-    /// Add event listener
-    /// 
-    /// ### Events:
-    /// - added (id, name, order, type, primary)
-    /// - removed (order)
-    /// - orderchanged (id, new_order, old_order)
-    /// - namechanged (id, name)
-    /// - thumbnailchanged (id, thumbnail)
-    /// 
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-added-id-name-order-type-primary)
-    ///
-    pub fn on(event_name:&str, callback:&Function);
+    pub fn started()->bool{
+        DCM::started()
+    }
 
 
 }
@@ -122,7 +137,7 @@ pub fn init_once(){
     }
 }
 
-///Media source type
+/// Media source type
 pub enum MediaSources{
     Screen,
     Window,
