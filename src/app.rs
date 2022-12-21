@@ -150,7 +150,9 @@ extern "C" {
     ///
     /// ```
     /// nw_sys::app::add_origin_access_whitelist_entry(
-    ///     "http://github.com/", "chrome-extension", "domain.com",
+    ///     "http://github.com/",
+    ///     "chrome-extension",
+    ///     "domain.com",
     ///     true
     /// );
     /// ```
