@@ -1079,10 +1079,6 @@ impl Options{
         self.set("transparent", JsValue::from(transparent))
     }
 
-
-
-
-
     /// the initial left of the window.
     ///
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
@@ -1096,7 +1092,6 @@ impl Options{
     pub fn top(self, top: u32) ->Self {
         self.set("y", JsValue::from(top))
     }
-
 
     /// whether to open a new window in a separate render process.
     ///
