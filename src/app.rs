@@ -27,23 +27,19 @@ extern "C" {
     /// such as --nwapp, --remote-debugging-port etc.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
-    #[wasm_bindgen(getter, static_method_of=NwApp,  js_namespace=nw, js_class=App, js_name = fullArgv)]
+    #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = fullArgv)]
     pub fn full_argv_impl() -> Array;
 
     /// (Internal) Get a list of patterns of filtered command line arguments used by App.argv.
     /// By default, following patterns are used to filter the arguments:
+    /// ```
     /// [
-    /// 
-    /// /^--url=/,
-    /// 
-    /// /^--remote-debugging-port=/,
-    /// 
-    /// /^--renderer-cmd-prefix=/,
-    /// 
-    /// /^--nwapp=/
-    /// 
+    ///     /^--url=/,
+    ///     /^--remote-debugging-port=/,
+    ///     /^--renderer-cmd-prefix=/,
+    ///     /^--nwapp=/
     /// ]
-    /// 
+    /// ```
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
     #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = filteredArgv)]
@@ -59,7 +55,7 @@ extern "C" {
     #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = manifest)]
     fn manifest() -> Object;
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = clearCache)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = clearCache)]
     /// Clear the HTTP cache in memory and the one on disk.
     /// This method call is synchronized.
     /// 
@@ -67,7 +63,7 @@ extern "C" {
     ///
     pub fn clear_cache();
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = clearAppCache)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = clearAppCache)]
     /// Mark the Application cache group specified by `manifest_url` obsolete.
     /// This method call is synchronized.
     /// 
@@ -75,7 +71,7 @@ extern "C" {
     ///
     pub fn clear_app_cache(manifest_url:&str);
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = closeAllWindows)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = closeAllWindows)]
     /// Send the close event to all windows of current app,
     /// if no window is blocking the close event, then the app will quit after
     /// all windows have done shutdown. Use this method to quit an app 
@@ -85,7 +81,7 @@ extern "C" {
     ///
     pub fn close_all_windows();
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = crashBrowser)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = crashBrowser)]
     /// Crashes the browser process to test 
     /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
     /// 
@@ -93,7 +89,7 @@ extern "C" {
     ///
     pub fn crash_browser();
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = crashRenderer)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = crashRenderer)]
     /// Crashes the renderer process to test 
     /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
     /// 
@@ -101,14 +97,14 @@ extern "C" {
     ///
     pub fn crash_renderer();
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = enableComponent)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = enableComponent)]
     /// Experimental
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appenablecomponentcomponent-callback)
     ///
     pub fn enable_component(component:&str, callback:&Function);
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = getProxyForURL)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = getProxyForURL)]
     /// Query the proxy to be used for loading `url` in DOM.
     /// The return value is in the same format used in 
     /// PAC (e.g. "DIRECT", "PROXY localhost:8080").
@@ -117,7 +113,7 @@ extern "C" {
     ///
     fn get_proxy_for_url(url:&str)->String;
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = setProxyConfig)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = setProxyConfig)]
     /// Set the proxy config which the web engine will be used to request 
     /// network resources or PAC url to detect proxy automatically.
     /// 
@@ -125,7 +121,7 @@ extern "C" {
     ///
     pub fn set_proxy_config(config:&str, pac_url:&str);
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = quit)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = quit)]
     /// Quit current app. 
     /// This method will not send `close` event to windows and app will 
     /// just quit quietly.
@@ -134,7 +130,7 @@ extern "C" {
     ///
     pub fn quit();
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = setCrashDumpDir)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = setCrashDumpDir)]
     /// Deprecated: Set the directory where the minidump 
     /// file will be saved on crash. For more information, 
     /// see [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/).
@@ -143,7 +139,7 @@ extern "C" {
     ///
     pub fn set_crash_dump_dir(dir:&str);
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = addOriginAccessWhitelistEntry)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = addOriginAccessWhitelistEntry)]
     /// Add an entry to the whitelist used for controlling cross-origin access.
     /// Suppose you want to allow HTTP redirecting from github.com to 
     /// the page of your app, use something like this:
@@ -174,7 +170,7 @@ extern "C" {
         allow_destination_subdomains: bool
     );
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = removeOriginAccessWhitelistEntry)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = removeOriginAccessWhitelistEntry)]
     /// Remove an entry from the whitelist used for controlling cross-origin access.
     /// See [nw_sys::app::add_origin_access_whitelist_entry()](self::add_origin_access_whitelist_entry).
     /// 
@@ -193,7 +189,7 @@ extern "C" {
         allow_destination_subdomains: bool
     );
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = registerGlobalHotKey)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = registerGlobalHotKey)]
     /// Register a global keyboard shortcut (also known as system-wide hot key)
     /// to the system.
     /// 
@@ -203,7 +199,7 @@ extern "C" {
     ///
     pub fn register_global_hot_key(shortcut:&Shortcut);
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = unregisterGlobalHotKey)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = unregisterGlobalHotKey)]
     /// Unregisters a global keyboard shortcut.
     /// 
     /// See [Shortcut](crate::shortcut) for more information.
@@ -213,7 +209,7 @@ extern "C" {
     pub fn unregister_global_hot_key(shortcut:&Shortcut);
 
 
-    #[wasm_bindgen(js_namespace=["nw", "App"],  js_name = updateComponent)]
+    #[wasm_bindgen(js_namespace=["nw", "App"], js_name = updateComponent)]
     /// Experimental
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appupdatecomponentcomponent-callback)
