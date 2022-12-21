@@ -1,3 +1,27 @@
+//! nw.Tray
+//! 
+//! # Synopsis
+//! ```
+//! let options = nw_sys::tray::Options::new()
+//!     //.title("My App")
+//!     .icon("resources/icons/tray-icon@2x.png")
+//!     .icons_are_templates(false);
+//! 
+//! let tray = nw_sys::Tray::new(&options);
+//! tray.title();
+//! tray.tooltip();
+//! tray.icon();
+//! tray.alticon();// (Mac)
+//! tray.icons_are_templates();// (Mac)
+//! tray.menu();
+//! //tray.remove();
+//! 
+//! let menu = nw_sys::Menu::new();
+//! menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Menu 1")));
+//! tray.set_menu(&menu);
+//! 
+//! ```
+//! 
 use wasm_bindgen::prelude::*;
 use js_sys::{Object, Function};
 use crate::options::OptionsExt;
@@ -7,18 +31,7 @@ use crate::menu::Menu;
 #[wasm_bindgen]
 extern "C" {
     ///
-    /// # Synopsis
-    /// ```
-    /// let tray = nw::Tray::new(&nw::tray::Option::new().title("My App"))
-    /// tray.title();
-    /// tray.tooltip();
-    /// tray.icon();
-    /// tray.alticon();// (Mac)
-    /// tray.icons_are_templates();// (Mac)
-    /// tray.menu();
-    /// tray.remove();
-    /// ```
-    /// //Event: click
+    /// For usage example please refer to [nw_sys::tray](self)
     /// 
     /// Tray is an abstraction of different controls on different platforms,
     /// usually it’s a small icon shown on the OS’s notification area.
@@ -35,7 +48,7 @@ extern "C" {
     /// # Synopsis
     /// ```
     /// //Create a tray icon
-    /// let tray = nw::Tray::new(&nw::tray::Options::new().title("Tray").icon("img/icon.png"));
+    /// let tray = nw_sys::Tray::new(&nw_sys::tray::Options::new().title("Tray").icon("img/icon.png"));
     /// ```
     ///
     /// Create a new Tray, option is an contains initial settings for the Tray.
@@ -140,9 +153,11 @@ extern "C" {
     #[wasm_bindgen(method, setter, js_name = menu)]
     /// Set the menu of the tray, menu will be showed when you click on the tray icon.
     /// 
-    /// let menu = nw::Menu::new();
-    /// menu.append(&nw::MenuItem::new(&nw::menu_item::Options::new().label("Menu 1")));
+    /// ```rust
+    /// let menu = nw_sys::Menu::new();
+    /// menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Menu 1")));
     /// tray.set_menu(&menu);
+    /// ```
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Tray/#traymenu)
     pub fn set_menu(this:&Tray, menu:&Menu);
