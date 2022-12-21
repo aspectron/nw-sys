@@ -1,3 +1,45 @@
+//! # Synopsis
+//! 
+//! ```rust
+//! use workflow_wasm::listener::Callback;
+//!
+//! // Get the current window
+//! let win = nw_sys::window::get();
+//! // Listen to the minimize event
+//! let minimize_callback = Callback::<dyn FnMut()>::with_closure(|| {
+//!     log_info!("Window is minimized");
+//! });
+//! win.on("minimize", minimize_callback.into_js());
+//!
+//! // Minimize the window
+//! win.minimize();
+//!
+//! // Unlisten the minimize event
+//! win.remove_all_listeners_with_name("minimize");
+//!
+//! // Create a new window and get it
+//! let options = nw_sys::window::Options::new()
+//!     .title("Test window");
+//!
+//! let open_callback = Callback::<dyn FnMut(nw_sys::Window)>::with_closure(|new_win:nw_sys::Window| {
+//!     // And listen to new window's focus event
+//!     let focus_callabck = Callback::<dyn FnMut()>::with_closure(||{
+//!         log_info!("New window is focused");
+//!     });
+//!     new_win.on("focus", focus_callabck.into_js());
+//! });
+//!
+//! nw_sys::window::open_with_options_and_callback(
+//!     "https://github.com",
+//!     &options,
+//!     open_callback.into_js()
+//! );
+//!
+//! // save these `open_callback`, `focus_callabck` 
+//! // and `minimize_callback` somewhere
+//! 
+//! ```
+
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlIFrameElement;
 use js_sys::{Object, Function, Promise, ArrayBuffer};
@@ -7,48 +49,9 @@ use crate::menu::Menu;
 #[wasm_bindgen]
 extern "C" {
     // TODO: win.cookies.*
-
-    /// # Synopsis
-    /// 
-    /// ```rust
-    /// use workflow_wasm::listener::Callback;
     ///
-    /// // Get the current window
-    /// let win = nw_sys::window::get();
-    /// // Listen to the minimize event
-    /// let minimize_callback = Callback::<dyn FnMut()>::with_closure(|| {
-    ///     log_info!("Window is minimized");
-    /// });
-    /// win.on("minimize", minimize_callback.into_js());
+    /// For usage example please refer to [nw_sys::window](self)
     ///
-    /// // Minimize the window
-    /// win.minimize();
-    ///
-    /// // Unlisten the minimize event
-    /// win.remove_all_listeners_with_name("minimize");
-    ///
-    /// // Create a new window and get it
-    /// let options = nw_sys::window::Options::new()
-    ///     .title("Test window");
-    ///
-    /// let open_callback = Callback::<dyn FnMut(nw_sys::Window)>::with_closure(|new_win:nw_sys::Window| {
-    ///     // And listen to new window's focus event
-    ///     let focus_callabck = Callback::<dyn FnMut()>::with_closure(||{
-    ///         log_info!("New window is focused");
-    ///     });
-    ///     new_win.on("focus", focus_callabck.into_js());
-    /// });
-    ///
-    /// nw_sys::window::open_with_options_and_callback(
-    ///     "https://github.com",
-    ///     &options,
-    ///     open_callback.into_js()
-    /// );
-    ///
-    /// // save these `open_callback`, `focus_callabck` 
-    /// // and `minimize_callback` somewhere
-    /// 
-    /// ```
     #[wasm_bindgen(js_namespace=nw, js_name = Window)]
     #[derive(Debug, Clone)]
     pub type Window;

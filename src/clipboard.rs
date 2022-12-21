@@ -1,3 +1,20 @@
+//! # Synopsis
+//! ```
+//! // get the system clipboard
+//! let clipboard = nw::clipboard::get();
+//! 
+//! //read available types of data in clipboard currently
+//! let types = clip.get_available_types();
+//! log_info!("clipboard data types: {:?}", types);
+//! 
+//! // write text data to clipboard
+//! clip.set("Hello");
+//! 
+//! // read text data from clipboard
+//! let text = clip.get();
+//! 
+//! ```
+
 use wasm_bindgen::prelude::*;
 use js_sys::{Object, Array};
 use crate::options::OptionsExt;
@@ -7,23 +24,10 @@ use crate::result::Result;
 #[wasm_bindgen]
 extern "C" {
 
+    ///
+    /// For usage example please refer to [nw_sys::clipboard](self)
+    /// 
     
-    /// # Synopsis
-    /// ```
-    /// // get the system clipboard
-    /// let clipboard = nw::clipboard::get();
-    /// 
-    /// //read available types of data in clipboard currently
-    /// let types = clip.get_available_types();
-    /// log_info!("clipboard data types: {:?}", types);
-    /// 
-    /// // write text data to clipboard
-    /// clip.set("Hello");
-    /// 
-    /// // read text data from clipboard
-    /// let text = clip.get();
-    /// 
-    /// ```
     #[wasm_bindgen(js_namespace=nw, js_name = Clipboard)]
     #[derive(Debug, Clone)]
     pub type Clipboard;

@@ -1,3 +1,7 @@
+//! MenuItem
+//! For usage example please refer to [nw_sys::menu](crate::menu)
+//! 
+
 use wasm_bindgen::prelude::*;
 use js_sys::{Object, Function};
 use crate::options::OptionsExt;
@@ -6,12 +10,11 @@ use crate::menu::Menu;
 
 #[wasm_bindgen]
 extern "C" {
+
     /// MenuItem
-    /// # Synopsis
-    /// ```rust
-    /// let item1 = nw::MenuItem::new(&nw::menu_item::Options::new().label("Menu 1"));
-    /// 
-    /// ```
+    ///
+    /// For usage example please refer to [nw_sys::menu](crate::menu)
+    ///
 
     #[wasm_bindgen(js_namespace=nw, js_name = MenuItem)]
     #[derive(Debug, Clone)]

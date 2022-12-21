@@ -1,10 +1,82 @@
+//! Screen
+//! # Synopsis
+//! ```
+//! // init must be called once during startup, before any function to nw.Screen can be called
+//! nw_sys::screen::init_once();
+//! 
+//! let display_bounds_changed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
+//!     log_info!("displayBoundsChanged: {:#?}", screen);
+//!     Ok(())
+//! });
+//! 
+//! let display_added_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
+//!     log_info!("displayAdded: {:#?}", screen);
+//!     Ok(())
+//! });
+//! 
+//! let display_removed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
+//!     log_info!("displayRemoved: {:#?}", screen);
+//!     Ok(())
+//! });
+//! 
+//! // listen to screen events
+//! nw_sys::screen::on("displayBoundsChanged", display_bounds_changed_callback.into_js());
+//! nw_sys::screen::on("displayAdded", display_added_callback.into_js());
+//! nw_sys::screen::on("displayRemoved", display_removed_callback.into_js());
+//! 
+//! // save callbacks somewhere
+//! app.push_callback(display_bounds_changed_callback)?;
+//! app.push_callback(display_added_callback)?;
+//! app.push_callback(display_removed_callback)?;
+//! 
+//! ```
+//! 
+//! Screen
+//! # Synopsis
+//! ```
+//! // init must be called once during startup, before any function to nw.Screen can be called
+//! nw_sys::screen::init_once();
+//! 
+//! let display_bounds_changed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
+//!     log_info!("displayBoundsChanged: {:#?}", screen);
+//!     Ok(())
+//! });
+//! 
+//! let display_added_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
+//!     log_info!("displayAdded: {:#?}", screen);
+//!     Ok(())
+//! });
+//! 
+//! let display_removed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
+//!     log_info!("displayRemoved: {:#?}", screen);
+//!     Ok(())
+//! });
+//! 
+//! // listen to screen events
+//! nw_sys::screen::on("displayBoundsChanged", display_bounds_changed_callback.into_js());
+//! nw_sys::screen::on("displayAdded", display_added_callback.into_js());
+//! nw_sys::screen::on("displayRemoved", display_removed_callback.into_js());
+//! 
+//! // save callbacks somewhere
+//! app.push_callback(display_bounds_changed_callback)?;
+//! app.push_callback(display_added_callback)?;
+//! app.push_callback(display_removed_callback)?;
+//! 
+//! ```
+
+
 use wasm_bindgen::prelude::*;
 use js_sys::{Array, Function};
 //use workflow_log::log_info;
 //use crate::options::OptionsExt;
 use crate::result::Result;
 use workflow_wasm::utils;
-
 
 #[wasm_bindgen]
 extern "C" {
@@ -28,7 +100,9 @@ extern "C" {
 
     #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = on)]
     ///
-    /// 
+    ///
+    /// For usage example please refer to [nw_sys::screen](self)
+    ///
     /// ### Events:
     /// - displayBoundsChanged (screen)
     /// - displayAdded (screen)
@@ -50,6 +124,14 @@ pub mod desktop_capture_monitor{
         #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = DesktopCaptureMonitor)]
         #[derive(Debug, Clone)]
         type DCM;
+
+        #[wasm_bindgen(getter, static_method_of=DCM, js_namespace=["nw", "Screen"], js_class=DesktopCaptureMonitor, js_name = started)]
+        /// Return Boolean of whether the DesktopCaptureMonitor is started.
+        /// 
+        /// 
+        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
+        ///
+        pub fn started()->bool;
         
         #[wasm_bindgen(js_namespace=["nw", "Screen", "DesktopCaptureMonitor"], js_name = start)]
         /// The DesktopCaptureMonitor will start monitoring the system 
@@ -64,14 +146,6 @@ pub mod desktop_capture_monitor{
         /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstartshould_include_screens-should_include_windows)
         ///
         pub fn start(should_include_screens:bool, should_include_windows:bool);
-
-        #[wasm_bindgen(getter, static_method_of=DCM, js_namespace=["nw", "Screen"], js_class=DesktopCaptureMonitor, js_name = started)]
-        /// Return Boolean of whether the DesktopCaptureMonitor is started.
-        /// 
-        /// 
-        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
-        ///
-        pub fn started()->bool;
 
         #[wasm_bindgen(js_namespace=["nw", "Screen", "DesktopCaptureMonitor"], js_name = stop)]
         /// The `DesktopCaptureMonitor` will stop monitoring the system.
@@ -94,7 +168,7 @@ pub mod desktop_capture_monitor{
         pub fn register_stream(id:&str)->String;
 
 
-        #[wasm_bindgen(js_namespace=["nw", "Screen", "DesktopCaptureMonitor"], js_name = on)]
+        #[wasm_bindgen(static_method_of=DCM, js_namespace=["nw", "Screen"], js_class=DesktopCaptureMonitor, js_name = on)]
         /// Add event listener
         /// 
         /// ### Events:
@@ -117,6 +191,22 @@ pub mod desktop_capture_monitor{
     ///
     pub fn started()->bool{
         DCM::started()
+    }
+
+    /// Add event listener
+    /// 
+    /// ### Events:
+    /// - added (id, name, order, type, primary)
+    /// - removed (order)
+    /// - orderchanged (id, new_order, old_order)
+    /// - namechanged (id, name)
+    /// - thumbnailchanged (id, thumbnail)
+    /// 
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-added-id-name-order-type-primary)
+    ///
+    pub fn on(event_name:&str, callback:&Function){
+        DCM::on(event_name, callback)
     }
 
 
@@ -183,28 +273,31 @@ pub fn screens()->Result<Vec<ScreenInfo>>{
     Ok(result)
 }
 
-
+/// physical screen resolution, can be negative, 
+/// not necessarily start from 0,
+/// depending on screen arrangement
 #[derive(Debug)]
 pub struct Bounds{
-    pub x: u64,
-    pub y: u64,
-    pub width: u64,
-    pub height: u64,
+    pub x: f64,
+    pub y: f64,
+    pub width: f64,
+    pub height: f64,
 }
 
+/// useable area within the screen bound
 #[derive(Debug)]
 pub struct WorkArea{
-    pub x: u64,
-    pub y: u64,
-    pub width: u64,
-    pub height: u64,
+    pub x: f64,
+    pub y: f64,
+    pub width: f64,
+    pub height: f64,
 }
 
 /// Screen Info
 #[derive(Debug)]
 pub struct ScreenInfo{
-    pub id:u64,
-    pub scale_factor:f64,
+    pub id: u64,
+    pub scale_factor: f64,
     pub is_built_in: bool,
     pub rotation: u64,
     pub touch_support: u64,
@@ -212,12 +305,13 @@ pub struct ScreenInfo{
     pub work_area: WorkArea
 }
 
-fn read_box(jsv: &JsValue, prop:&str)->Result<(u64, u64, u64, u64)>{
+
+fn read_box(jsv: &JsValue, prop:&str)->Result<(f64, f64, f64, f64)>{
     let jsv = utils::try_get_js_value(jsv, prop)?;
-    let x = utils::try_get_u64_from_prop(&jsv, "x")?;
-    let y = utils::try_get_u64_from_prop(&jsv, "y")?;
-    let width = utils::try_get_u64_from_prop(&jsv, "width")?;
-    let height = utils::try_get_u64_from_prop(&jsv, "height")?;
+    let x = utils::try_get_f64_from_prop(&jsv, "x")?;
+    let y = utils::try_get_f64_from_prop(&jsv, "y")?;
+    let width = utils::try_get_f64_from_prop(&jsv, "width")?;
+    let height = utils::try_get_f64_from_prop(&jsv, "height")?;
 
     Ok((x, y, width, height))
 }

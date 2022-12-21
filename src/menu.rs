@@ -1,3 +1,53 @@
+//! Menu
+//! # Synopsis
+//! ```rust
+//! // An example to create a context menu:
+//! // Create an empty context menu
+//! let menu = nw_sys::Menu::new();
+//! 
+//! // Add some items
+//! menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item A")));
+//! menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item B")));
+//! menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Type::Separator.into()));
+//! menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item C")));
+//! 
+//! // Remove one item
+//! menu.remove_at(1);
+//! 
+//! // Popup as context menu
+//! menu.popup(10, 10);
+//! 
+//! // Iterate menu's items
+//! for item in &menu.items(){
+//!     log_trace!("{:?}", item);
+//! }
+//! 
+//! // To create a menubar, usually you have to create a 2-level menu and assign it 
+//! // to win.menu. Here is the example of creating a menubar:
+//! //
+//! // Create an empty menubar
+//! let menu = nw_sys::Menu::new_with_options(&nw_sys::menu::Type::Menubar.into());
+//! 
+//! // Create a submenu as the 2nd level menu
+//! let submenu = nw_sys::Menu::new();
+//! submenu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item A")));
+//! submenu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item B")));
+//! 
+//! // Create and append the 1st level menu to the menubar
+//! let options = nw_sys::menu_item::Options::new()
+//!     .label("First Menu")
+//!     .submenu(&submenu);
+//! 
+//! //create builtin Edit and Window menus on Mac
+//! menu.create_mac_builtin("Example App");
+//! 
+//! menu.append(&nw_sys::MenuItem::new(&options));
+//! 
+//! // Assign it to `window.menu` to get the menu displayed
+//! nw_sys::window::get().set_menu(&menu);
+//! 
+//! ```
+
 use wasm_bindgen::prelude::*;
 use js_sys::Object;
 use crate::menu_item::MenuItem;
@@ -7,55 +57,9 @@ use crate::options::OptionsExt;
 #[wasm_bindgen]
 extern "C" {
 
-    /// Menu
-    /// # Synopsis
-    /// ```rust
-    /// // An example to create a context menu:
-    /// // Create an empty context menu
-    /// let menu = nw_sys::Menu::new();
-    /// 
-    /// // Add some items
-    /// menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item A")));
-    /// menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item B")));
-    /// menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Type::Separator.into()));
-    /// menu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item C")));
-    /// 
-    /// // Remove one item
-    /// menu.remove_at(1);
-    /// 
-    /// // Popup as context menu
-    /// menu.popup(10, 10);
-    /// 
-    /// // Iterate menu's items
-    /// for item in &menu.items(){
-    ///     log_trace!("{:?}", item);
-    /// }
-    /// 
-    /// // To create a menubar, usually you have to create a 2-level menu and assign it 
-    /// // to win.menu. Here is the example of creating a menubar:
-    /// //
-    /// // Create an empty menubar
-    /// let menu = nw_sys::Menu::new_with_options(&nw_sys::menu::Type::Menubar.into());
-    /// 
-    /// // Create a submenu as the 2nd level menu
-    /// let submenu = nw_sys::Menu::new();
-    /// submenu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item A")));
-    /// submenu.append(&nw_sys::MenuItem::new(&nw_sys::menu_item::Options::new().label("Item B")));
-    /// 
-    /// // Create and append the 1st level menu to the menubar
-    /// let options = nw_sys::menu_item::Options::new()
-    ///     .label("First Menu")
-    ///     .submenu(&submenu);
-    /// 
-    /// //create builtin Edit and Window menus on Mac
-    /// menu.create_mac_builtin("Example App");
-    /// 
-    /// menu.append(&nw_sys::MenuItem::new(&options));
-    /// 
-    /// // Assign it to `window.menu` to get the menu displayed
-    /// nw_sys::window::get().set_menu(&menu);
-    /// 
-    /// ```
+    ///
+    /// For usage example please refer to [nw_sys::menu](self)
+    ///
 
     #[wasm_bindgen(js_namespace=nw, js_name = Menu)]
     #[derive(Debug, Clone)]

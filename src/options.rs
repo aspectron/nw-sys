@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 use js_sys::Object;
-use workflow_log::log_info;
+//use workflow_log::log_info;
 
 pub trait OptionsExt {
     /// "Construct a new `Options`.
@@ -30,7 +30,7 @@ pub trait OptionsExt {
             key = name_parts.pop().unwrap();
 
             for name in name_parts{
-                log_info!("name: {}, target: {:?}", name, target);
+                //log_info!("name: {}, target: {:?}", name, target);
                 let r = ::js_sys::Reflect::get(
                     &target,
                     &JsValue::from(name)
@@ -43,9 +43,7 @@ pub trait OptionsExt {
                         }else{
                             let object = Object::new();
                             let new_target = JsValue::from(object);
-
-                            log_info!("new_target: {:?}", new_target);
-
+                            //log_info!("new_target: {:?}", new_target);
                             let _ = ::js_sys::Reflect::set(
                                 &target,
                                 &JsValue::from(name),
@@ -65,7 +63,7 @@ pub trait OptionsExt {
                 }
             }
 
-            log_info!("final: key: {}, target: {:?}", key, target);
+            //log_info!("final: key: {}, target: {:?}", key, target);
         }
     
         let r = ::js_sys::Reflect::set(
