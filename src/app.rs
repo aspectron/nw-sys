@@ -149,12 +149,12 @@ extern "C" {
     /// the page of your app, use something like this:
     ///
     /// ```
-    /// nw::App::add_origin_access_whitelist_entry(
+    /// nw_sys::app::add_origin_access_whitelist_entry(
     ///     "http://github.com/", "chrome-extension", "domain.com",
     ///     true
     /// );
     /// ```
-    /// Use `nw::App::remove_origin_access_whitelist_entry()` with exactly the 
+    /// Use `nw_sys::app::remove_origin_access_whitelist_entry()` with exactly the 
     /// same arguments to do the contrary.
     /// 
     /// - `source_origin`: The source origin. e.g. http://github.com/
@@ -258,7 +258,6 @@ fn build_argv_filters(argv:Array)->Result<Vec<RegExp>>{
             None=>{}
         }
         */
-        
     }
 
     Ok(list)
