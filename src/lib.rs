@@ -38,12 +38,15 @@ pub use nw::is_nw;
 pub mod app;
 
 pub mod clipboard;
+#[doc(inline)]
 pub use clipboard::Clipboard;
 
 pub mod menu;
+#[doc(inline)]
 pub use menu::Menu;
 
 pub mod menu_item;
+#[doc(inline)]
 pub use menu_item::MenuItem;
 
 pub mod screen;
@@ -51,12 +54,15 @@ pub mod screen;
 pub mod shell;
 
 pub mod shortcut;
+#[doc(inline)]
 pub use shortcut::Shortcut;
 
 pub mod tray;
+#[doc(inline)]
 pub use tray::Tray;
 
 pub mod window;
+#[doc(inline)]
 pub use window::Window;
 
 pub mod prelude;
