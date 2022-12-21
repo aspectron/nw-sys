@@ -1,4 +1,4 @@
-//! Menu
+//! nw.Menu
 //! # Synopsis
 //! ```rust
 //! // An example to create a context menu:

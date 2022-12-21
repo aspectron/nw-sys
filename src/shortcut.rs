@@ -1,3 +1,30 @@
+//! 
+//! # Synopsis
+//! ```
+//!  //Create a shortcut with |option|.
+//! let shortcut = nw_sys::Shortcut::new(&nw_sys::shortcut::Options::new().key("Ctrl+Shift+A"));
+//! 
+//! // If register |shortcut| successfully and user struck "Ctrl+Shift+A", |shortcut|
+//! // will get an "active" event.
+//! 
+//! // You can also add listener to shortcut's active and failed event.   
+//! let callback = Callback::<dyn FnMut()>::with_closure(||{
+//!     log_info!("Global desktop keyboard shortcut: 'Ctrl+Shift+A' active.");
+//! });
+//! shortcut.on_active(callback.into_js());
+//! 
+//! // Register global desktop shortcut, which can work without focus.
+//! nw_sys::app::register_global_hot_key(&shortcut);
+//! 
+//! // Unregister the global desktop shortcut.
+//! nw_sys::app::unregister_global_hot_key(&shortcut);
+//! 
+//! //save callback
+//! app.push_callback(callback)?;
+//! 
+//! ```
+//! 
+
 use wasm_bindgen::prelude::*;
 use js_sys::{Object, Function};
 use crate::options::OptionsExt;
@@ -5,16 +32,8 @@ use crate::options::OptionsExt;
 #[wasm_bindgen]
 extern "C" {
     ///
-    /// # Synopsis
-    /// ```
-    /// new Shortcut(&nw::shortcut::Option::new().key("Ctrl+Shift+A"))
-    /// 
-    /// //Register global desktop shortcut, which can work without focus.
-    /// nw::App::register_global_hot_key(&shortcut);
-    /// ```
-    /// 
-    /// Event:active
-    /// Event:failed
+    /// For usage example please refer to [nw_sys::shortcut](self)
+    ///
     /// Shortcut represents a global keyboard shortcut, 
     /// also known as system-wide hotkey. If registered successfully, 
     /// it works even if your app does not have focus.
@@ -33,7 +52,7 @@ extern "C" {
     /// 
     /// ```
     /// //Create a Shortcut
-    /// let shortcut = nw::Shortcut::new(&nw::shortcut::Options::new().key("Ctrl+Shift+A"));
+    /// let shortcut = nw_sys::shortcut::new(&nw_sys::shortcut::Options::new().key("Ctrl+Shift+A"));
     /// ```
     ///
     /// Create new Shortcut
@@ -42,17 +61,25 @@ extern "C" {
     ///
     pub fn new(options:&Options) -> Shortcut;
     
-    // shortcut.active
-    // Get or set the active callback of a Shortcut. It will be called when user presses the shortcut.
-    
+    #[wasm_bindgen(setter, method, js_namespace=["nw"], js_name=active)]
+    /// Set the active callback of a Shortcut.
+    /// It will be called when user presses the shortcut.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
+    ///
+    pub fn on_active(this:&Shortcut, callback:&Function);
+
+    #[wasm_bindgen(setter, method, js_namespace=["nw"], js_name=failed)]
+    /// Set the `failed` callback of a Shortcut.
+    /// It will be called when application passes an invalid key ,
+    /// or failed to register the key.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
+    ///
+    pub fn on_failed(this:&Shortcut, callback:&Function);
+
     // shortcut.failed
     // *Get or set the failed callback of a Shortcut. It will be called when application passes an invalid key , or failed to register the key.
-    
-    // Event:active
-    // Same as shortcut.active
-    
-    // Event:failed
-    // Same as shortcut.failed
 
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]

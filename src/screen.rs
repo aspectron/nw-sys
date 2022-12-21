@@ -1,4 +1,4 @@
-//! Screen
+//! nw.Screen
 //! # Synopsis
 //! ```
 //! // init must be called once during startup, before any function to nw.Screen can be called

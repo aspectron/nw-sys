@@ -1,4 +1,4 @@
-//! MenuItem
+//! nw.MenuItem
 //! For usage example please refer to [nw_sys::menu](crate::menu)
 //! 
 

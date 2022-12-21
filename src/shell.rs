@@ -1,22 +1,28 @@
+//! nw.Shell
+//!  # Synopsis
+//! ```
+//! // Open URL with default browser.
+//! nw_sys::shell::open_external("https://github.com/nwjs/nw.js");
+//! 
+//! // Open a text file with default text editor.
+//! nw_sys::shell::open_item("/absolute/path/to/file.txt");
+//! 
+//! // Show a file in parent folder with file manager.
+//! nw_sys::shell::show_item_in_folder("/absolute/path/to/file.txt");
+//! ```
+//! 
+
 use wasm_bindgen::prelude::*;
 
 
 #[wasm_bindgen]
 extern "C" {    
-    /// # Synopsis
-    /// ```
-    /// // Open URL with default browser.
-    /// nw_sys::shell::open_external("https://github.com/nwjs/nw.js");
-    /// 
-    /// // Open a text file with default text editor.
-    /// nw_sys::shell::open_item("/absolute/path/to/file.txt");
-    /// 
-    /// // Show a file in parent folder with file manager.
-    /// nw_sys::shell::show_item_in_folder("/absolute/path/to/file.txt");
-    /// ```
+    
 
     #[wasm_bindgen(js_namespace=["nw", "Shell"], js_name = openExternal)]
     /// Open the given external URI in the desktop’s default manner.
+    /// 
+    /// For usage example please refer to [nw_sys::shell](self)
     /// 
     /// For example, mailto: URLs in the default mail user agent.
     /// 
