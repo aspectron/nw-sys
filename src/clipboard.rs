@@ -154,6 +154,77 @@ extern "C" {
     pub type DataRead;
 }
 
+/// Returns the `Clipboard` object
+/// 
+/// **Note:**
+/// The Selection Clipboard in X11 is not supported.
+/// 
+/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipboardget)
+///
+pub fn get()->Clipboard{
+    Clipboard::get_impl()
+}
+
+impl Clipboard{
+    /// Write data of type to the clipboard.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
+    ///
+    pub fn set_data_array(&self, list:Vec<DataWrite>){
+        let data_array = Array::new();
+        for d in list{
+            data_array.push(&JsValue::from(d));
+        }
+        self.set_data_array_impl(data_array);
+    }
+
+    /// Get the data as `Vector<Option<String>`
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddatalist)
+    ///
+    pub fn get_data_array(&self, list:Vec<DataRead>)->Result<Vec<Option<String>>>{
+        let data_array = Array::new();
+        for d in list{
+            data_array.push(&JsValue::from(d));
+        }
+        let array = self.get_data_array_impl(data_array);
+        let mut result = Vec::new();
+        for index in 0..array.length(){
+            let data = array.get(index);
+            let data = js_sys::Reflect::get(&data, &JsValue::from("data"))?;
+            result.push(data.as_string());
+        }
+
+        Ok(result)
+    }
+
+    /// Returns list of available types of data in clipboard currently.
+    /// 
+    /// ### Each item is one of following types:
+    /// - text: plain text. Can be read by [clip.get_with_data_type("text")](self::Clipboard#method.get_with_data_type).
+    /// - html: HTML text. Can be read by [clip.get_with_data_type("html")](self::Clipboard#method.get_with_data_type).
+    /// - rtf: RTF (Rich Text Format). Can be read by [clip.get_with_data_type("rtf")](self::Clipboard#method.get_with_data_type).
+    /// - png: PNG image. Can be read by [clip.get_with_data_type("png")](self::Clipboard#method.get_with_data_type).
+    /// - jpeg: JPEG image. Can be read by [clip.get_with_data_type("jpeg")](self::Clipboard#method.get_with_data_type).
+    /// 
+    /// You can use the returned list as a suggestion to get the right data from clipboard.
+    /// 
+    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipreadavailabletypes)
+    ///
+    pub fn get_available_types(&self)->Vec<String>{
+        let array = self.get_available_types_impl();
+        let mut result = Vec::new();
+        for index in 0..array.length(){
+            if let Some(v) = array.get(index).as_string(){
+                result.push(v);
+            }
+        }
+
+        result
+    }
+}
+
+
 
 impl OptionsExt for DataWrite{
     fn initialize(self)->Self{
@@ -225,72 +296,3 @@ impl From<(String, Option<bool>)> for DataRead{
     }
 }
 
-/// Returns the `Clipboard` object
-/// 
-/// **Note:**
-/// The Selection Clipboard in X11 is not supported.
-/// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipboardget)
-///
-pub fn get()->Clipboard{
-    Clipboard::get_impl()
-}
-
-impl Clipboard{
-    /// Write data of type to the clipboard.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
-    ///
-    pub fn set_data_array(&self, list:Vec<DataWrite>){
-        let data_array = Array::new();
-        for d in list{
-            data_array.push(&JsValue::from(d));
-        }
-        self.set_data_array_impl(data_array);
-    }
-
-    /// Get the data
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddatalist)
-    ///
-    pub fn get_data_array(&self, list:Vec<DataRead>)->Result<Vec<Option<String>>>{
-        let data_array = Array::new();
-        for d in list{
-            data_array.push(&JsValue::from(d));
-        }
-        let array = self.get_data_array_impl(data_array);
-        let mut result = Vec::new();
-        for index in 0..array.length(){
-            let data = array.get(index);
-            let data = js_sys::Reflect::get(&data, &JsValue::from("data"))?;
-            result.push(data.as_string());
-        }
-
-        Ok(result)
-    }
-
-    /// Returns list of available types of data in clipboard currently.
-    /// 
-    /// ### Each item is one of following types:
-    /// - text: plain text. Can be read by `clip.read('text')`.
-    /// - html: HTML text. Can be read by `clip.read('html')`.
-    /// - rtf: RTF (Rich Text Format). Can be read by `clip.read('rtf')`.
-    /// - png: PNG image. Can be read by `clip.read('png')`.
-    /// - jpeg: JPEG image. Can be read by `clip.read('jpeg')`.
-    /// 
-    /// You can use the returned list as a suggestion to get the right data from clipboard.
-    /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipreadavailabletypes)
-    ///
-    pub fn get_available_types(&self)->Vec<String>{
-        let array = self.get_available_types_impl();
-        let mut result = Vec::new();
-        for index in 0..array.length(){
-            if let Some(v) = array.get(index).as_string(){
-                result.push(v);
-            }
-        }
-
-        result
-    }
-}

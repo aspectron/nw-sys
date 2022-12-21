@@ -4,18 +4,17 @@ use workflow_log::log_trace;
 
 #[wasm_bindgen]
 extern "C" {
-    #[wasm_bindgen (extends = Object, js_namespace=nw, js_name = Window)]
-    #[derive(Debug, Clone)]
     /// The `nw` namespace.
     ///
     /// [NWJS documentation](https://docs.nwjs.io/en/latest/)
     ///
+    #[wasm_bindgen (extends = Object, js_name = nw)]
+    #[derive(Debug, Clone)]
     pub type Nw;
 }
 
 /// Getter for the `Nw` namespace object
 ///
-/// [NWJS Documentation]
 ///
 /// [NWJS Documentation]: https://docs.nwjs.io/en/latest/
 pub fn try_nw() -> Result<Nw, JsValue> {

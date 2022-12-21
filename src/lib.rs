@@ -31,11 +31,11 @@ pub mod result;
 pub mod options;
 
 mod nw;
+pub use nw::Nw;
 pub use nw::try_nw;
 pub use nw::is_nw;
 
 pub mod app;
-//pub use app::App;
 
 pub mod clipboard;
 pub use clipboard::Clipboard;
@@ -49,7 +49,6 @@ pub use menu_item::MenuItem;
 pub mod screen;
 
 pub mod shell;
-//pub use shell::Shell;
 
 pub mod shortcut;
 pub use shortcut::Shortcut;
