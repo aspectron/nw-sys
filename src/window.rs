@@ -45,8 +45,8 @@ extern "C" {
     ///     open_callback.into_js()
     /// );
     ///
-    /// //save these `open_callback`, `focus_callabck` 
-    /// and `minimize_callback` somewhere
+    /// // save these `open_callback`, `focus_callabck` 
+    /// // and `minimize_callback` somewhere
     /// 
     /// ```
     #[wasm_bindgen(js_namespace=nw, js_name = Window)]
