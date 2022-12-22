@@ -11,7 +11,7 @@
 //! // If register |shortcut| successfully and user struck "Ctrl+Shift+A", |shortcut|
 //! // will get an "active" event.
 //! 
-//! // You can also add listener to shortcut's active and failed event.   
+//! // You can also add callback to shortcut's active and failed event.   
 //! let callback = callback!(||{
 //!     log_info!("Global desktop keyboard shortcut: 'Ctrl+Shift+A' active.");
 //! });

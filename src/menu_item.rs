@@ -152,7 +152,7 @@ extern "C" {
     /// Changing it at runtime is slow on some platforms.
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemclick)
-    pub fn set_click(this:&MenuItem, listener:&Function);
+    pub fn set_click(this:&MenuItem, callback:&Function);
 
     #[wasm_bindgen(method, getter, js_name = key)]
     /// A single character string to specify the shortcut key for the menu item.
@@ -254,8 +254,8 @@ impl Options{
     /// The callback function when item is triggered by mouse click or keyboard shortcut
     /// 
     /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
-    pub fn click(self, listener:&Function)->Self{
-        self.set("click", JsValue::from(listener))
+    pub fn click(self, callback:&Function)->Self{
+        self.set("click", JsValue::from(callback))
     }
 
     /// Whether the item is enabled or disabled. It’s set to true by default.
