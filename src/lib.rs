@@ -65,5 +65,7 @@ pub use window::Window;
 pub mod prelude;
 pub mod utils;
 
-pub mod chrome;
+mod chrome;
+#[doc(inline)]
+pub use chrome::notifications;
 

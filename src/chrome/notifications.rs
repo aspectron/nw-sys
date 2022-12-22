@@ -3,12 +3,13 @@
 //! 
 //!  # Synopsis
 //! ```rust
+//! use nw_sys::notifications;
 //! 
 //! // Create basic notification
 //! let options = notifications::Options::new()
 //!     .title("Title text")
 //!     .icon_url("/resources/icons/tray-icon@2x.png")
-//!     .set_type(nw_sys::chrome::notifications::TemplateType::Basic)
+//!     .set_type(notifications::TemplateType::Basic)
 //!     .message("Message Text")
 //!     .context_message("Context Message");
 //! 
@@ -26,7 +27,7 @@
 //! let options = notifications::Options::new()
 //!     .title("Title text")
 //!     .icon_url("/resources/icons/tray-icon@2x.png")
-//!     .set_type(nw_sys::chrome::notifications::TemplateType::Basic)
+//!     .set_type(notifications::TemplateType::Basic)
 //!     .message("Message Text")
 //!     .buttons(vec![button1, button2]);
 //! 
@@ -36,7 +37,7 @@
 //! let options = notifications::Options::new()
 //!     .title("Title text")
 //!     .icon_url("/resources/icons/tray-icon@2x.png")
-//!     .set_type(nw_sys::chrome::notifications::TemplateType::Image)
+//!     .set_type(notifications::TemplateType::Image)
 //!     .message("Message Text")
 //!     .image_url("/resources/setup/document.png");
 //! 
@@ -53,7 +54,7 @@
 //! let options = notifications::Options::new()
 //!     .title("Title text")
 //!     .icon_url("/resources/icons/tray-icon@2x.png")
-//!     .set_type(nw_sys::chrome::notifications::TemplateType::List)
+//!     .set_type(notifications::TemplateType::List)
 //!     .message("Message Text")
 //!     .items(vec![item1, item2]);
 //! 
@@ -63,7 +64,7 @@
 //! let options = notifications::Options::new()
 //!     .title("Title text")
 //!     .icon_url("/resources/icons/tray-icon@2x.png")
-//!     .set_type(nw_sys::chrome::notifications::TemplateType::Progress)
+//!     .set_type(notifications::TemplateType::Progress)
 //!     .message("Mesage text")
 //!     .progress(50);
 //! notifications::create(None, &options, None);
