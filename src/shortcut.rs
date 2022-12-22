@@ -81,6 +81,7 @@ extern "C" {
     // shortcut.failed
     // *Get or set the failed callback of a Shortcut. It will be called when application passes an invalid key , or failed to register the key.
 
+    /// Shortcut Options
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
     pub type Options;
