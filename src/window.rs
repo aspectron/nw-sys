@@ -7,17 +7,17 @@
 //! # Synopsis
 //! 
 //! ```rust
-//! use workflow_wasm::callback::Callback;
+//! use workflow_wasm::prelude::*;
 //!
 //! // Get the current window
 //! let win = nw_sys::window::get();
 //! 
 //! // Listen to the minimize event
-//! let minimize_callback = Callback::<dyn FnMut()>::with_closure(|| {
+//! let minimize_callback = callback!(|| {
 //!     log_info!("Window is minimized");
 //! });
 //! 
-//! win.on("minimize", minimize_callback.into_js());
+//! win.on("minimize", minimize_callback.as_ref());
 //!
 //! // Minimize the window
 //! win.minimize();
@@ -29,18 +29,18 @@
 //! let options = nw_sys::window::Options::new()
 //!     .title("Test window");
 //!
-//! let open_callback = Callback::<dyn FnMut(nw_sys::Window)>::with_closure(|new_win:nw_sys::Window| {
+//! let open_callback = callback!(|new_win:nw_sys::Window| {
 //!     // And listen to new window's focus event
-//!     let focus_callabck = Callback::<dyn FnMut()>::with_closure(||{
+//!     let focus_callabck = callback!(||{
 //!         log_info!("New window is focused");
 //!     });
-//!     new_win.on("focus", focus_callabck.into_js());
+//!     new_win.on("focus", focus_callabck.as_ref());
 //! });
 //!
 //! nw_sys::window::open_with_options_and_callback(
 //!     "https://github.com",
 //!     &options,
-//!     open_callback.into_js()
+//!     open_callback.as_ref()
 //! );
 //!
 //! // save these `open_callback`, `focus_callabck` 

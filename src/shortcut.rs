@@ -3,6 +3,8 @@
 //! 
 //! # Synopsis
 //! ```
+//! use workflow_wasm::prelude::*;
+//! 
 //!  //Create a shortcut with |option|.
 //! let shortcut = nw_sys::Shortcut::new(&nw_sys::shortcut::Options::new().key("Ctrl+Shift+A"));
 //! 
@@ -10,10 +12,10 @@
 //! // will get an "active" event.
 //! 
 //! // You can also add listener to shortcut's active and failed event.   
-//! let callback = Callback::<dyn FnMut()>::with_closure(||{
+//! let callback = callback!(||{
 //!     log_info!("Global desktop keyboard shortcut: 'Ctrl+Shift+A' active.");
 //! });
-//! shortcut.on_active(callback.into_js());
+//! shortcut.on_active(callback.as_ref());
 //! 
 //! // Register global desktop shortcut, which can work without focus.
 //! nw_sys::app::register_global_hot_key(&shortcut);

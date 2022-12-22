@@ -7,28 +7,28 @@
 //! // init must be called once during startup, before any function to nw.Screen can be called
 //! nw_sys::screen::init_once();
 //! 
-//! let display_bounds_changed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//! let display_bounds_changed_callback = Callback::new(move |screen:JsValue|{
 //!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
 //!     log_info!("displayBoundsChanged: {:#?}", screen);
 //!     Ok(())
 //! });
 //! 
-//! let display_added_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//! let display_added_callback = Callback::new(move |screen:JsValue|{
 //!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
 //!     log_info!("displayAdded: {:#?}", screen);
 //!     Ok(())
 //! });
 //! 
-//! let display_removed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//! let display_removed_callback = Callback::new(move |screen:JsValue|{
 //!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
 //!     log_info!("displayRemoved: {:#?}", screen);
 //!     Ok(())
 //! });
 //! 
 //! // listen to screen events
-//! nw_sys::screen::on("displayBoundsChanged", display_bounds_changed_callback.into_js());
-//! nw_sys::screen::on("displayAdded", display_added_callback.into_js());
-//! nw_sys::screen::on("displayRemoved", display_removed_callback.into_js());
+//! nw_sys::screen::on("displayBoundsChanged", display_bounds_changed_callback.as_ref());
+//! nw_sys::screen::on("displayAdded", display_added_callback.as_ref());
+//! nw_sys::screen::on("displayRemoved", display_removed_callback.as_ref());
 //! 
 //! // save callbacks somewhere
 //! app.push_callback(display_bounds_changed_callback)?;
@@ -40,22 +40,24 @@
 //! Screen
 //! # Synopsis
 //! ```
+//! use workflow_wasm::prelude::*;
+//! 
 //! // init must be called once during startup, before any function to nw.Screen can be called
 //! nw_sys::screen::init_once();
 //! 
-//! let display_bounds_changed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//! let display_bounds_changed_callback = callback!(move |screen:JsValue|{
 //!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
 //!     log_info!("displayBoundsChanged: {:#?}", screen);
 //!     Ok(())
 //! });
 //! 
-//! let display_added_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//! let display_added_callback = callback!(move |screen:JsValue|{
 //!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
 //!     log_info!("displayAdded: {:#?}", screen);
 //!     Ok(())
 //! });
 //! 
-//! let display_removed_callback = Callback::<CallbackClosure<JsValue>>::with_closure(move |screen:JsValue|{
+//! let display_removed_callback = callback!(move |screen:JsValue|{
 //!     let screen: nw_sys::screen::ScreenInfo = screen.try_into()?;
 //!     log_info!("displayRemoved: {:#?}", screen);
 //!     Ok(())
