@@ -12,7 +12,10 @@ pub enum Error {
     JsValue(String),
 
     #[error("Poison Error: {0}")]
-    PoisonError(String)
+    PoisonError(String),
+
+    #[error("Callback Error: {0}")]
+    CallbackError(#[from] workflow_wasm::callback::Error),
 }
 
 impl From<String> for Error{
@@ -48,6 +51,7 @@ impl From<Error> for String {
             | Error::PoisonError(s)
             | Error::JsValue(s)
                 => String::from(s),
+            Error::CallbackError(err) => err.to_string()
             //Error::RecvError => String::from(&format!("{}", err)),
         }
     }
