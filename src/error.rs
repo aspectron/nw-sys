@@ -1,3 +1,7 @@
+//!
+//! Errors produced by the [`nw_sys`](super) crate.
+//! 
+
 use std::sync::PoisonError;
 
 use wasm_bindgen::JsValue;

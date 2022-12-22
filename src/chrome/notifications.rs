@@ -1,4 +1,7 @@
-//! # Synopsis
+//!
+//! Chrome system notification API, allows creation of desktop / system notifications.
+//! 
+//!  # Synopsis
 //! ```rust
 //! 
 //! // Create basic notification

@@ -1,11 +1,11 @@
 //!
 //! # Overview
 //! 
-//! [`nw-sys`] provides [`wasm_bindgen`] bindings for [Node Webkit JavaScript APIs](https://nwjs.readthedocs.io/en/latest/) 
+//! [`nw-sys`](self) provides [`wasm_bindgen`] bindings for [Node Webkit JavaScript APIs](https://nwjs.readthedocs.io/en/latest/) 
 //! offered by the [NWJS](https://nwjs.io) project, allowing development of 
 //! interactive desktop applications based on Node Webkit in Rust using WASM.
 //! 
-//! `nw-sys` provides bindings for all Node Webkit subsystems offering:
+//! [`nw-sys`](self) provides bindings for all Node Webkit subsystems offering:
 //! - [`app`] application control and information access
 //! - [`clipboard`] system clipboard access
 //! - [`menu`] creation of application and tray menus
@@ -15,8 +15,8 @@
 //! - [`tray`] creation and installation of system tray menus
 //! - [`window`] creation and control of application windows
 //! 
-//! This crate also implements a variety of helper structures to simplify 
-//! access to various data using Rust.
+//! Various helper structures that simplify this API use and provide the Rust builder 
+//! pattern are available via the [`workflow-nw`](https://crates.io/crates/workflow-nw) crate.
 //! 
 //! Interactive installers for applications created using this crate targeting Windows, 
 //! MacOS and Linux operating systems can be built using [`cargo-nw`](https://crates.io/crates/cargo-nw) 
@@ -24,6 +24,12 @@
 //!
 //! An example application demonstrating use of these APIs can be 
 //! found here:  [https://github.com/aspectron/nw-sys-example](https://github.com/aspectron/nw-sys-example)
+//! 
+//! ---
+//! This framework is maintained by [ASPECTRON](https://aspectron.org/). If you find this crate useful,
+//! please consider supporting us. For more information, please visit [https://aspectron.org](https://aspectron.org/).
+//! 
+//! ---
 //! 
 
 pub mod error;

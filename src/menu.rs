@@ -1,4 +1,6 @@
-//! nw.Menu
+//!
+//! Functionality for building application, popup and tray menus.
+//! 
 //! # Synopsis
 //! ```rust
 //! // An example to create a context menu:
@@ -58,7 +60,7 @@ use crate::options::OptionsExt;
 extern "C" {
 
     ///
-    /// For usage example please refer to [nw_sys::menu](self)
+    /// Menu interface. For usage example please refer to [nw_sys::menu](self)
     ///
 
     #[wasm_bindgen(js_namespace=nw, js_name = Menu)]

@@ -1,4 +1,6 @@
-//! nw.Tray
+//! 
+//! Creation and management of the System Tray Icons and Menus.
+//! 
 //! 
 //! # Synopsis
 //! ```
@@ -31,7 +33,7 @@ use crate::menu::Menu;
 #[wasm_bindgen]
 extern "C" {
     ///
-    /// For usage example please refer to [nw_sys::tray](self)
+    /// Interface for creating system tray icons and menus. For usage example please refer to [nw_sys::tray](self)
     /// 
     /// Tray is an abstraction of different controls on different platforms,
     /// usually it’s a small icon shown on the OS’s notification area.

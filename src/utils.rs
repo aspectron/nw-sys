@@ -1,3 +1,7 @@
+//!
+//! Helper utilities for the browser Window, Document and DOM element access
+//! 
+
 use web_sys::{
     Window,
     Document,

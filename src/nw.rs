@@ -1,10 +1,15 @@
+//!
+//! Provides access to the global `nw` namespace and [`try_nw`] functions allowing
+//! to detect if the application is running inside of Node Webkit or in the browser.
+//! 
+
 use wasm_bindgen::prelude::*;
 use js_sys::{Function, Object};
 use workflow_log::log_trace;
 
 #[wasm_bindgen]
 extern "C" {
-    /// The `nw` namespace.
+    /// Access to the global `nw` namespace.
     ///
     /// [NWJS documentation](https://docs.nwjs.io/en/latest/)
     ///
@@ -13,7 +18,7 @@ extern "C" {
     pub type Nw;
 }
 
-/// Getter for the `Nw` namespace object
+/// Getter for the global `nw` namespace object
 ///
 ///
 /// [NWJS Documentation]: https://docs.nwjs.io/en/latest/
@@ -39,6 +44,8 @@ pub fn try_nw() -> Result<Nw, JsValue> {
     }
 }
 
+/// Helper to test whether the application is running under
+/// Node Webkit or in a regular browser environment.
 pub fn is_nw()->bool{
     try_nw().is_ok()
 }

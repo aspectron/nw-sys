@@ -1,3 +1,7 @@
+//! 
+//! Access to the system clipboard allowing to copy and paste images from
+//! and to other applications.
+//! 
 //! # Synopsis
 //! ```
 //! // get the system clipboard
@@ -25,7 +29,7 @@ use crate::result::Result;
 extern "C" {
 
     ///
-    /// For usage example please refer to [nw_sys::clipboard](self)
+    /// Interface for interacting with the system clipboard. For usage example please refer to [nw_sys::clipboard](self)
     /// 
     
     #[wasm_bindgen(js_namespace=nw, js_name = Clipboard)]

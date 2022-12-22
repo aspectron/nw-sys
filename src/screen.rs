@@ -1,4 +1,7 @@
-//! nw.Screen
+//!
+//! Access to system display information, including system resolution, display layout and 
+//! display layout change notification events.
+//! 
 //! # Synopsis
 //! ```
 //! // init must be called once during startup, before any function to nw.Screen can be called
@@ -101,7 +104,7 @@ extern "C" {
     #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = on)]
     ///
     ///
-    /// For usage example please refer to [nw_sys::screen](self)
+    /// Interface for accessing display & monitor layout information. For usage example please refer to [nw_sys::screen](self)
     ///
     /// ### Events:
     /// - displayBoundsChanged (screen)

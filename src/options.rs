@@ -1,3 +1,7 @@
+//! 
+//! Helper trait for managing options used with Node Webkit API functions.
+//! 
+
 use wasm_bindgen::prelude::*;
 use js_sys::Object;
 //use workflow_log::log_info;

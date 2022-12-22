@@ -1,4 +1,6 @@
 //! 
+//! Register keyboard shurtcuts that will be received by your application.
+//! 
 //! # Synopsis
 //! ```
 //!  //Create a shortcut with |option|.
@@ -32,7 +34,7 @@ use crate::options::OptionsExt;
 #[wasm_bindgen]
 extern "C" {
     ///
-    /// For usage example please refer to [nw_sys::shortcut](self)
+    /// Interface for registering keyboard shortcuts. For usage example please refer to [nw_sys::shortcut](self)
     ///
     /// Shortcut represents a global keyboard shortcut, 
     /// also known as system-wide hotkey. If registered successfully, 

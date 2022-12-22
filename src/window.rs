@@ -1,7 +1,13 @@
+//! 
+//! Creation and management of application windows.  Provides control such as maximizing,
+//! minimizing and restoring application windows, changing the title, size and position, 
+//! window transparency, control over kiosk and full-screen modes, window image capture,
+//! iframe control and print options control including print header, footer and other options.
+//! 
 //! # Synopsis
 //! 
 //! ```rust
-//! use workflow_wasm::listener::Callback;
+//! use workflow_wasm::callback::Callback;
 //!
 //! // Get the current window
 //! let win = nw_sys::window::get();
@@ -54,7 +60,7 @@ use crate::menu::Menu;
 extern "C" {
     // TODO: win.cookies.*
     ///
-    /// For usage example please refer to [nw_sys::window](self)
+    /// Interface for managing application windows. For usage example please refer to [nw_sys::window](self)
     ///
     #[wasm_bindgen(js_namespace=nw, js_name = Window)]
     #[derive(Debug, Clone)]

@@ -1,4 +1,6 @@
-//! nw.MenuItem
+//! 
+//! Menu item control used in conjunction with the [`Menu`](crate::menu::Menu) interface.
+//! 
 //! For usage example please refer to [nw_sys::menu](crate::menu)
 //! 
 
@@ -11,9 +13,8 @@ use crate::menu::Menu;
 #[wasm_bindgen]
 extern "C" {
 
-    /// MenuItem
     ///
-    /// For usage example please refer to [nw_sys::menu](crate::menu)
+    /// Interface for controlling menu items. For usage example please refer to [nw_sys::menu](crate::menu)
     ///
 
     #[wasm_bindgen(js_namespace=nw, js_name = MenuItem)]

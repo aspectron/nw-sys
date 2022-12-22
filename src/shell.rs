@@ -1,4 +1,8 @@
-//! nw.Shell
+//! 
+//! Access to the system shell. Allows running external programs, open Shell 
+//! (File Explorer / Finder) windows at different locations as well as 
+//! launching external applications based on file type associations.
+//! 
 //!  # Synopsis
 //! ```
 //! // Open URL with default browser.
@@ -14,15 +18,13 @@
 
 use wasm_bindgen::prelude::*;
 
-
 #[wasm_bindgen]
 extern "C" {    
     
-
     #[wasm_bindgen(js_namespace=["nw", "Shell"], js_name = openExternal)]
     /// Open the given external URI in the desktop’s default manner.
     /// 
-    /// For usage example please refer to [nw_sys::shell](self)
+    /// Shell (Explorer / Finder) interface. For usage example please refer to [nw_sys::shell](self)
     /// 
     /// For example, mailto: URLs in the default mail user agent.
     /// 
