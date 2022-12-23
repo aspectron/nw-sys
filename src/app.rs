@@ -1,5 +1,5 @@
 //!
-//! NwApp bindings providing application control, access to command-line arguments,
+//! App bindings providing application control, access to command-line arguments,
 //! working directory, paths for the browser data folders, cache control, origin control,
 //! global keyboard hotkey registration, proxy control, underlaying browser control and 
 //! `package.json` manifest access.

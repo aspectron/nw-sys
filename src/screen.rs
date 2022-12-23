@@ -239,7 +239,10 @@ pub enum MediaSources{
     ScreenAndWindow
 }
 
-/// Get the array of screen (number of screen connected to the computer)
+/// Choose desktop media
+/// 
+/// Screen sharing by selection; Currently only working in Windows and OSX 
+/// and some linux distribution.
 /// 
 /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenchoosedesktopmedia-sources-callback)
 ///
