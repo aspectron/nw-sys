@@ -24,7 +24,7 @@ extern "C" {
     /// those arguments and return the ones left. You can get filtered patterns 
     /// from [app::filtered_argv](self::filtered_argv) and the full arguments from [app::full_argv](self::full_argv).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
     /// 
     #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = argv)]
     pub fn argv_impl() -> Array;
@@ -33,7 +33,7 @@ extern "C" {
     /// The return values contains the arguments used by NW.js,
     /// such as --nwapp, --remote-debugging-port etc.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
     #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = fullArgv)]
     pub fn full_argv_impl() -> Array;
 
@@ -48,7 +48,7 @@ extern "C" {
     /// ]
     /// ```
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
     #[wasm_bindgen(getter, static_method_of=NwApp, js_namespace=nw, js_class=App, js_name = filteredArgv)]
     pub fn filtered_argv_impl() -> Array;
 
@@ -66,7 +66,7 @@ extern "C" {
     /// Clear the HTTP cache in memory and the one on disk.
     /// This method call is synchronized.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appclearcache)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appclearcache)
     ///
     pub fn clear_cache();
 
@@ -74,7 +74,7 @@ extern "C" {
     /// Mark the Application cache group specified by `manifest_url` obsolete.
     /// This method call is synchronized.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appclearappcachemanifest_url)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appclearappcachemanifest_url)
     ///
     pub fn clear_app_cache(manifest_url:&str);
 
@@ -84,7 +84,7 @@ extern "C" {
     /// all windows have done shutdown. Use this method to quit an app 
     /// will give windows a chance to save data.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcloseallwindows)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcloseallwindows)
     ///
     pub fn close_all_windows();
 
@@ -92,7 +92,7 @@ extern "C" {
     /// Crashes the browser process to test 
     /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcrashbrowser)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcrashbrowser)
     ///
     pub fn crash_browser();
 
@@ -100,14 +100,14 @@ extern "C" {
     /// Crashes the renderer process to test 
     /// the [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/) feature.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcrashrenderer)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appcrashrenderer)
     ///
     pub fn crash_renderer();
 
     #[wasm_bindgen(js_namespace=["nw", "App"], js_name = enableComponent)]
     /// Experimental
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appenablecomponentcomponent-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appenablecomponentcomponent-callback)
     ///
     pub fn enable_component(component:&str, callback:&Function);
 
@@ -116,7 +116,7 @@ extern "C" {
     /// The return value is in the same format used in 
     /// PAC (e.g. "DIRECT", "PROXY localhost:8080").
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appgetproxyforurlurl)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appgetproxyforurlurl)
     ///
     fn get_proxy_for_url(url:&str)->String;
 
@@ -124,7 +124,7 @@ extern "C" {
     /// Set the proxy config which the web engine will be used to request 
     /// network resources or PAC url to detect proxy automatically.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appsetproxyconfigconfig-pac_url)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appsetproxyconfigconfig-pac_url)
     ///
     pub fn set_proxy_config(config:&str, pac_url:&str);
 
@@ -133,7 +133,7 @@ extern "C" {
     /// This method will not send `close` event to windows and app will 
     /// just quit quietly.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appquit)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appquit)
     ///
     pub fn quit();
 
@@ -142,7 +142,7 @@ extern "C" {
     /// file will be saved on crash. For more information, 
     /// see [Crash dump](https://docs.nwjs.io/en/latest/For%20Developers/Understanding%20Crash%20Dump/).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appsetcrashdumpdirdir)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appsetcrashdumpdirdir)
     ///
     pub fn set_crash_dump_dir(dir:&str);
 
@@ -168,7 +168,7 @@ extern "C" {
     /// - `allow_destination_subdomains`: If set to true, the `source_origin` is allowed to access subdomains of destinations.
     /// 
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appaddoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appaddoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
     ///
     pub fn add_origin_access_whitelist_entry(
         source_origin: &str,
@@ -187,7 +187,7 @@ extern "C" {
     /// - `destination_host`: The destination host where the `source_origin` can access to. e.g. `myapp`
     /// - `allow_destination_subdomains`: If set to true, the `source_origin` is allowed to access subdomains of destinations.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appremoveoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appremoveoriginaccesswhitelistentrysourceorigin-destinationprotocol-destinationhost-allowdestinationsubdomains)
     ///
     pub fn remove_origin_access_whitelist_entry(
         source_origin: &str,
@@ -202,7 +202,7 @@ extern "C" {
     /// 
     /// See [Shortcut](crate::shortcut) for more information.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appregisterglobalhotkeyshortcut)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appregisterglobalhotkeyshortcut)
     ///
     pub fn register_global_hot_key(shortcut:&Shortcut);
 
@@ -211,7 +211,7 @@ extern "C" {
     /// 
     /// See [Shortcut](crate::shortcut) for more information.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appunregisterglobalhotkeyshortcut)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appunregisterglobalhotkeyshortcut)
     ///
     pub fn unregister_global_hot_key(shortcut:&Shortcut);
 
@@ -219,7 +219,7 @@ extern "C" {
     #[wasm_bindgen(js_namespace=["nw", "App"], js_name = updateComponent)]
     /// Experimental
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appupdatecomponentcomponent-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appupdatecomponentcomponent-callback)
     ///
     pub fn update_component(component:&str, callback:&Function);
 
@@ -275,7 +275,7 @@ fn build_argv_filters(argv:Array)->Result<Vec<RegExp>>{
 /// from [app::filtered_argv](self::filtered_argv) and the 
 /// full arguments from [app::full_argv](self::full_argv).
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appargv)
 ///
 pub fn argv()->Result<Vec<String>>{
     let list = build_argv_str(NwApp::argv_impl())?;
@@ -286,7 +286,7 @@ pub fn argv()->Result<Vec<String>>{
 /// The return values contains the arguments used by NW.js,
 /// such as --nwapp, --remote-debugging-port etc.
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfullargv)
 pub fn full_argv()->Result<Vec<String>>{
     let list = build_argv_str(NwApp::full_argv_impl())?;
     Ok(list)
@@ -304,7 +304,7 @@ pub fn full_argv()->Result<Vec<String>>{
 /// ```
 /// 
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appfilteredargv)
 pub fn filtered_argv()->Result<Vec<RegExp>>{
     let list = build_argv_filters(NwApp::filtered_argv_impl())?;
     Ok(list)
@@ -315,7 +315,7 @@ pub fn filtered_argv()->Result<Vec<RegExp>>{
 /// The application will change the current directory to where 
 /// the package files reside after start.
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appstartpath)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appstartpath)
 ///
 /// 
 pub fn start_path()->String{
@@ -329,7 +329,7 @@ pub fn start_path()->String{
 /// - OS X: `~/Library/Application Support/<name>/Default`
 /// - `<name>` is the name field in the `package.json` manifest.
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appdatapath)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appdatapath)
 ///
 pub fn data_path() -> String{
     NwApp::data_path()
@@ -337,7 +337,7 @@ pub fn data_path() -> String{
 
 /// Get the JSON object of the manifest file.
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appmanifest)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/App/#appmanifest)
 ///
 pub fn manifest() -> Object{
     NwApp::manifest()

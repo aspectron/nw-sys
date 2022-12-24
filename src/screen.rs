@@ -93,7 +93,7 @@ extern "C" {
     #[wasm_bindgen(js_namespace=["nw", "Screen"], js_name = Init)]
     /// Init the Screen singleton object, you only need to call this once
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screeninit)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screeninit)
     ///
     pub fn init();
 
@@ -114,7 +114,7 @@ extern "C" {
     /// - displayRemoved (screen)
     /// 
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-displayboundschangedscreen)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-displayboundschangedscreen)
     /// 
     pub fn on(event_name:&str, callback:&Function);
 }
@@ -134,7 +134,7 @@ pub mod desktop_capture_monitor{
         /// Return Boolean of whether the DesktopCaptureMonitor is started.
         /// 
         /// 
-        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
+        /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
         ///
         pub fn started()->bool;
         
@@ -148,7 +148,7 @@ pub mod desktop_capture_monitor{
         /// nw::screen::desktop_capture_monitor::start(true, true);
         /// ```
         /// 
-        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstartshould_include_screens-should_include_windows)
+        /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstartshould_include_screens-should_include_windows)
         ///
         pub fn start(should_include_screens:bool, should_include_windows:bool);
 
@@ -157,7 +157,7 @@ pub mod desktop_capture_monitor{
         /// `DesktopCaptureMonitor` should be stopped after a stream is selected.
         /// 
         /// 
-        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstop)
+        /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstop)
         ///
         pub fn stop();
 
@@ -168,7 +168,7 @@ pub mod desktop_capture_monitor{
         /// See Synopsis for the usage.
         /// 
         /// 
-        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorregisterstreamid)
+        /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorregisterstreamid)
         ///
         pub fn register_stream(id:&str)->String;
 
@@ -184,7 +184,7 @@ pub mod desktop_capture_monitor{
         /// - thumbnailchanged (id, thumbnail)
         /// 
         /// 
-        /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-added-id-name-order-type-primary)
+        /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-added-id-name-order-type-primary)
         ///
         pub fn on(event_name:&str, callback:&Function);
     }
@@ -192,7 +192,7 @@ pub mod desktop_capture_monitor{
     /// Return Boolean of whether the DesktopCaptureMonitor is started.
     /// 
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screendesktopcapturemonitorstarted)
     ///
     pub fn started()->bool{
         DCM::started()
@@ -208,7 +208,7 @@ pub mod desktop_capture_monitor{
     /// - thumbnailchanged (id, thumbnail)
     /// 
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-added-id-name-order-type-primary)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#event-added-id-name-order-type-primary)
     ///
     pub fn on(event_name:&str, callback:&Function){
         DCM::on(event_name, callback)
@@ -244,7 +244,7 @@ pub enum MediaSources{
 /// Screen sharing by selection; Currently only working in Windows and OSX 
 /// and some linux distribution.
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenchoosedesktopmedia-sources-callback)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenchoosedesktopmedia-sources-callback)
 ///
 pub fn choose_desktop_media(sources:MediaSources, callback:&Function)->Result<()>{
 
@@ -268,7 +268,7 @@ pub fn choose_desktop_media(sources:MediaSources, callback:&Function)->Result<()
 
 /// Get the array of screen (number of screen connected to the computer)
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenscreens)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Screen/#screenscreens)
 ///
 pub fn screens()->Result<Vec<ScreenInfo>>{
     let mut result:Vec<ScreenInfo> = Vec::new();

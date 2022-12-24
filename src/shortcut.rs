@@ -61,7 +61,7 @@ extern "C" {
     ///
     /// Create new Shortcut
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#new-shortcutoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#new-shortcutoption)
     ///
     pub fn new(options:&Options) -> Shortcut;
     
@@ -69,7 +69,7 @@ extern "C" {
     /// Set the active callback of a Shortcut.
     /// It will be called when user presses the shortcut.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
     ///
     pub fn on_active(this:&Shortcut, callback:&Function);
 
@@ -78,7 +78,7 @@ extern "C" {
     /// It will be called when application passes an invalid key ,
     /// or failed to register the key.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
     ///
     pub fn on_failed(this:&Shortcut, callback:&Function);
 
@@ -130,7 +130,7 @@ impl Options{
     /// - Escape
     /// 
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutkey)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutkey)
     pub fn key(self, key:&str)->Self{
         self.set("key", JsValue::from(key))
     }
@@ -138,7 +138,7 @@ impl Options{
     /// Set the active callback of a Shortcut.
     /// It will be called when user presses the shortcut.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutactive)
     pub fn active(self, callback:&Function)->Self{
         self.set("active", JsValue::from(callback))
     }
@@ -147,7 +147,7 @@ impl Options{
     /// It will be called when application passes an invalid key,
     /// or failed to register the key.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutfailed)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shortcut/#shortcutfailed)
     pub fn failed(self, callback:&Function)->Self{
         self.set("failed", JsValue::from(callback))
     }

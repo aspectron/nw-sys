@@ -11,7 +11,7 @@ use workflow_log::log_trace;
 extern "C" {
     /// Access to the global `nw` namespace.
     ///
-    /// [NWJS documentation](https://docs.nwjs.io/en/latest/)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/)
     ///
     #[wasm_bindgen (extends = Object, js_name = nw)]
     #[derive(Debug, Clone)]
@@ -21,7 +21,7 @@ extern "C" {
 /// Getter for the global `nw` namespace object
 ///
 ///
-/// [NWJS Documentation]: https://docs.nwjs.io/en/latest/
+/// ⧉ [NWJS Documentation]: https://docs.nwjs.io/en/latest/
 pub fn try_nw() -> Result<Nw, JsValue> {
 
     let nw_opt = Function::new_no_args("return this.nw")

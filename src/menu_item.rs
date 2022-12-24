@@ -24,7 +24,7 @@ extern "C" {
     #[wasm_bindgen(constructor, js_namespace=["nw"])]
     /// Create MenuItem
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#menuitem)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#menuitem)
     ///
     pub fn new(options:&Options) -> MenuItem;
 
@@ -32,25 +32,25 @@ extern "C" {
     #[wasm_bindgen(method, getter, js_name = label)]
     /// Get the label of a MenuItem
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemlabel)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemlabel)
     pub fn label(this:&MenuItem)->String;
 
     #[wasm_bindgen(method, setter, js_name = label)]
     /// Set the label of a MenuItem
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemlabel)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemlabel)
     pub fn set_label(this:&MenuItem)->String;
 
     #[wasm_bindgen(method, getter, js_name = type)]
     /// Get the type of a MenuItem
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemtype)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemtype)
     pub fn get_type(this:&MenuItem)->String;
 
     #[wasm_bindgen(method, getter, js_name = icon)]
     /// Get the icon of a MenuItem
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemicon)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemicon)
     pub fn icon(this:&MenuItem)->String;
 
     #[wasm_bindgen(method, setter, js_name = icon)]
@@ -60,13 +60,13 @@ extern "C" {
     ///
     /// It has no effect on setting icon of a separator item.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemicon)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemicon)
     pub fn set_icon(this:&MenuItem, icon:&str);
 
     #[wasm_bindgen(method, getter, js_name = iconIsTemplate)]
     /// (Mac) Get whether icon image is treated as "template".
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemiconistemplate-mac)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemiconistemplate-mac)
     pub fn icon_is_template(this:&MenuItem)->bool;
 
     #[wasm_bindgen(method, setter, js_name = iconIsTemplate)]
@@ -78,13 +78,13 @@ extern "C" {
     /// and can use the alpha channel in the image to adjust the opacity of
     /// black content. It has no effects on Linux and Windows.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemiconistemplate-mac)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemiconistemplate-mac)
     pub fn set_icon_is_template(this:&MenuItem, value:bool);
 
     #[wasm_bindgen(method, getter, js_name = tooltip)]
     /// (Mac) Get the tooltip of a MenuItem
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemtooltip-mac)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemtooltip-mac)
     pub fn tooltip(this:&MenuItem)->String;
 
     #[wasm_bindgen(method, setter, js_name = tooltip)]
@@ -92,13 +92,13 @@ extern "C" {
     /// A tooltip is short string that describes the menu item,
     /// it will show when you hover your mouse on the item.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemtooltip-mac)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemtooltip-mac)
     pub fn set_tooltip(this:&MenuItem, tooltip:&str);
 
     #[wasm_bindgen(method, getter, js_name = checked)]
     /// Get whether the MenuItem is checked.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemchecked)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemchecked)
     pub fn checked(this:&MenuItem)->bool;
 
     #[wasm_bindgen(method, setter, js_name = checked)]
@@ -107,13 +107,13 @@ extern "C" {
     /// There will be a mark on the left side of it.
     /// It’s used mostly to indicate whether an option is on.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemchecked)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemchecked)
     pub fn set_checked(this:&MenuItem, checked:bool);
 
     #[wasm_bindgen(method, getter, js_name = enabled)]
     /// Get whether the MenuItem is enabled.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemenabled)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemenabled)
     pub fn enabled(this:&MenuItem)->bool;
 
     #[wasm_bindgen(method, setter, js_name = enabled)]
@@ -121,13 +121,13 @@ extern "C" {
     /// An disabled MenuItem will be greyed out and you will not be able to 
     /// click on it.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemenabled)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemenabled)
     pub fn set_enabled(this:&MenuItem, enabled:bool);
 
     #[wasm_bindgen(method, getter, js_name = submenu)]
     /// Get the submenu of a MenuItem.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemsubmenu)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemsubmenu)
     pub fn submenu(this:&MenuItem)->Option<Menu>;
 
     #[wasm_bindgen(method, setter, js_name = submenu)]
@@ -135,14 +135,14 @@ extern "C" {
     /// You should set submenu in the option when creating the MenuItem.
     /// Changing it at runtime is slow on some platforms.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemsubmenu)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemsubmenu)
     pub fn set_submenu(this:&MenuItem, submenu:&Menu);
 
     /*
     #[wasm_bindgen(method, getter, js_name = enabled)]
     /// Get the submenu of a MenuItem.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemclick)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemclick)
     pub fn click(this:&MenuItem)->Option<Function>;
     */
 
@@ -151,13 +151,13 @@ extern "C" {
     /// You should set submenu in the option when creating the MenuItem.
     /// Changing it at runtime is slow on some platforms.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemclick)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemclick)
     pub fn set_click(this:&MenuItem, callback:&Function);
 
     #[wasm_bindgen(method, getter, js_name = key)]
     /// A single character string to specify the shortcut key for the menu item.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemkey)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemkey)
     pub fn key(this:&MenuItem)->String;
 
     #[wasm_bindgen(method, setter, js_name = key)]
@@ -189,7 +189,7 @@ extern "C" {
     /// see [NSMenuItem.keyEquivalent](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSMenuItem_Class/#//apple_ref/occ/instp/NSMenuItem/keyEquivalent) 
     /// and [NSEvent: Function-Key Unicodes](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSEvent_Class/index.html#//apple_ref/doc/constant_group/Function_Key_Unicodes).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemkey)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemkey)
     pub fn set_key(this:&MenuItem, key:&str);
     
 
@@ -202,13 +202,13 @@ extern "C" {
     /// all platforms: Windows key (Windows) on Windows and Linux,
     /// Apple key (⌘) on Mac. super and command are aliases of cmd.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemmodifiers)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemmodifiers)
     pub fn modifiers(this:&MenuItem)->String;
 
     #[wasm_bindgen(method, setter, js_name = modifiers)]
     /// Set modifier keys
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemmodifiers)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#itemmodifiers)
     pub fn set_modifiers(this:&MenuItem, key:&str);
 
     #[wasm_bindgen(extends = Object)]
@@ -225,70 +225,70 @@ impl Options{
     /// 
     /// Three types are accepted: normal, checkbox, separator
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn set_type(self, t:Type)->Self{
         self.set("type", t.into())
     }
 
     /// Label for normal item or checkbox
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn label(self, label:&str)->Self{
         self.set("label", JsValue::from(label))
     }
 
     /// Icon for normal item or checkbox
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn icon(self, icon:&str)->Self{
         self.set("icon", JsValue::from(icon))
     }
 
     /// Tooltip for normal item or checkbox
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn tooltip(self, tooltip:&str)->Self{
         self.set("tooltip", JsValue::from(tooltip))
     }
 
     /// The callback function when item is triggered by mouse click or keyboard shortcut
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn click(self, callback:&Function)->Self{
         self.set("click", JsValue::from(callback))
     }
 
     /// Whether the item is enabled or disabled. It’s set to true by default.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn enabled(self, enabled:bool)->Self{
         self.set("enabled", JsValue::from(enabled))
     }
 
     /// Whether the checkbox is checked or not. It’s set to false by default.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn checked(self, checked:bool)->Self{
         self.set("checked", JsValue::from(checked))
     }
 
     /// A submenu
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn submenu(self, submenu:&Menu)->Self{
         self.set("submenu", JsValue::from(submenu))
     }
 
     /// The key of the shortcut
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn key(self, key:&str)->Self{
         self.set("key", JsValue::from(key))
     }
 
     /// The modifiers of the shortcut
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
     pub fn modifiers(self, modifiers:&str)->Self{
         self.set("modifiers", JsValue::from(modifiers))
     }
@@ -299,7 +299,7 @@ impl Options{
 /// 
 /// Three types are accepted: Normal, Checkbox, Separator
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/MenuItem/#new-menuitemoption)
 /// 
 pub enum Type {
     Separator,

@@ -48,7 +48,7 @@ extern "C" {
     /// 
     /// - data: the data to write to the clipboard
     ///  
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     ///
     pub fn set(this:&Clipboard, data:&str);
 
@@ -62,7 +62,7 @@ extern "C" {
     /// - data: the data to write to the clipboard
     /// - data_type: the type of the data. Support text, png, jpeg, html and rtf. By default, type is set to "text".
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     ///
     pub fn set_with_data_type(this:&Clipboard, data:&str, data_type:&str);
 
@@ -77,49 +77,49 @@ extern "C" {
     /// - data_type: the type of the data. Support text, png, jpeg, html and rtf. By default, type is set to "text".
     /// - raw: requiring raw image data. This option is only valid if type is png or jpeg. By default, raw is set to false.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     ///
     pub fn set_with_data_type_and_raw(this:&Clipboard, data:&str, data_type:&str, raw:bool);
 
     #[wasm_bindgen(method, js_name = set)]
     /// Write data of type to the clipboard.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
     ///
     pub fn set_data(this:&Clipboard, data:DataWrite);
 
     #[wasm_bindgen(method, js_name = set)]
     /// Write data of type to the clipboard.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
     ///
     fn set_data_array_impl(this:&Clipboard, data:Array);
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
     ///
     pub fn get(this:&Clipboard)->String;
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data of type
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
     ///
     pub fn get_with_data_type(this:&Clipboard, data_type:&str)->String;
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data of type and as raw
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgettype-raw)
     ///
     pub fn get_with_data_type_and_raw(this:&Clipboard, data_type:&str, raw:bool)->String;
 
     #[wasm_bindgen(method, js_name = get)]
     /// Get the data
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddata)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddata)
     ///
     pub fn get_data(this:&Clipboard, data:DataRead)->String;
 
@@ -132,7 +132,7 @@ extern "C" {
     #[wasm_bindgen(method)]
     /// Clear the clipboard.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipclear)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipclear)
     /// 
     pub fn clear(this:&Clipboard);
 
@@ -143,7 +143,7 @@ extern "C" {
     /// [`type`](Self#method.data_type) and 
     /// [`raw`](Self#method.raw) to be written to clipboard
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
     /// 
     pub type DataWrite;
 
@@ -153,7 +153,7 @@ extern "C" {
     /// [`type`](Self#method.data_type) and 
     /// [`raw`](Self#method.raw) for reading from clipboard
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddata)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddata)
     /// 
     pub type DataRead;
 }
@@ -163,7 +163,7 @@ extern "C" {
 /// **Note:**
 /// The Selection Clipboard in X11 is not supported.
 /// 
-/// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipboardget)
+/// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipboardget)
 ///
 pub fn get()->Clipboard{
     Clipboard::get_impl()
@@ -172,7 +172,7 @@ pub fn get()->Clipboard{
 impl Clipboard{
     /// Write data of type to the clipboard.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetclipboarddata)
     ///
     pub fn set_data_array(&self, list:Vec<DataWrite>){
         let data_array = Array::new();
@@ -184,7 +184,7 @@ impl Clipboard{
 
     /// Get the data as `Vector<Option<String>`
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddatalist)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipgetclipboarddatalist)
     ///
     pub fn get_data_array(&self, list:Vec<DataRead>)->Result<Vec<Option<String>>>{
         let data_array = Array::new();
@@ -213,7 +213,7 @@ impl Clipboard{
     /// 
     /// You can use the returned list as a suggestion to get the right data from clipboard.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipreadavailabletypes)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipreadavailabletypes)
     ///
     pub fn get_available_types(&self)->Vec<String>{
         let array = self.get_available_types_impl();
@@ -241,7 +241,7 @@ impl OptionsExt for DataRead{}
 impl DataWrite{
     /// The data to write to the clipboard
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     pub fn data(self, data:&str)->Self{
         self.set("data", JsValue::from(data))
     }
@@ -251,7 +251,7 @@ impl DataWrite{
     /// 
     /// By default, type is set to "text".
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     pub fn data_type(self, data_type:&str)->Self{
         self.set("type", JsValue::from(data_type))
     }
@@ -261,7 +261,7 @@ impl DataWrite{
     /// 
     /// By default, raw is set to false.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     pub fn raw(self, raw:bool)->Self{
         self.set("raw", JsValue::from(raw))
     }
@@ -273,7 +273,7 @@ impl DataRead{
     /// 
     /// By default, type is set to "text".
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     pub fn data_type(self, data_type:&str)->Self{
         self.set("type", JsValue::from(data_type))
     }
@@ -283,7 +283,7 @@ impl DataRead{
     /// 
     /// By default, raw is set to false.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Clipboard/#clipsetdata-type-raw)
     pub fn raw(self, raw:bool)->Self{
         self.set("raw", JsValue::from(raw))
     }

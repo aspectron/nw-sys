@@ -69,140 +69,140 @@ extern "C" {
     #[wasm_bindgen(method, getter, js_name = window)]
     /// Get the corresponding DOM window object of the native window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwindow)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwindow)
     ///
     pub fn window(this:&Window)->web_sys::Window;
 
     #[wasm_bindgen(method, getter, js_name = x)]
     /// Get left offset from window frame to screen.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
     ///
     pub fn x(this:&Window)->i32;
 
     #[wasm_bindgen(method, setter, js_name = x)]
     /// Set left offset from window frame to screen.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winx)
     ///
     pub fn set_x(this:&Window, x:i32);
 
     #[wasm_bindgen(method, getter, js_name = y)]
     /// Get top offset from window frame to screen.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
     ///
     pub fn y(this:&Window)->i32;
 
     #[wasm_bindgen(method, setter, js_name = y)]
     /// Set top offset from window frame to screen.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winy)
     ///
     pub fn set_y(this:&Window, y:i32);
 
     #[wasm_bindgen(method, getter, js_name = width)]
     /// Get window’s size, including the window’s frame.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwidth)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwidth)
     ///
     pub fn width(this:&Window)->u32;
 
     #[wasm_bindgen(method, setter, js_name = width)]
     /// Set window’s size, including the window’s frame.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwidth)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winwidth)
     ///
     pub fn set_width(this:&Window, width:u32);
 
     #[wasm_bindgen(method, getter, js_name = height)]
     /// Get window’s size, including the window’s frame.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winheight)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winheight)
     ///
     pub fn height(this:&Window)->u32;
 
     #[wasm_bindgen(method, setter, js_name = height)]
     /// Set window’s size, including the window’s frame.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winheight)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winheight)
     ///
     pub fn set_height(this:&Window, height:u32);
 
     #[wasm_bindgen(method, getter, js_name = title)]
     /// Get window’s title.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintitle)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintitle)
     ///
     pub fn title(this:&Window)->String;
 
     #[wasm_bindgen(method, setter, js_name = title)]
     /// Set window’s title.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintitle)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintitle)
     ///
     pub fn set_title(this:&Window, title:&str);
 
     #[wasm_bindgen(method, getter, js_name = menu)]
     /// Get window’s menubar.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
     ///
     pub fn menu(this:&Window)->Menu;
 
     #[wasm_bindgen(method, setter, js_name = menu)]
     /// Set window’s menubar.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
     ///
     pub fn set_menu(this:&Window, menu:&Menu);
 
     #[wasm_bindgen(method, setter, js_name = menu)]
     /// Set window’s menubar = null.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
     ///
     pub fn remove_menu_impl(this:&Window, menu:JsValue);
 
     #[wasm_bindgen(method, getter, js_name = isAlwaysOnTop)]
     /// Get whether the window is always on top of other windows.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisalwaysontop)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisalwaysontop)
     ///
     pub fn is_always_on_top(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = isFullscreen)]
     /// Get whether we’re in fullscreen mode.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisfullscreen)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisfullscreen)
     ///
     pub fn is_fullscreen(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = isTransparent)]
     /// Get whether transparency is turned on
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winistransparent)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winistransparent)
     ///
     pub fn is_transparent(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = isKioskMode)]
     /// Get whether we’re in kiosk mode.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winiskioskmode)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winiskioskmode)
     ///
     pub fn is_kiosk_mode(this:&Window)->bool;
 
     #[wasm_bindgen(method, getter, js_name = zoomLevel)]
     /// Get the page zoom. 0 for normal size; positive value for zooming in; negative value for zooming out.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winzoomlevel)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winzoomlevel)
     ///
     pub fn zoom_level(this:&Window)->i16;
 
     #[wasm_bindgen(method, setter, js_name = zoomLevel)]
     /// Set the page zoom. 0 for normal size; positive value for zooming in; negative value for zooming out.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winzoomlevel)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winzoomlevel)
     ///
     pub fn set_zoom_level(this:&Window, zoom:i16);
 
@@ -211,14 +211,14 @@ extern "C" {
     #[wasm_bindgen(method, js_name = moveTo)]
     /// Moves a window’s left and top edge to the specified coordinates.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmovetox-y)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmovetox-y)
     ///
     pub fn move_to(this:&Window, x:u32, y:u32);
 
     #[wasm_bindgen(method, js_name = moveBy)]
     /// Moves a window a specified number of pixels relative to its current coordinates.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmovebyx-y)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmovebyx-y)
     ///
     pub fn move_by(this:&Window, x:u32, y:u32);
 
@@ -226,35 +226,35 @@ extern "C" {
     #[wasm_bindgen(method, js_name = resizeTo)]
     /// Resizes a window to the specified width and height.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winresizetowidth-height)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winresizetowidth-height)
     ///
     pub fn resize_to(this:&Window, width:u32, height:u32);
 
     #[wasm_bindgen(method, js_name = setInnerWidth)]
     /// Set the inner width of the window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetinnerwidthwidth)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetinnerwidthwidth)
     ///
     pub fn set_inner_width(this:&Window, width:u32);
 
     #[wasm_bindgen(method, js_name = setInnerHeight)]
     /// Set the inner height of the window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetinnerheightheight)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetinnerheightheight)
     ///
     pub fn set_inner_height(this:&Window, height:u32);
 
     #[wasm_bindgen(method, js_name = resizeBy)]
     /// Resizes a window by the specified amount.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winresizebywidth-height)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winresizebywidth-height)
     ///
     pub fn resize_by(this:&Window, width:u32, height:u32);
 
     #[wasm_bindgen(method, js_name = focus)]
     /// Focus on the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winfocus)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winfocus)
     ///
     pub fn focus(this:&Window);
 
@@ -262,28 +262,28 @@ extern "C" {
     /// Move focus away. Usually it will move focus to other windows of your app,
     /// since on some platforms there is no concept of blur.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winblur)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winblur)
     ///
     pub fn blur(this:&Window);
 
     #[wasm_bindgen(method, js_name = show)]
     /// Show the window if it’s not shown.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowis_show)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowis_show)
     ///
     pub fn show(this:&Window);
 
     #[wasm_bindgen(method, js_name = show)]
     /// Show/Hide the window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowis_show)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowis_show)
     ///
     pub fn set_show(this:&Window, is_show:bool);
 
     #[wasm_bindgen(method, js_name = hide)]
     /// Hide the window. User will not be able to find the window once it’s hidden.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winhide)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winhide)
     ///
     pub fn hide(this:&Window);
 
@@ -291,7 +291,7 @@ extern "C" {
     /// Closes the current window.
     /// You can prevent the closing by listening to the close event.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincloseforce)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincloseforce)
     ///
     pub fn close(this:&Window);
 
@@ -300,42 +300,42 @@ extern "C" {
     /// You can prevent the closing by listening to the close event.
     /// if force is equals true, then the close event will be ignored.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincloseforce)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincloseforce)
     ///
     pub fn close_impl(this:&Window, force:bool);
 
     #[wasm_bindgen(method)]
     /// Reloads the current window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winreload)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winreload)
     ///
     pub fn reload(this:&Window);
 
     #[wasm_bindgen(method, js_name=reloadDev)]
     /// Reloads the current page by starting a new renderer process from scratch.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winreloaddev)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winreloaddev)
     ///
     pub fn reload_dev(this:&Window);
 
     #[wasm_bindgen(method, js_name=reloadIgnoringCache)]
     /// Like reload(), but don’t use caches (aka “shift-reload”).
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winreloadignoringcache)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winreloadignoringcache)
     ///
     pub fn reload_ignoring_cache(this:&Window);
 
     #[wasm_bindgen(method)]
     /// Maximize the window on GTK and Windows, and zoom the window on Mac OS X.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmaximize)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmaximize)
     ///
     pub fn maximize(this:&Window);
 
     #[wasm_bindgen(method)]
     /// Unmaximize the window, i.e. the reverse of maximize().
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winunmaximize)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winunmaximize)
     ///
     pub fn unmaximize(this:&Window);
 
@@ -343,7 +343,7 @@ extern "C" {
     /// Minimize the window to task bar on Windows, iconify the window on GTK,
     /// and miniaturize the window on Mac OS X.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winminimize)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winminimize)
     ///
     pub fn minimize(this:&Window);
     
@@ -352,28 +352,28 @@ extern "C" {
     /// i.e. the reverse of minimize().
     /// It’s not named unminimize since restore is used commonly.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winrestore)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winrestore)
     ///
     pub fn restore(this:&Window);
 
     #[wasm_bindgen(method, js_name=enterFullscreen)]
     /// Make the window fullscreen.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winenterfullscreen)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winenterfullscreen)
     ///
     pub fn enter_fullscreen(this:&Window);
 
     #[wasm_bindgen(method, js_name=leaveFullscreen)]
     /// Leave the fullscreen mode.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winleavefullscreen)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winleavefullscreen)
     ///
     pub fn leave_fullscreen(this:&Window);
 
     #[wasm_bindgen(method, js_name=toggleFullscreen)]
     /// Toggle the fullscreen mode.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintogglefullscreen)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintogglefullscreen)
     ///
     pub fn toggle_fullscreen(this:&Window);
 
@@ -384,21 +384,21 @@ extern "C" {
     /// leave Kiosk mode. This mode is mainly used for presentation on public
     /// displays.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winenterkioskmode)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winenterkioskmode)
     ///
     pub fn enter_kiosk_mode(this:&Window);
 
     #[wasm_bindgen(method, js_name=leaveKioskMode)]
     /// Leave the Kiosk mode.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winleavekioskmode)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winleavekioskmode)
     ///
     pub fn leave_kiosk_mode(this:&Window);
 
     #[wasm_bindgen(method, js_name=toggleKioskMode)]
     /// Toggle the kiosk mode.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintogglekioskmode)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintogglekioskmode)
     ///
     pub fn toggle_kiosk_mode(this:&Window);
 
@@ -407,7 +407,7 @@ extern "C" {
     /// 
     /// See more info on [Transparent Window](https://docs.nwjs.io/en/latest/For%20Users/Advanced/Transparent%20Window/).
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintogglekioskmode)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wintogglekioskmode)
     ///
     pub fn set_transparent(this:&Window, transparent:bool);
 
@@ -415,49 +415,49 @@ extern "C" {
     /// (Mac) Turn the window’s native shadow on/off.
     /// Useful for frameless, transparent windows.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetshadowshadow-mac)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetshadowshadow-mac)
     ///
     pub fn set_shadow(this:&Window, shadow:bool);
 
     #[wasm_bindgen(method, js_name=showDevTools)]
     /// Open the devtools to inspect the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
     ///
     pub fn show_dev_tools(this:&Window);
 
     #[wasm_bindgen(method, js_name=showDevTools)]
     /// Open the devtools to inspect the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
     ///
     pub fn show_dev_tools_with_id(this:&Window, iframe_id:&str);
 
     #[wasm_bindgen(method, js_name=showDevTools)]
     /// Open the devtools to inspect the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
     ///
     pub fn show_dev_tools_with_id_and_callback(this:&Window, iframe_id:&str, callback:&Function);
 
     #[wasm_bindgen(method, js_name=showDevTools)]
     /// Open the devtools to inspect the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
     ///
     pub fn show_dev_tools_with_iframe(this:&Window, iframe_element:&HtmlIFrameElement);
 
     #[wasm_bindgen(method, js_name=showDevTools)]
     /// Open the devtools to inspect the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winshowdevtoolsiframe-callback)
     ///
     pub fn show_dev_tools_with_iframe_and_callback(this:&Window, iframe_element:&HtmlIFrameElement, callback:&Function);
 
     #[wasm_bindgen(method, js_name=closeDevTools)]
     /// Close the devtools window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winclosedevtools)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winclosedevtools)
     ///
     pub fn close_dev_tools(this:&Window);
 
@@ -467,14 +467,14 @@ extern "C" {
     /// the printer information. The device name of the JSON object can 
     /// be used as parameter in `win.print()`
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wingetprinterscallback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wingetprinterscallback)
     ///
     pub fn get_printers(this:&Window, callback:&Function);
 
     #[wasm_bindgen(method, js_name=isDevToolsOpen)]
     /// Query the status of devtools window.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisdevtoolsopen)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winisdevtoolsopen)
     ///
     pub fn is_dev_tools_open(this:&Window)->bool;
 
@@ -482,35 +482,35 @@ extern "C" {
     /// Print the web contents in the window with or without the need for 
     /// user’s interaction. 
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     ///
     pub fn print(this:&Window, options:&PrintOptions);
 
     #[wasm_bindgen(method, js_name=setMaximumSize)]
     /// Set window’s maximum size.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetmaximumsizewidth-height)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetmaximumsizewidth-height)
     ///
     pub fn set_maximum_size(this:&Window, width:u32, height:u32);
 
     #[wasm_bindgen(method, js_name=setMinimumSize)]
     /// Set window’s minimum size.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetminimumsizewidth-height)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetminimumsizewidth-height)
     ///
     pub fn set_minimum_size(this:&Window, width:u32, height:u32);
 
     #[wasm_bindgen(method, js_name=setResizable)]
     /// Set whether window is resizable.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetresizableresizable)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetresizableresizable)
     ///
     pub fn set_resizable(this:&Window, resizable:bool);
 
     #[wasm_bindgen(method, js_name=setAlwaysOnTop)]
     /// Sets the widget to be on top of all other windows in the window system.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetalwaysontoptop)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetalwaysontoptop)
     ///
     pub fn set_always_on_top(this:&Window, top:bool);
 
@@ -518,7 +518,7 @@ extern "C" {
     /// (Mac and Linux)
     /// Sets the widget to be on top of all other windows in the window system.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetvisibleonallworkspacesvisible-mac-and-linux)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetvisibleonallworkspacesvisible-mac-and-linux)
     ///
     pub fn set_visible_on_all_workspaces(this:&Window, top:bool);
 
@@ -527,7 +527,7 @@ extern "C" {
     /// Returns a boolean indicating if the platform (currently Mac OS X and Linux) 
     /// support Window API method `win.set_visible_on_all_workspaces(true/false)`.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincansetvisibleonallworkspaces-mac-and-linux)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincansetvisibleonallworkspaces-mac-and-linux)
     ///
     pub fn can_set_visible_on_all_workspaces(this:&Window)->bool;
 
@@ -538,7 +538,7 @@ extern "C" {
     /// 
     /// There are three valid positions: null or center or mouse
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetpositionposition)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetpositionposition)
     ///
     pub fn set_position_impl(this:&Window, position:JsValue);
 
@@ -547,14 +547,14 @@ extern "C" {
     /// 
     /// See also `show_in_taskbar` in [Manifest-format](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#show_in_taskbar).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetshowintaskbarshow)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetshowintaskbarshow)
     ///
     pub fn set_show_in_taskbar(this:&Window, show:bool);
 
     #[wasm_bindgen(method, js_name=requestAttention)]
     /// Request the user’s attension by making the window flashes in the task bar.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winrequestattentionattension)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winrequestattentionattension)
     ///
     pub fn request_attention(this:&Window, attension:bool);
 
@@ -563,7 +563,7 @@ extern "C" {
     /// 
     /// On Mac, value < 0 will trigger NSInformationalRequest, while value > 0 will trigger NSCriticalRequest.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winrequestattentionattension)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winrequestattentionattension)
     ///
     pub fn request_attention_with_number(this:&Window, attension:i16);
 
@@ -573,7 +573,7 @@ extern "C" {
     /// To capture the full page, 
     /// see [win.captureScreenshot](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
     ///
     pub fn capture_page(this:&Window, callback:&Function);
 
@@ -583,7 +583,7 @@ extern "C" {
     /// To capture the full page, 
     /// see [win.captureScreenshot](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
     ///
     pub fn capture_page_with_config(
         this:&Window,
@@ -597,7 +597,7 @@ extern "C" {
     /// 
     /// Note: This API is experimental and subject to change in the future.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
     ///
     pub fn capture_screenshot(this:&Window, config:&ScreenshotConfig)->Promise;
 
@@ -607,7 +607,7 @@ extern "C" {
     /// 
     /// Note: This API is experimental and subject to change in the future.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
     ///
     pub fn capture_screenshot_with_callback(
         this:&Window,
@@ -624,7 +624,7 @@ extern "C" {
     /// 
     /// If `NW_DESKTOP` env variable is not found, it uses `nw.desktop` by default.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetprogressbarprogress)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetprogressbarprogress)
     ///
     pub fn set_progress_bar(this:&Window, progress:f32);
 
@@ -635,21 +635,21 @@ extern "C" {
     /// to a string number only. You’ll also need to specify the `.desktop` 
     /// file for your application (see the note on `set_progress_bar`)
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetbadgelabellabel)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetbadgelabellabel)
     ///
     pub fn set_badge_label(this:&Window, label:&str);
 
     #[wasm_bindgen(method, js_name=eval)]
     /// Execute a piece of JavaScript in the frame.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalframe-script)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalframe-script)
     ///
     pub fn eval_impl(this:&Window, iframe:JsValue, script:&str);
 
     #[wasm_bindgen(method, js_name=eval)]
     /// Execute a piece of JavaScript in the frame.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalframe-script)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalframe-script)
     ///
     pub fn eval_with_iframe(this:&Window, iframe:&HtmlIFrameElement, script:&str);
     
@@ -658,7 +658,7 @@ extern "C" {
     /// 
     /// See [Protect JavaScript Source Code](https://docs.nwjs.io/en/latest/For%20Users/Advanced/Protect%20JavaScript%20Source%20Code/).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinframe-path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinframe-path)
     ///
     pub fn eval_nw_bin_impl(this:&Window, iframe:JsValue, script:JsValue);
 
@@ -667,7 +667,7 @@ extern "C" {
     /// 
     /// See [Protect JavaScript Source Code](https://docs.nwjs.io/en/latest/For%20Users/Advanced/Protect%20JavaScript%20Source%20Code/).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinframe-path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinframe-path)
     ///
     pub fn eval_nw_bin_with_iframe_impl(this:&Window, iframe:&HtmlIFrameElement, script:JsValue);
 
@@ -678,7 +678,7 @@ extern "C" {
     /// The following code will load `lib.bin` as module and other modules
     /// can refer to it with something like `import * from "./lib.js"`
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinmoduleframe-path-module_path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinmoduleframe-path-module_path)
     ///
     pub fn eval_nw_bin_module_impl(this:&Window, iframe:JsValue, script:JsValue, module_path:&str);
 
@@ -689,7 +689,7 @@ extern "C" {
     /// The following code will load `lib.bin` as module and other modules
     /// can refer to it with something like `import * from "./lib.js"`
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinmoduleframe-path-module_path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinmoduleframe-path-module_path)
     ///
     pub fn eval_nw_bin_module_with_iframe(
         this:&Window,
@@ -701,14 +701,14 @@ extern "C" {
     #[wasm_bindgen(method, js_name=removeAllListeners)]
     /// Removes all listeners
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winremovealllistenerseventname)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winremovealllistenerseventname)
     ///
     pub fn remove_all_listeners(this:&Window);
 
     #[wasm_bindgen(method, js_name=removeAllListeners)]
     /// Removes all listeners of the specified `event_name`
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winremovealllistenerseventname)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winremovealllistenerseventname)
     ///
     pub fn remove_all_listeners_with_name(this:&Window, event_name:&str);
 
@@ -716,7 +716,7 @@ extern "C" {
     #[wasm_bindgen(method)]
     /// Add event listener to the specified `event_name`
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#event-close)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#event-close)
     ///
     pub fn on(this:&Window, event_name:&str, callback:&Function);
 
@@ -728,27 +728,27 @@ extern "C" {
     #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = get)]
     /// Get current window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetwindow_object)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetwindow_object)
     ///
     pub fn get() -> Window;
 
     #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = getAll)]
     /// Get all windows with a callback function whose parameter is an array of nw::Window object.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetallcallback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowgetallcallback)
     ///
     pub fn get_all(callback:&Function);
 
     #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = open)]
     /// Open new window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     ///
     pub fn open(url:&str);
 
     /// Window open options
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     #[wasm_bindgen(extends = Object)]
     #[derive(Debug, Clone, PartialEq, Eq)]
     pub type Options;
@@ -756,13 +756,13 @@ extern "C" {
     #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = open)]
     /// Open window with options
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn open_with_options(url:&str, option:&Options);
 
     #[wasm_bindgen(js_namespace=["nw", "Window"], js_name = open)]
     /// Open window with options and callback.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn open_with_options_and_callback(url:&str, option:&Options, callback:&Function);
 
 
@@ -806,7 +806,7 @@ pub enum NWBinary{
 impl Window{
     /// Set window’s menubar = null.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winmenu)
     ///
     pub fn remove_menu(&self){
         self.remove_menu_impl(JsValue::null());
@@ -814,7 +814,7 @@ impl Window{
 
     /// Closes the current window without triggering `close` event.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincloseforce)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincloseforce)
     ///
     pub fn close_with_force(&self){
         self.close_impl(true);
@@ -826,7 +826,7 @@ impl Window{
     /// 
     /// There are three valid positions: null or center or mouse
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetpositionposition)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetpositionposition)
     ///
     pub fn set_position(&self, position:WindowPosition){
 
@@ -841,7 +841,7 @@ impl Window{
 
     /// Execute a piece of JavaScript in the frame.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalframe-script)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalframe-script)
     ///
     pub fn eval(&self, iframe:Option<HtmlIFrameElement>, script:&str){
         if let Some(iframe) = iframe{
@@ -855,7 +855,7 @@ impl Window{
     /// 
     /// See [Protect JavaScript Source Code](https://docs.nwjs.io/en/latest/For%20Users/Advanced/Protect%20JavaScript%20Source%20Code/).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinframe-path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinframe-path)
     ///
     pub fn eval_nw_bin(&self, iframe:Option<HtmlIFrameElement>, script:NWBinary){
         let script = match script{
@@ -875,7 +875,7 @@ impl Window{
     /// The following code will load `lib.bin` as module and other modules
     /// can refer to it with something like `import * from "./lib.js"`
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinmoduleframe-path-module_path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winevalnwbinmoduleframe-path-module_path)
     ///
     pub fn eval_nw_bin_module(&self, iframe:Option<HtmlIFrameElement>, script:NWBinary, module_path:&str){
         let script = match script{
@@ -900,7 +900,7 @@ impl Options{
     /// This will be used to remember the size and position of the window
     /// and restore that geometry when a window with the same id is later opened.
     /// [See also the Chrome App documentation](https://developer.chrome.com/docs/extensions/reference/app_window/#property-CreateWindowOptions-id)
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn id(self, id: &str) ->Self {
         self.set("id", JsValue::from(id))
     }
@@ -908,28 +908,28 @@ impl Options{
     /// The default title of window created by NW.js, .
     /// it's very useful if you want to show your own title when the app is starting
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn title(self, title: &str) -> Self {
         self.set("title", JsValue::from(title))
     }
 
     /// the initial inner width of the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn width(self, width: u32) ->Self {
         self.set("width", JsValue::from(width))
     }
 
     /// the initial inner height of the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn height(self, height: u32) -> Self {
         self.set("height", JsValue::from(height))
     }
 
     /// path to window’s icon.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#icon)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#icon)
     pub fn icon(self, icon: &String) -> Self {
         self.set("icon", JsValue::from(icon))
     }
@@ -940,7 +940,7 @@ impl Options{
     /// 
     /// There are three valid positions: null or center or mouse
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetpositionposition)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winsetpositionposition)
     ///
     pub fn position(self, position:WindowPosition) -> Self{
 
@@ -955,49 +955,49 @@ impl Options{
 
     /// minimum inner width of window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#min_width)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#min_width)
     pub fn min_width(self, min_width: u32) ->Self {
         self.set("min_width", JsValue::from(min_width))
     }
 
     /// minimum inner height of window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#min_height)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#min_height)
     pub fn min_height(self, min_height: u32) ->Self {
         self.set("min_height", JsValue::from(min_height))
     }
 
     /// maximum inner width of window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#max_width)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#max_width)
     pub fn max_width(self, max_width: u32) ->Self {
         self.set("max_width", JsValue::from(max_width))
     }
 
     /// maximum inner height of window
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#max_height)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#max_height)
     pub fn max_height(self, max_height: u32) ->Self {
         self.set("max_height", JsValue::from(max_height))
     }
 
     /// (Linux) show as desktop background window under X11 environment
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#as_desktop-linux)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#as_desktop-linux)
     pub fn as_desktop(self, as_desktop: bool) ->Self {
         self.set("as_desktop", JsValue::from(as_desktop))
     }
 
     /// whether window is resizable
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#resizable)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#resizable)
     pub fn resizable(self, resizable: bool) ->Self {
         self.set("resizable", JsValue::from(resizable))
     }
 
     /// whether the window should always stay on top of other windows.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#always_on_top)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#always_on_top)
     pub fn always_on_top(self, always_on_top: bool) ->Self {
         self.set("always_on_top", JsValue::from(always_on_top))
     }
@@ -1006,7 +1006,7 @@ impl Options{
     /// simultaneously (on platforms that support multiple workspaces, 
     /// currently Mac OS X and Linux).
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#visible_on_all_workspaces-mac-linux)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#visible_on_all_workspaces-mac-linux)
     pub fn visible_on_all_workspaces(self, visible_on_all_workspaces: bool) ->Self {
         self.set("visible_on_all_workspaces", JsValue::from(visible_on_all_workspaces))
     }
@@ -1017,14 +1017,14 @@ impl Options{
     /// the mouse from being captured on the very edges of the screen.
     /// You should avoid activate it if fullscreen is also set to true.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#fullscreen)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#fullscreen)
     pub fn fullscreen(self, fullscreen: bool) ->Self {
         self.set("fullscreen", JsValue::from(fullscreen))
     }
 
     /// whether the window is shown in taskbar or dock. The default is `true`.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#show_in_taskbar)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#show_in_taskbar)
     pub fn show_in_taskbar(self, show_in_taskbar: bool) ->Self {
         self.set("show_in_taskbar", JsValue::from(show_in_taskbar))
     }
@@ -1049,14 +1049,14 @@ impl Options{
     /// ```
 
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#frame)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#frame)
     pub fn frame(self, frame: bool) ->Self {
         self.set("frame", JsValue::from(frame))
     }
 
     /// specify it to `false` if you want your app to be hidden on startup
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#show)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#show)
     pub fn show(self, show: bool) ->Self {
         self.set("show", JsValue::from(show))
     }
@@ -1066,7 +1066,7 @@ impl Options{
     /// remember to provide a way in app to leave Kiosk mode.
     /// This mode is mainly used for presentation on public displays
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#kiosk)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#kiosk)
     pub fn kiosk(self, kiosk: bool) ->Self {
         self.set("kiosk", JsValue::from(kiosk))
     }
@@ -1080,28 +1080,28 @@ impl Options{
     /// There is experimental support for "click-through" on the 
     /// transparent region: add `--disable-gpu` option to the command line.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#transparent)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#transparent)
     pub fn transparent(self, transparent: bool) ->Self {
         self.set("transparent", JsValue::from(transparent))
     }
 
     /// the initial left of the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn left(self, left: u32) ->Self {
         self.set("x", JsValue::from(left))
     }
 
     /// the initial top of the window.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Manifest%20Format/#webkit-subfields)
     pub fn top(self, top: u32) ->Self {
         self.set("y", JsValue::from(top))
     }
 
     /// whether to open a new window in a separate render process.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn new_instance(self, value: bool) ->Self {
         self.set("new_instance", JsValue::from(value))
     }
@@ -1109,21 +1109,21 @@ impl Options{
     /// If true, the Node context and DOM context are merged in the new window’s process.
     /// Use only when new_instance is true.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn mixed_context(self, value: bool) ->Self {
         self.set("mixed_context", JsValue::from(value))
     }
 
     /// the script to be injected before any DOM is constructed and any script is run. 
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn inject_js_start(self, js: &str) ->Self {
         self.set("inject_js_start", JsValue::from(js))
     }
 
     /// the script to be injected after the document object is loaded, before onload event is fired.
     ///
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#windowopenurl-options-callback)
     pub fn inject_js_end(self, js: &str) ->Self {
         self.set("inject_js_end", JsValue::from(js))
     }
@@ -1149,7 +1149,7 @@ impl CaptureConfig{
     /// 
     /// If ignored, it’s "jpeg" by default.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
     pub fn format(self, format: &str) ->Self {
         self.set("format", JsValue::from(format))
     }
@@ -1162,7 +1162,7 @@ impl CaptureConfig{
     /// But `datauri` contains the mime type headers as well,
     /// and it can be directly assigned to src of Image to load the image.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturepagecallback-config)
     /// 
     pub fn datatype(self, datatype: &str) ->Self {
         self.set("datatype", JsValue::from(datatype))
@@ -1183,7 +1183,7 @@ impl ScreenshotConfig{
     /// Capture the whole page beyond the visible area.
     /// Currently the height of captured image is capped at 16384 pixels by Chromium.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
     /// 
     pub fn fullsize(self, fullsize: bool) ->Self {
         self.set("fullsize", JsValue::from(fullsize))
@@ -1195,7 +1195,7 @@ impl ScreenshotConfig{
     /// 
     /// "png" is the default.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
     /// 
     pub fn format(self, format: &str) ->Self {
         self.set("format", JsValue::from(format))
@@ -1203,7 +1203,7 @@ impl ScreenshotConfig{
 
     /// Compression quality from range [0..100] (jpeg only).
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
     /// 
     pub fn quality(self, quality: u8) ->Self {
         self.set("quality", JsValue::from(quality))
@@ -1211,7 +1211,7 @@ impl ScreenshotConfig{
 
     /// Capture the screenshot of a given region only.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#wincapturescreenshotoptions-callback)
     /// 
     pub fn clip(self, x:i32, y:i32, width:u32, height:u32, scale:u32) ->Self {
         let clip_region = Object::new();
@@ -1258,7 +1258,7 @@ impl PrintOptions{
     /// Whether to print without the need for user’s interaction; optional,
     /// true by default
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn autoprint(self, autoprint: bool) ->Self {
         self.set("autoprint", JsValue::from(autoprint))
@@ -1266,7 +1266,7 @@ impl PrintOptions{
 
     /// Hide the flashing print preview dialog; optional, false by default
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn silent(self, silent: bool) ->Self {
         self.set("silent", JsValue::from(silent))
@@ -1276,7 +1276,7 @@ impl PrintOptions{
     /// 
     /// No need to set this when printing to PDF
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn printer(self, printer: &str) ->Self {
         self.set("printer", JsValue::from(printer))
@@ -1284,7 +1284,7 @@ impl PrintOptions{
 
     /// The path of the output PDF when printing to PDF
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn pdf_path(self, pdf_path: &str) ->Self {
         self.set("pdf_path", JsValue::from(pdf_path))
@@ -1292,7 +1292,7 @@ impl PrintOptions{
 
     /// Whether to enable header and footer
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn header_footer_enabled(self, header_footer_enabled: bool) ->Self {
         self.set("headerFooterEnabled", JsValue::from(header_footer_enabled))
@@ -1300,7 +1300,7 @@ impl PrintOptions{
 
     /// Whether to use landscape or portrait
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn landscape(self, landscape: bool) ->Self {
         self.set("landscape", JsValue::from(landscape))
@@ -1308,7 +1308,7 @@ impl PrintOptions{
 
     /// The paper size spec
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn media_size(self, media_size: Object) ->Self {
         self.set("mediaSize", JsValue::from(media_size))
@@ -1316,7 +1316,7 @@ impl PrintOptions{
 
     /// Whether to print CSS backgrounds
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn should_print_backgrounds(self, should_print_backgrounds: bool) ->Self {
         self.set("shouldPrintBackgrounds", JsValue::from(should_print_backgrounds))
@@ -1326,7 +1326,7 @@ impl PrintOptions{
     /// 
     /// see margins_custom.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn margin(mut self, margin: PrintMargin) ->Self {
         let margin_type = match margin{
@@ -1361,7 +1361,7 @@ impl PrintOptions{
 
     /// The number of copies to print.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn copies(self, copies: u8) ->Self {
         self.set("copies", JsValue::from(copies))
@@ -1369,7 +1369,7 @@ impl PrintOptions{
 
     /// The scale factor; 100 is the default.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn scale_factor(self, scale_factor: u8) ->Self {
         self.set("scaleFactor", JsValue::from(scale_factor))
@@ -1377,7 +1377,7 @@ impl PrintOptions{
 
     /// String to replace the URL in the header.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn header_string(self, header_string: &str) ->Self {
         self.set("headerString", JsValue::from(header_string))
@@ -1385,7 +1385,7 @@ impl PrintOptions{
 
     /// String to replace the URL in the footer.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Window/#winprintoptions)
     /// 
     pub fn footer_string(self, footer_string: &str) ->Self {
         self.set("footerString", JsValue::from(footer_string))

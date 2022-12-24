@@ -28,14 +28,14 @@ extern "C" {
     /// 
     /// For example, mailto: URLs in the default mail user agent.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shell/#shellopenexternaluri)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shell/#shellopenexternaluri)
     /// 
     pub fn open_external(uri:&str);
     
     #[wasm_bindgen(js_namespace=["nw", "Shell"], js_name = openItem)]
     /// Open the given `file_path` in the desktop’s default manner.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shell/#shellopenitemfile_path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shell/#shellopenitemfile_path)
     /// 
     pub fn open_item(file_path:&str);
 
@@ -44,7 +44,7 @@ extern "C" {
     /// 
     /// If possible, select the file.
     /// 
-    /// [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shell/#shellshowiteminfolderfile_path)
+    /// ⧉ [NWJS Documentation](https://docs.nwjs.io/en/latest/References/Shell/#shellshowiteminfolderfile_path)
     /// 
     pub fn show_item_in_folder(file_path:&str);
 }
