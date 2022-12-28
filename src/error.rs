@@ -19,7 +19,7 @@ pub enum Error {
     PoisonError(String),
 
     #[error("Callback Error: {0}")]
-    CallbackError(#[from] workflow_wasm::callback::Error),
+    CallbackError(#[from] workflow_wasm::callback::CallbackError),
 }
 
 impl From<String> for Error{

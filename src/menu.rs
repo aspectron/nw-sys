@@ -53,7 +53,7 @@
 use wasm_bindgen::prelude::*;
 use js_sys::Object;
 use crate::menu_item::MenuItem;
-use crate::options::OptionsExt;
+use workflow_wasm::options::OptionsExt;
 
 
 #[wasm_bindgen]

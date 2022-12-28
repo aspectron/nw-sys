@@ -25,7 +25,6 @@
 
 pub mod error;
 pub mod result;
-pub mod options;
 
 mod nw;
 pub use nw::Nw;

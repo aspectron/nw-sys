@@ -21,7 +21,7 @@
 
 use wasm_bindgen::prelude::*;
 use js_sys::{Object, Array};
-use crate::options::OptionsExt;
+use workflow_wasm::options::OptionsExt;
 use crate::result::Result;
 
 
