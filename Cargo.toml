@@ -1,6 +1,6 @@
 [package]
 name = "nw-sys"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/aspectron/nw-sys"
@@ -9,9 +9,7 @@ exclude = ["/.*", "/test"]
 keywords = ["nw","nwjs","node-webkit"]
 categories = ["wasm","api-bindings"]
 description = """
-Raw `wasm_bindgen` bindings for the NWJS API.
-Additional APIs for NWJS-base application development 
-are available via the `workflow-nw` crate.
+Raw wasm_bindgen bindings for the NWJS API.
 """
 
 [dependencies]
