@@ -25,9 +25,9 @@
 //! ```
 //!
 use crate::menu::Menu;
+use crate::options::OptionsTrait;
 use js_sys::{Function, Object};
 use wasm_bindgen::prelude::*;
-use workflow_wasm::options::OptionsExt;
 
 #[wasm_bindgen]
 extern "C" {
@@ -187,7 +187,7 @@ extern "C" {
     pub type Options;
 }
 
-impl OptionsExt for Options {}
+impl OptionsTrait for Options {}
 
 impl Options {
     /// Set the title of the tray.

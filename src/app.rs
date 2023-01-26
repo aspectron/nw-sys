@@ -233,11 +233,8 @@ extern "C" {
 fn build_argv_str(argv: Array) -> Result<Vec<String>> {
     let mut list = Vec::new();
     for index in 0..argv.length() {
-        match argv.get(index).as_string() {
-            Some(v) => {
-                list.push(v);
-            }
-            None => {}
+        if let Some(v) = argv.get(index).as_string() {
+            list.push(v);
         }
     }
 

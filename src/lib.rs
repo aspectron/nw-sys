@@ -24,6 +24,7 @@
 //!
 
 pub mod error;
+pub mod options;
 pub mod result;
 
 mod nw;

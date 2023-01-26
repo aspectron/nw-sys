@@ -51,10 +51,10 @@
 //! ```
 
 use crate::menu::Menu;
+use crate::options::OptionsTrait;
 use js_sys::{ArrayBuffer, Function, Object, Promise};
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlIFrameElement;
-use workflow_wasm::options::OptionsExt;
 
 #[wasm_bindgen]
 extern "C" {
@@ -896,7 +896,7 @@ impl Window {
     }
 }
 
-impl OptionsExt for Options {}
+impl OptionsTrait for Options {}
 
 impl Options {
     /// the id used to identify the window.
@@ -1141,7 +1141,7 @@ impl std::fmt::Display for Options {
     }
 }
 
-impl OptionsExt for CaptureConfig {
+impl OptionsTrait for CaptureConfig {
     fn initialize(self) -> Self {
         self.datatype("datauri")
     }
@@ -1180,7 +1180,7 @@ impl std::fmt::Display for CaptureConfig {
     }
 }
 
-impl OptionsExt for ScreenshotConfig {}
+impl OptionsTrait for ScreenshotConfig {}
 
 impl ScreenshotConfig {
     /// Capture the whole page beyond the visible area.
@@ -1251,7 +1251,7 @@ pub enum PrintMargin {
     Custom(Option<u16>, Option<u16>, Option<u16>, Option<u16>),
 }
 
-impl OptionsExt for PrintOptions {}
+impl OptionsTrait for PrintOptions {}
 
 impl PrintOptions {
     /// Whether to print without the need for user’s interaction; optional,

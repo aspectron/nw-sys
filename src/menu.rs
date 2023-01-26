@@ -51,9 +51,9 @@
 //! ```
 
 use crate::menu_item::MenuItem;
+use crate::options::OptionsTrait;
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
-use workflow_wasm::options::OptionsExt;
 
 #[wasm_bindgen]
 extern "C" {
@@ -152,8 +152,8 @@ extern "C" {
 
 }
 
-impl OptionsExt for Options {}
-impl OptionsExt for MacOptions {}
+impl OptionsTrait for Options {}
+impl OptionsTrait for MacOptions {}
 
 impl MacOptions {
     /// do not populate the Edit menu
@@ -178,10 +178,8 @@ pub enum Type {
 impl From<Type> for Options {
     fn from(t: Type) -> Self {
         let options = Self::new();
-        let options = match t {
+        match t {
             Type::Menubar => options.set("type", JsValue::from("menubar")),
-        };
-
-        options
+        }
     }
 }

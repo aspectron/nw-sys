@@ -19,10 +19,10 @@
 //!
 //! ```
 
+use crate::options::OptionsTrait;
 use crate::result::Result;
 use js_sys::{Array, Object};
 use wasm_bindgen::prelude::*;
-use workflow_wasm::options::OptionsExt;
 
 #[wasm_bindgen]
 extern "C" {
@@ -227,12 +227,12 @@ impl Clipboard {
     }
 }
 
-impl OptionsExt for DataWrite {
+impl OptionsTrait for DataWrite {
     fn initialize(self) -> Self {
         self.data_type("text").raw(false)
     }
 }
-impl OptionsExt for DataRead {}
+impl OptionsTrait for DataRead {}
 
 impl DataWrite {
     /// The data to write to the clipboard

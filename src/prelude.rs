@@ -3,9 +3,9 @@
 //!
 
 pub use crate::error;
+pub use crate::options::OptionsTrait;
 pub use crate::result;
 pub use std::sync::{Arc, Mutex};
-pub use workflow_wasm::options::OptionsExt;
 
 pub use crate::Clipboard;
 pub use crate::Menu;

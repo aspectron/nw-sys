@@ -80,7 +80,7 @@ use wasm_bindgen::prelude::*;
 //use workflow_log::log_info;
 //use crate::options::OptionsExt;
 use crate::result::Result;
-use workflow_wasm::utils;
+use crate::utils;
 
 #[wasm_bindgen]
 extern "C" {

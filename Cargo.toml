@@ -3,20 +3,21 @@ name = "nw-sys"
 version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0 OR MIT"
-repository = "https://github.com/aspectron/cargo-emanate"
+repository = "https://github.com/aspectron/nw-sys"
+authors = ["Anton Yemelyanov <anton.yemelyanov@gmail.com>", "Surinder Singh Matoo Mattaur <surinder83singh@gmail.com>"]
 keywords = ["cargo", "subcommand", "installation", "package", "nwjs"]
 categories = ["command-line-utilities", "development-tools::cargo-plugins", "development-tools::build-utils"]
 exclude = ["/.*", "/test"]
 description = """
-NWJS API
+Raw `wasm_bindgen` bindings for the NWJS API.
+Additional APIs for NWJS-base application development 
+are available via the `workflow-nw` crate.
 """
 
 [dependencies]
-wasm-bindgen = "0.2.79"
-workflow-wasm = {path="../workflow-wasm"}
-workflow-log = {path="../workflow-log"}
-js-sys = "0.3.56"
-thiserror = "1.0"
+wasm-bindgen = "0.2.83"
+js-sys = "0.3.60"
+thiserror = "1.0.38"
 
 [dependencies.web-sys]
 version = "0.3.60"

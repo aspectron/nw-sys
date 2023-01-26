@@ -5,7 +5,6 @@
 
 use js_sys::{Function, Object};
 use wasm_bindgen::prelude::*;
-use workflow_log::log_trace;
 
 #[wasm_bindgen]
 extern "C" {
@@ -16,6 +15,9 @@ extern "C" {
     #[wasm_bindgen (extends = Object, js_name = nw)]
     #[derive(Debug, Clone)]
     pub type Nw;
+
+    #[wasm_bindgen(js_namespace = console)]
+    pub fn error(s: &str);
 }
 
 /// Getter for the global `nw` namespace object
@@ -28,15 +30,15 @@ pub fn try_nw() -> Result<Nw, JsValue> {
     match nw_opt {
         Ok(value) => {
             if value.is_undefined() {
-                log_trace!("nw not found");
+                error("NW not found");
                 Err(value)
             } else {
-                let nw_ns: Nw = value.clone().into();
+                let nw_ns: Nw = value.into();
                 Ok(nw_ns)
             }
         }
         Err(err) => {
-            log_trace!("nw not found, error: {:?}", err);
+            error(&format!("NW not found, error: {:?}", err));
             Err(err)
         }
     }

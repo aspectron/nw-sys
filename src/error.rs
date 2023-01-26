@@ -17,9 +17,6 @@ pub enum Error {
 
     #[error("Poison Error: {0}")]
     PoisonError(String),
-
-    #[error("Callback Error: {0}")]
-    CallbackError(#[from] workflow_wasm::callback::CallbackError),
 }
 
 impl From<String> for Error {
@@ -51,8 +48,7 @@ where
 impl From<Error> for String {
     fn from(err: Error) -> String {
         match err {
-            Error::String(s) | Error::PoisonError(s) | Error::JsValue(s) => String::from(s),
-            Error::CallbackError(err) => err.to_string(), //Error::RecvError => String::from(&format!("{}", err)),
+            Error::String(s) | Error::PoisonError(s) | Error::JsValue(s) => s,
         }
     }
 }

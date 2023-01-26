@@ -72,9 +72,9 @@
 //! ```
 //!
 
+use crate::options::OptionsTrait;
 use js_sys::{Array, Function, Object};
 use wasm_bindgen::prelude::*;
-use workflow_wasm::options::OptionsExt;
 
 #[wasm_bindgen]
 extern "C" {
@@ -175,9 +175,9 @@ extern "C" {
     pub type Item;
 }
 
-impl OptionsExt for Options {}
-impl OptionsExt for Button {}
-impl OptionsExt for Item {}
+impl OptionsTrait for Options {}
+impl OptionsTrait for Button {}
+impl OptionsTrait for Item {}
 
 /// Notification template type
 pub enum TemplateType {
@@ -372,14 +372,19 @@ impl Options {
 /// [Chrome Doc](https://developer.chrome.com/docs/extensions/reference/notifications/#method-create)
 ///
 pub fn create(id: Option<String>, options: &Options, callback: Option<&Function>) {
-    if id.is_some() && callback.is_some() {
-        create_with_id_and_callback_impl(&id.unwrap(), options, callback.unwrap());
-    } else if id.is_some() {
-        create_with_id_impl(&id.unwrap(), options);
-    } else if callback.is_some() {
-        create_with_callback_impl(options, callback.unwrap());
-    } else {
-        create_impl(options);
+    match (id, callback) {
+        (Some(id), Some(callback)) => {
+            create_with_id_and_callback_impl(&id, options, callback);
+        }
+        (Some(id), None) => {
+            create_with_id_impl(&id, options);
+        }
+        (None, Some(callback)) => {
+            create_with_callback_impl(options, callback);
+        }
+        (None, None) => {
+            create_impl(options);
+        }
     }
 }
 
