@@ -3,7 +3,6 @@
 //!
 
 use std::sync::PoisonError;
-
 use thiserror::Error;
 use wasm_bindgen::JsValue;
 

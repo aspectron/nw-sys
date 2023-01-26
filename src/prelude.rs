@@ -7,6 +7,8 @@ pub use crate::options::OptionsTrait;
 pub use crate::result;
 pub use std::sync::{Arc, Mutex};
 
+pub use crate::menu_item::Type as MenuItemType;
+pub use crate::tray::Options as TrayOptions;
 pub use crate::Clipboard;
 pub use crate::Menu;
 pub use crate::MenuItem;

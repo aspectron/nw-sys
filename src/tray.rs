@@ -24,6 +24,7 @@
 //!
 //! ```
 //!
+
 use crate::menu::Menu;
 use crate::options::OptionsTrait;
 use js_sys::{Function, Object};
