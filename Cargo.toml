@@ -5,9 +5,9 @@ edition = "2021"
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/aspectron/nw-sys"
 authors = ["Anton Yemelyanov <anton.yemelyanov@gmail.com>", "Surinder Singh Matoo Mattaur <surinder83singh@gmail.com>"]
-keywords = ["cargo", "subcommand", "installation", "package", "nwjs"]
-categories = ["command-line-utilities", "development-tools::cargo-plugins", "development-tools::build-utils"]
 exclude = ["/.*", "/test"]
+keywords = ["nw","nwjs","node-webkit"]
+categories = ["wasm","api-bindings"]
 description = """
 Raw `wasm_bindgen` bindings for the NWJS API.
 Additional APIs for NWJS-base application development 
