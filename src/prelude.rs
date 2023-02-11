@@ -8,6 +8,7 @@ pub use crate::result;
 pub use std::sync::{Arc, Mutex};
 
 pub use crate::menu_item::Type as MenuItemType;
+pub use crate::nw::{is_nw, try_nw};
 pub use crate::tray::Options as TrayOptions;
 pub use crate::utils::window;
 pub use crate::window;
@@ -18,4 +19,3 @@ pub use crate::Nw;
 pub use crate::Shortcut;
 pub use crate::Tray;
 pub use crate::Window;
-pub use crate::nw::{is_nw,try_nw};
