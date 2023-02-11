@@ -10,7 +10,7 @@
 //!     pub type MyOptions;
 //! }
 //!
-//! impl workflow_wasm::options::OptionsExt for MyOptions{}
+//! impl workflow_wasm::options::OptionsTrait for MyOptions{}
 //!
 //! //impl methods as you need
 //! impl MyOptions{
