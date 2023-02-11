@@ -16,3 +16,4 @@ pub use crate::Nw;
 pub use crate::Shortcut;
 pub use crate::Tray;
 pub use crate::Window;
+pub use crate::nw::{is_nw,try_nw};
