@@ -896,6 +896,9 @@ impl Window {
     }
 }
 
+unsafe impl Send for Window {}
+unsafe impl Sync for Window {}
+
 impl OptionsTrait for Options {}
 
 impl Options {
