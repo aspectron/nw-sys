@@ -52,6 +52,7 @@
 
 use crate::menu::Menu;
 use crate::options::OptionsTrait;
+use cfg_if::cfg_if;
 use js_sys::{ArrayBuffer, Function, Object, Promise};
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlIFrameElement;
@@ -896,8 +897,12 @@ impl Window {
     }
 }
 
-unsafe impl Send for Window {}
-unsafe impl Sync for Window {}
+cfg_if! {
+    if #[cfg(feature = "markers")] {
+        unsafe impl Send for Window {}
+        unsafe impl Sync for Window {}
+    }
+}
 
 impl OptionsTrait for Options {}
 

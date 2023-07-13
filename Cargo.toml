@@ -12,10 +12,15 @@ description = """
 Raw wasm_bindgen bindings for the NWJS API.
 """
 
+[features]
+markers = []
+default = ["markers"]
+
 [dependencies]
 js-sys = "0.3.61"
 thiserror = "1.0.38"
 wasm-bindgen = "0.2.84"
+cfg-if = "1.0.0"
 
 [dependencies.web-sys]
 version = "0.3.61"
