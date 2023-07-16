@@ -37,6 +37,8 @@ pub use nw::is_nw;
 pub use nw::try_nw;
 pub use nw::Nw;
 
+pub mod global;
+
 pub mod app;
 
 pub mod clipboard;

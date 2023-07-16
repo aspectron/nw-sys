@@ -333,3 +333,10 @@ pub fn data_path() -> String {
 pub fn manifest() -> Object {
     NwApp::manifest()
 }
+
+pub fn folder() -> String {
+    js_sys::Reflect::get(&crate::global::global(), &JsValue::from_str("__dirname"))
+        .unwrap()
+        .as_string()
+        .expect("unable to get global.__dirname")
+}
