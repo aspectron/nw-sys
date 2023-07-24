@@ -901,6 +901,9 @@ cfg_if! {
     if #[cfg(feature = "markers")] {
         unsafe impl Send for Window {}
         unsafe impl Sync for Window {}
+
+        unsafe impl Send for Options {}
+        unsafe impl Sync for Options {}
     }
 }
 
