@@ -312,14 +312,13 @@ impl From<Type> for Options {
     }
 }
 
-impl ToString for Type {
-    fn to_string(&self) -> String {
+impl std::fmt::Display for Type {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Type::Separator => "Separator",
-            Type::Normal => "Normal",
-            Type::Checkbox => "Checkbox",
+            Type::Separator => write!(f, "Separator"),
+            Type::Normal => write!(f, "Normal"),
+            Type::Checkbox => write!(f, "Checkbox"),
         }
-        .to_string()
     }
 }
 

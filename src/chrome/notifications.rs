@@ -187,13 +187,13 @@ pub enum TemplateType {
     Progress,
 }
 
-impl ToString for TemplateType {
-    fn to_string(&self) -> String {
+impl std::fmt::Display for TemplateType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Basic => "Basic".to_string(),
-            Self::Image => "Image".to_string(),
-            Self::List => "List".to_string(),
-            Self::Progress => "Progress".to_string(),
+            Self::Basic => write!(f, "Basic"),
+            Self::Image => write!(f, "Image"),
+            Self::List => write!(f, "List"),
+            Self::Progress => write!(f, "Progress"),
         }
     }
 }
